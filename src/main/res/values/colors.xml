@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#2f6699</color>
+    <color name="colorPrimaryDark">#0e4374</color>
+    <color name="colorAccent">#4dffffff</color>
+    <color name="custom_theme_color">#b0b0ff</color>
+    <color name="gray">#21ffffff</color>
+    <color name="transparent_white">#7fffffff</color>
+    <color name="siva">#21ffffff</color>
+    <color name="colorSecondary">#ffffff</color>
+
+
+
+    <!-- colors for task priority selection -->
+    <color name="materialRed">#b6e74c3c</color>
+    <color name="materialOrange">#b6e67e22</color>
+    <color name="materialYellow">#b6f1c40f</color>
+
+</resources>

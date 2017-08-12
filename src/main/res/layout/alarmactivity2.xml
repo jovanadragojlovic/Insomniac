@@ -1,0 +1,75 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    >
+    <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true">
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:src="@drawable/tunisija"
+            android:scaleType = "centerCrop"
+            android:id="@+id/imageView2"
+            tools:ignore="ContentDescription"/>
+
+
+
+
+    </FrameLayout>
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="67dp"
+        android:layout_height="60dp"
+        android:layout_marginTop="4dp"
+        app:srcCompat="@drawable/novlog"
+        tools:ignore="ContentDescription"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/gray"
+        android:layout_marginTop="68dp" />
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="match_parent"
+        android:layout_height="68dp"
+        android:text="Set reminder"
+        android:textSize="20sp"
+        android:gravity="center"
+        />
+
+    <ToggleButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/on"
+        android:id="@+id/alarmToggle2"
+        android:layout_alignRight="@+id/timePicker2"
+        android:layout_alignEnd="@+id/timePicker2"
+        android:layout_below="@+id/timePicker2"
+        android:onClick="onToggleClicked"
+        android:background="@drawable/green"
+        style="@style/ButtonText222"
+        android:textOff="@string/on"
+        android:textOn="@string/off" />
+
+    <TimePicker
+        android:id="@+id/timePicker2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/textView"
+            android:layout_centerHorizontal="true"
+        android:headerBackground="#00ffffff"
+        />
+
+
+</RelativeLayout>

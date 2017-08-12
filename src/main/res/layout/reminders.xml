@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    >
+
+    <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true">
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:src="@drawable/tunisija"
+            android:scaleType = "centerCrop"
+            android:id="@+id/imageView2"
+            tools:ignore="ContentDescription"/>
+
+
+
+
+    </FrameLayout>
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="67dp"
+        android:layout_height="60dp"
+        android:layout_marginTop="4dp"
+        android:src="@drawable/novlog"
+        tools:ignore="ContentDescription"
+        />
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="match_parent"
+        android:layout_height="68dp"
+        android:text="Set reminders"
+        android:textSize="20sp"
+        android:gravity="center"
+        />
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/gray"
+        android:layout_marginTop="68dp" />
+
+
+    <Button
+        android:text="@string/worry_time"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:id="@+id/worrytime"
+        android:background="@drawable/green"
+        android:textAppearance="@style/TextAppearance.AppCompat.Headline"
+        android:textSize="20sp"
+        android:layout_margin="15dp"
+        android:layout_above="@+id/morningreminder"
+        android:layout_centerHorizontal="true"
+
+        android:gravity="center" />
+
+
+    <Button
+        android:text="@string/morning_reminder"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:id="@+id/morningreminder"
+        android:background="@drawable/green"
+        android:textAppearance="@style/TextAppearance.AppCompat.Headline"
+        android:textSize="20sp"
+        android:layout_margin="15dp"
+        android:layout_marginBottom="17dp"
+        android:layout_above="@+id/dailyreminder"
+        android:layout_centerHorizontal="true"
+
+        android:gravity="center" />
+
+    <Button
+        android:text="@string/daily_reminder"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:id="@+id/dailyreminder"
+        android:background="@drawable/green"
+        android:textAppearance="@style/TextAppearance.AppCompat.Headline"
+        android:textSize="20sp"
+        android:layout_centerVertical="true"
+        android:layout_margin="15dp"
+        android:layout_centerHorizontal="true"
+
+        android:gravity="center"/>
+
+    <Button
+        android:text="@string/nightly_reminder"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:id="@+id/nightlyreminder"
+        android:background="@drawable/green"
+        android:textAppearance="@style/TextAppearance.AppCompat.Headline"
+        android:textSize="20sp"
+        android:layout_margin="15dp"
+        android:layout_below="@+id/dailyreminder"
+        android:layout_centerHorizontal="true"
+
+        android:gravity="center"
+/>
+
+
+
+</RelativeLayout>

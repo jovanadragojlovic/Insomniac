@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+
+    >
+    <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true">
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:src="@drawable/tunisija"
+            android:scaleType = "centerCrop"
+            android:id="@+id/imageView2"
+            tools:ignore="ContentDescription"/>
+
+
+
+
+    </FrameLayout>
+
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="67dp"
+        android:layout_height="60dp"
+        android:layout_marginTop="4dp"
+        app:srcCompat="@drawable/novlog"
+        tools:ignore="ContentDescription"/>
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="match_parent"
+        android:layout_height="68dp"
+        android:text="Improve Sleep"
+        android:textSize="20sp"
+        android:gravity="center"
+        />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/siva"
+        android:layout_marginTop="68dp" />
+
+    <Button
+        android:text="Checklist"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:id="@+id/checklist"
+        android:background="@drawable/green"
+        android:textAppearance="@style/TextAppearance.AppCompat.Headline"
+        android:textSize="20sp"
+        android:layout_margin="14dp"
+        android:layout_centerHorizontal="true"
+        android:gravity="center"
+        android:layout_below="@+id/textView"
+        android:layout_centerVertical="true"
+        />
+
+    <Button
+        android:text="Sleep Quality"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:id="@+id/sleepquality"
+        android:background="@drawable/green"
+        android:textAppearance="@style/TextAppearance.AppCompat.Headline"
+        android:textSize="20sp"
+        android:layout_centerVertical="true"
+        android:layout_margin="14dp"
+        android:gravity="center"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@+id/checklist"
+        />
+
+    <Button
+        android:text="Track your progress"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:id="@+id/btnView"
+        android:background="@drawable/green"
+        android:textAppearance="@style/TextAppearance.AppCompat.Headline"
+        android:textSize="20sp"
+        android:layout_margin="14dp"
+        android:layout_centerHorizontal="true"
+        android:gravity="center"
+        android:layout_centerVertical="true"
+        android:layout_below="@+id/sleepquality"
+        />
+
+
+</RelativeLayout>

@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+    This layout defines the main activity screen and displays a list of tasks (if they exist),
+    and a floating action button that launches another activity.
+-->
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:scaleType="centerCrop"
+    tools:ignore="ContentDescription"
+    android:textColor="#ffffff"
+    android:textSize="25sp"
+    >
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:src="@drawable/tunisija"
+        android:scaleType = "centerCrop"
+        android:id="@+id/imageView2"
+        tools:ignore="ContentDescription"/>
+
+
+
+    <!-- RecyclerView that is responsible for holding a list of task data , and possibly for text size-->
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/recyclerViewTasks"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:paddingBottom="8dp"
+        android:textColor="#ffffff"
+        android:textSize="25sp"
+        android:layout_gravity="start"
+
+
+        />
+
+
+
+    <!-- Floating action button that launches AddTaskActivity when clicked -->
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/fab"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|end"
+        android:layout_margin="@dimen/fab_margin"
+        app:backgroundTint="@color/siva"
+        android:tint="#ffffff"
+        app:srcCompat="@android:drawable/ic_input_add" />
+
+</FrameLayout>
+

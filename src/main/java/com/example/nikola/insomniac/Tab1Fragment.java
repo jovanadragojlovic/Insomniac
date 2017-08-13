@@ -35,7 +35,6 @@ public class Tab1Fragment extends Fragment {
         LineChart lineChart = (LineChart) view.findViewById(R.id.chart);
 
 
-        Log.d(TAG, "AAAAAAAAAAAAaaaaaaaaAAAAAAAAAAAAAAAAAAAAAAAAAAAAAaa " + mDatabaseHelper.getData());
         ArrayList<Entry> entries = new ArrayList<>();
         entries.add(new Entry(4f, 0));
         entries.add(new Entry(8f, 1));

@@ -7,6 +7,10 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import java.util.Date;
+import java.text.SimpleDateFormat;
+
+
 public class SleepQuality extends ImproveSleep {
 
     private static final String TAG = "SleepQuality";
@@ -42,10 +46,11 @@ public class SleepQuality extends ImproveSleep {
     }
 
     public void AddData(String newEntry) {
-        boolean insertData = mDatabaseHelper.addData(newEntry);
-        mDatabaseHelper.getData();
+        String date = new SimpleDateFormat("dd-MM-yyyy").format(new Date());
+        boolean insertData = mDatabaseHelper.addData(newEntry, date.toString());
         if (insertData) {
             toastMessage("Data Successfully Inserted!");
+            toastMessage("Date inserted: " + date);
         } else {
             toastMessage("Something went wrong");
         }

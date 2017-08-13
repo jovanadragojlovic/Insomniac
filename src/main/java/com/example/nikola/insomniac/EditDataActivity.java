@@ -55,28 +55,28 @@ public class EditDataActivity extends AppCompatActivity {
         //set the text to show the current selected name
         editable_item.setText(selectedName);
 
-        btnSave.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                String item = editable_item.getText().toString();
-                if(!item.equals("")){
-                    mDatabaseHelper.updateName(item,selectedID,selectedName);
-                    toastMessage("New value saved");
-
-                }else{
-                    toastMessage("You must enter a name");
-                }
-            }
-        });
-
-        btnDelete.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                mDatabaseHelper.deleteName(selectedID,selectedName);
-                editable_item.setText("");
-                toastMessage("removed from database");
-            }
-        });
+//        btnSave.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                String item = editable_item.getText().toString();
+//                if(!item.equals("")){
+//                    mDatabaseHelper.updateName(item,selectedID);
+//                    toastMessage("New value saved");
+//
+//                }else{
+//                    toastMessage("You must enter a name");
+//                }
+//            }
+//        });
+//
+//        btnDelete.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                mDatabaseHelper.deleteName(selectedID,selectedName);
+//                editable_item.setText("");
+//                toastMessage("removed from database");
+//            }
+//        });
 
 
 

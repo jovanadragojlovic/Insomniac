@@ -1,4 +1,4 @@
-package com.example.nikola.insomniac;
+package com.example.nikola.insomniac.learnMore;
 
 import android.content.Intent;
 import android.net.Uri;
@@ -11,9 +11,11 @@ import android.text.style.ClickableSpan;
 import android.view.View;
 import android.widget.TextView;
 
+import com.example.nikola.insomniac.R;
+import com.example.nikola.insomniac.learnMore.LearnMore;
 
 
-public class LearnMoreChecklist extends LearnMore{
+public class LearnMoreChecklist extends LearnMore {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

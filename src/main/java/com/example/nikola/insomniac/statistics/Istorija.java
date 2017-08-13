@@ -1,4 +1,4 @@
-package com.example.nikola.insomniac;
+package com.example.nikola.insomniac.statistics;
 
 
 import android.os.Bundle;
@@ -7,6 +7,7 @@ import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 
+import com.example.nikola.insomniac.R;
 
 
 public class Istorija extends AppCompatActivity {  private static final String TAG = "Istorija";

@@ -1,11 +1,14 @@
-package com.example.nikola.insomniac;
+package com.example.nikola.insomniac.improveSleep;
 
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
+
+import com.example.nikola.insomniac.DatabaseHelper;
+import com.example.nikola.insomniac.ImproveSleep;
+import com.example.nikola.insomniac.R;
 
 import java.util.Date;
 import java.text.SimpleDateFormat;
@@ -25,7 +28,6 @@ public class SleepQuality extends ImproveSleep {
         setContentView(R.layout.sleepquality);
         editText = (EditText) findViewById(R.id.editText);
         btnAdd = (Button) findViewById(R.id.btnAdd);
-        btnViewData = (Button) findViewById(R.id.btnView);
         mDatabaseHelper = new DatabaseHelper(this);
 
         btnAdd.setOnClickListener(new View.OnClickListener() {
@@ -38,20 +40,16 @@ public class SleepQuality extends ImproveSleep {
                 } else {
                     toastMessage("You must put something in the text field!");
                 }
-
             }
         });
-
-
     }
 
     public void AddData(String newEntry) {
         String date = new SimpleDateFormat("dd-MM-yyyy").format(new Date());
-        boolean insertData = mDatabaseHelper.addData(newEntry, date.toString());
-        if (insertData) {
+        try {
+            mDatabaseHelper.addSleepQualityData(newEntry, date);
             toastMessage("Data Successfully Inserted!");
-            toastMessage("Date inserted: " + date);
-        } else {
+        } catch(Exception e) {
             toastMessage("Something went wrong");
         }
     }

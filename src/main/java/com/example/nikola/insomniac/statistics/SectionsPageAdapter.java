@@ -1,4 +1,4 @@
-package com.example.nikola.insomniac;
+package com.example.nikola.insomniac.statistics;
 
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;

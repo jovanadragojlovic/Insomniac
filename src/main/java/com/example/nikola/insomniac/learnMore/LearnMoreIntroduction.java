@@ -1,7 +1,6 @@
-package com.example.nikola.insomniac;
+package com.example.nikola.insomniac.learnMore;
 
 import android.content.Intent;
-import android.graphics.Typeface;
 import android.net.Uri;
 import android.os.Bundle;
 import android.text.SpannableString;
@@ -12,10 +11,13 @@ import android.text.style.ClickableSpan;
 import android.view.View;
 import android.widget.TextView;
 
+import com.example.nikola.insomniac.R;
+import com.example.nikola.insomniac.learnMore.LearnMore;
+
 import static com.example.nikola.insomniac.R.id.dva;
 
 
-public class LearnMoreIntroduction extends LearnMore{
+public class LearnMoreIntroduction extends LearnMore {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

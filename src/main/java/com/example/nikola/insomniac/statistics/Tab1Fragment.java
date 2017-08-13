@@ -1,4 +1,4 @@
-package com.example.nikola.insomniac;
+package com.example.nikola.insomniac.statistics;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -10,6 +10,8 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.Toast;
 
+import com.example.nikola.insomniac.DatabaseHelper;
+import com.example.nikola.insomniac.R;
 import com.github.mikephil.charting.charts.LineChart;
 import com.github.mikephil.charting.data.Entry;
 import com.github.mikephil.charting.data.LineData;

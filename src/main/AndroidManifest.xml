@@ -22,7 +22,7 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".LearnMore"
+        <activity android:name=".learnMore.LearnMore"
             android:label="@string/Learnmore">
         <intent-filter>
                 <action android:name="android.intent.action.CALL" />
@@ -74,7 +74,7 @@
         </activity>
 
 
-        <activity android:name=".AboutInsomniac" android:label="@string/about_insomniac">
+        <activity android:name=".learnMore.AboutInsomniac" android:label="@string/about_insomniac">
             <intent-filter>
                 <action android:name="android.intent.action.CALL" />
                 <category android:name="android.intent.category.DEFAULT" />
@@ -82,21 +82,21 @@
         </activity>
 
 
-        <activity android:name=".LearnMoreIntroduction">
+        <activity android:name=".learnMore.LearnMoreIntroduction">
             <intent-filter>
                 <action android:name="android.intent.action.CALL" />
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
 
-        <activity android:name=".LearnMoreChecklist">
+        <activity android:name=".learnMore.LearnMoreChecklist">
             <intent-filter>
                 <action android:name="android.intent.action.CALL" />
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
 
-        <activity android:name=".LearnMoreWorryBook">
+        <activity android:name=".learnMore.LearnMoreWorryBook">
             <intent-filter>
                 <action android:name="android.intent.action.CALL" />
                 <category android:name="android.intent.category.DEFAULT" />
@@ -152,7 +152,7 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".Istorija">
+        <activity android:name=".statistics.Istorija">
             <intent-filter>
                 <action android:name="android.intent.action.CALL" />
 
@@ -160,7 +160,7 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".SleepQuality">
+        <activity android:name=".improveSleep.SleepQuality">
             <intent-filter>
                 <action android:name="android.intent.action.CALL" />
 
@@ -196,14 +196,6 @@
             android:name=".alarms.AlarmService4"
             android:enabled="true" />
         <receiver android:name=".alarms.AlarmReceiver4" />
-
-        <activity android:name=".Grafik">
-            <intent-filter>
-                <action android:name="android.intent.action.CALL" />
-
-                <category android:name="android.intent.category.DEFAULT" />
-            </intent-filter>
-        </activity>
 
     </application>
 

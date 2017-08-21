@@ -174,9 +174,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             } while (cursor.moveToNext());
         }
 
-        cursor.close();
-        db.close();
-
         return values;
     }
 
@@ -240,55 +237,67 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     public void updateDailyLight(String dailyLight, String date){
         SQLiteDatabase db = this.getWritableDatabase();
+        int lastDailyLight = Integer.parseInt(this.getDailyLightByDate(date));
+        lastDailyLight += Integer.parseInt(dailyLight);
         String query = "UPDATE " + TABLE_NAME + " SET " + COL3 +
-                " = '" + dailyLight + "' WHERE " + COL1 + " = '" + date + "'";
+                " = '" + String.valueOf(lastDailyLight) + "' WHERE " + COL1 + " = '" + date + "'";
         Log.d(TAG, "updateName: query: " + query);
-        Log.d(TAG, "updateName: Setting dailyLight to " + dailyLight);
+        Log.d(TAG, "updateName: Setting dailyLight to " + String.valueOf(lastDailyLight));
         db.execSQL(query);
     }
 
     public void updateNightlyLight(String nightlyLight, String date){
         SQLiteDatabase db = this.getWritableDatabase();
+        int lastNightlyLight = Integer.parseInt(this.getNightlyLightByDate(date));
+        lastNightlyLight += Integer.parseInt(nightlyLight);
         String query = "UPDATE " + TABLE_NAME + " SET " + COL4 +
-                " = '" + nightlyLight + "' WHERE " + COL1 + " = '" + date + "'";
+                " = '" + String.valueOf(lastNightlyLight) + "' WHERE " + COL1 + " = '" + date + "'";
         Log.d(TAG, "updateName: query: " + query);
-        Log.d(TAG, "updateName: Setting nightlyLight to " + nightlyLight);
+        Log.d(TAG, "updateName: Setting nightlyLight to " + String.valueOf(lastNightlyLight));
         db.execSQL(query);
     }
 
     public void updatePhisycalActivity(String phisycalActivity, String date){
         SQLiteDatabase db = this.getWritableDatabase();
+        int lastPhisycalActivity = Integer.parseInt(this.getPhysicalActivityByDate(date));
+        lastPhisycalActivity += Integer.parseInt(phisycalActivity);
         String query = "UPDATE " + TABLE_NAME + " SET " + COL5 +
-                " = '" + phisycalActivity + "' WHERE " + COL1 + " = '" + date + "'";
+                " = '" + String.valueOf(lastPhisycalActivity) + "' WHERE " + COL1 + " = '" + date + "'";
         Log.d(TAG, "updateName: query: " + query);
-        Log.d(TAG, "updateName: Setting phisycalActivity to " + phisycalActivity);
+        Log.d(TAG, "updateName: Setting phisycalActivity to " + String.valueOf(lastPhisycalActivity));
         db.execSQL(query);
     }
 
     public void updateWater(String water, String date){
         SQLiteDatabase db = this.getWritableDatabase();
+        int lastWater = Integer.parseInt(this.getWaterByDate(date));
+        lastWater += Integer.parseInt(water);
         String query = "UPDATE " + TABLE_NAME + " SET " + COL6 +
-                " = '" + water + "' WHERE " + COL1 + " = '" + date + "'";
+                " = '" + String.valueOf(lastWater) + "' WHERE " + COL1 + " = '" + date + "'";
         Log.d(TAG, "updateName: query: " + query);
-        Log.d(TAG, "updateName: Setting water to " + water);
+        Log.d(TAG, "updateName: Setting water to " + String.valueOf(lastWater));
         db.execSQL(query);
     }
 
     public void updateCoffee(String coffee, String date){
         SQLiteDatabase db = this.getWritableDatabase();
+        int lastCoffee = Integer.parseInt(this.getCoffeeByDate(date));
+        lastCoffee += Integer.parseInt(coffee);
         String query = "UPDATE " + TABLE_NAME + " SET " + COL7 +
-                " = '" + coffee + "' WHERE " + COL1 + " = '" + date + "'";
+                " = '" + String.valueOf(lastCoffee) + "' WHERE " + COL1 + " = '" + date + "'";
         Log.d(TAG, "updateName: query: " + query);
-        Log.d(TAG, "updateName: Setting coffee to " + coffee);
+        Log.d(TAG, "updateName: Setting coffee to " + String.valueOf(lastCoffee));
         db.execSQL(query);
     }
 
     public void updateBedroom(String bedroom, String date){
         SQLiteDatabase db = this.getWritableDatabase();
+        int lastBedroom = Integer.parseInt(this.getBedroomByDate(date));
+        lastBedroom += Integer.parseInt(bedroom);
         String query = "UPDATE " + TABLE_NAME + " SET " + COL8 +
-                " = '" + bedroom + "' WHERE " + COL1 + " = '" + date + "'";
+                " = '" + String.valueOf(lastBedroom) + "' WHERE " + COL1 + " = '" + date + "'";
         Log.d(TAG, "updateName: query: " + query);
-        Log.d(TAG, "updateName: Setting bedroom to " + bedroom);
+        Log.d(TAG, "updateName: Setting bedroom to " + String.valueOf(lastBedroom));
         db.execSQL(query);
     }
 

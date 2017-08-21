@@ -7,10 +7,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
-import android.widget.Toast;
 
-import com.example.nikola.insomniac.DatabaseHelper;
 import com.example.nikola.insomniac.R;
 import com.github.mikephil.charting.charts.LineChart;
 import com.github.mikephil.charting.data.Entry;
@@ -18,24 +15,16 @@ import com.github.mikephil.charting.data.LineData;
 import com.github.mikephil.charting.data.LineDataSet;
 import com.github.mikephil.charting.utils.ColorTemplate;
 
-
 import java.util.ArrayList;
 
-import static android.R.attr.entries;
-import static com.example.nikola.insomniac.data.TaskContract.TaskEntry.TABLE_NAME;
-
-
 public class Tab1Fragment extends Fragment {
-    private static final String TAG = "Tab1Fragment";
-    DatabaseHelper mDatabaseHelper;
+    private static final String TAG = "SleepQuality";
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.tab1_fragment,container,false);
-
         LineChart lineChart = (LineChart) view.findViewById(R.id.chart);
-
 
         ArrayList<Entry> entries = new ArrayList<>();
         entries.add(new Entry(4f, 0));

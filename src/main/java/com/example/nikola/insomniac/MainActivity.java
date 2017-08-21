@@ -9,6 +9,7 @@ import android.widget.Button;
 
 
 import com.example.nikola.insomniac.learnMore.LearnMore;
+import com.example.nikola.insomniac.statistics.TrackProgress;
 
 import static android.R.attr.value;
 
@@ -35,18 +36,6 @@ public class MainActivity extends AppCompatActivity {
                     }
                 }
         );
-        Button WorryBook = (Button)findViewById(R.id.WorryBook);
-        WorryBook.setOnClickListener(
-                new View.OnClickListener() {
-                    public void onClick(View v) {
-                        Intent myIntent = new Intent(MainActivity.this, WorryBook.class);
-                        myIntent.putExtra("key", value); //Optional parameters
-                        MainActivity.this.startActivity(myIntent);
-                    }
-                }
-        );
-
-
 
         Button ImproveSleep = (Button)findViewById(R.id.ImproveSleep);
         ImproveSleep.setOnClickListener(
@@ -59,18 +48,26 @@ public class MainActivity extends AppCompatActivity {
                     }
                 });
 
-        Button setreminders = (Button)findViewById(R.id.setreminders);
-        setreminders.setOnClickListener(
+        Button trackProgress = (Button)findViewById(R.id.trackprogress);
+        trackProgress.setOnClickListener(
                 new View.OnClickListener() {
                     public void onClick(View v) {
-                        Intent myIntent = new Intent(MainActivity.this, Reminders.class);
-                        myIntent.putExtra("key", value); //Optional parameters
+                        Intent myIntent = new Intent(MainActivity.this, TrackProgress.class);
                         MainActivity.this.startActivity(myIntent);
 
                     }
                 });
 
-
+        Button WorryBook = (Button)findViewById(R.id.WorryBook);
+        WorryBook.setOnClickListener(
+                new View.OnClickListener() {
+                    public void onClick(View v) {
+                        Intent myIntent = new Intent(MainActivity.this, WorryBook.class);
+                        myIntent.putExtra("key", value); //Optional parameters
+                        MainActivity.this.startActivity(myIntent);
+                    }
+                }
+        );
 
 
 

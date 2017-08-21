@@ -1,6 +1,7 @@
 package com.example.nikola.insomniac.improveSleep;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -15,11 +16,14 @@ import java.util.Date;
 
 public class DailyLight extends ImproveSleep {
 
-    private static final String TAG = "DailyLight";
-
+    private static final String TAG = "SleepQuality";
     DatabaseHelper mDatabaseHelper;
     private Button btnAdd;
     private EditText editText;
+
+    public DailyLight() {
+
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,6 +36,7 @@ public class DailyLight extends ImproveSleep {
         btnAdd.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
                 String newEntry = editText.getText().toString();
                 if (editText.length() != 0) {
                     AddData(newEntry);
@@ -49,6 +54,7 @@ public class DailyLight extends ImproveSleep {
             mDatabaseHelper.addDailyLightData(newEntry, date);
             toastMessage("Data Successfully Inserted!");
         } catch(Exception e) {
+            Log.d(TAG, "greska: " + e);
             toastMessage("Something went wrong");
         }
     }

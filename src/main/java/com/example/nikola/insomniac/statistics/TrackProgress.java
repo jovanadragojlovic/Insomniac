@@ -10,7 +10,8 @@ import android.util.Log;
 import com.example.nikola.insomniac.R;
 
 
-public class Istorija extends AppCompatActivity {  private static final String TAG = "Istorija";
+public class TrackProgress extends AppCompatActivity {
+    private static final String TAG = "SleepQuality";
 
     private SectionsPageAdapter mSectionsPageAdapter;
 
@@ -19,7 +20,7 @@ public class Istorija extends AppCompatActivity {  private static final String T
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.istorija);
+        setContentView(R.layout.trackprogress);
         Log.d(TAG, "onCreate: Starting.");
 
         mSectionsPageAdapter = new SectionsPageAdapter(getSupportFragmentManager());

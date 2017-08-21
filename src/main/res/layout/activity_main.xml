@@ -66,10 +66,6 @@
         android:gravity="center"
         android:layout_above="@+id/ImproveSleep"
         android:layout_centerVertical="true"
-
-
-
-
         />
 
 
@@ -86,11 +82,22 @@
             android:layout_margin="14dp"
             android:gravity="center"
             android:layout_centerHorizontal="true"
-            android:layout_above="@+id/WorryBook"
-
-
+            android:layout_above="@+id/trackprogress"
         />
 
+    <Button
+        android:text="Track progress"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:id="@+id/trackprogress"
+        android:background="@drawable/green"
+        android:textAppearance="@style/TextAppearance.AppCompat.Headline"
+        android:textSize="20sp"
+        android:layout_margin="14dp"
+        android:layout_centerHorizontal="true"
+        android:gravity="center"
+        android:layout_centerVertical="true"
+        />
 
 
         <Button
@@ -105,27 +112,8 @@
             android:layout_centerHorizontal="true"
             android:gravity="center"
             android:layout_centerVertical="true"
-
-
+            android:layout_below="@+id/trackprogress"
             />
-
-    <Button
-        android:text="Set reminders"
-        android:layout_width="200dp"
-        android:layout_height="wrap_content"
-        android:id="@+id/setreminders"
-        android:background="@drawable/green"
-        android:textAppearance="@style/TextAppearance.AppCompat.Headline"
-        android:textSize="20sp"
-        android:layout_margin="14dp"
-        android:layout_centerHorizontal="true"
-        android:gravity="center"
-        android:layout_centerVertical="true"
-        android:layout_below="@+id/WorryBook"
-        />
-
-
-
 
     </RelativeLayout>
 

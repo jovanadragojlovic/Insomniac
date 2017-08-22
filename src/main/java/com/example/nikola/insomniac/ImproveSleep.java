@@ -2,6 +2,7 @@ package com.example.nikola.insomniac;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 
@@ -18,12 +19,12 @@ import static android.R.attr.value;
 
 public class ImproveSleep extends MainActivity {
 
+    private static final String TAG = "SleepQuality";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.improvesleep);
-
         Button sleepquality = (Button)findViewById(R.id.sleepquality);
         sleepquality.setOnClickListener(
                 new View.OnClickListener() {

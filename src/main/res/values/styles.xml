@@ -9,6 +9,7 @@
         <item name="colorAccent">#ffffff</item>
         <item name="android:windowAnimationStyle">@null</item>
         <item name="android:textColorSecondary">#ffffff</item>
+        <item name="android:editTextColor">#ffffff</item>
 
     </style>
 

@@ -33,7 +33,7 @@ public class Bedroom extends ImproveSleep {
             public void onClick(View v) {
                 String newEntry = editText.getText().toString();
                 if (editText.length() != 0) {
-                    AddData(newEntry);
+                    AddHumidity(newEntry);
                     editText.setText("");
                 } else {
                     toastMessage("You must put something in the text field!");
@@ -42,10 +42,20 @@ public class Bedroom extends ImproveSleep {
         });
     }
 
-    public void AddData(String newEntry) {
+    public void AddTemperature(String newEntry) {
         String date = new SimpleDateFormat("dd-MM-yyyy").format(new Date());
         try {
-            mDatabaseHelper.addBedroomData(newEntry, date);
+            mDatabaseHelper.addBedroomTemperature(newEntry, date);
+            toastMessage("Data Successfully Inserted!");
+        } catch(Exception e) {
+            toastMessage("Something went wrong");
+        }
+    }
+
+    public void AddHumidity(String newEntry) {
+        String date = new SimpleDateFormat("dd-MM-yyyy").format(new Date());
+        try {
+            mDatabaseHelper.addBedroomHumidity(newEntry, date);
             toastMessage("Data Successfully Inserted!");
         } catch(Exception e) {
             toastMessage("Something went wrong");

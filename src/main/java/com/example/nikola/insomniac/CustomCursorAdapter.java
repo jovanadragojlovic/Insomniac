@@ -26,6 +26,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.TextView;
 
 
@@ -83,104 +84,17 @@ public class CustomCursorAdapter extends RecyclerView.Adapter<CustomCursorAdapte
         // Indices for the _id, description, and priority columns
         int idIndex = mCursor.getColumnIndex(TaskContract.TaskEntry._ID);
         int descriptionIndex = mCursor.getColumnIndex(TaskContract.TaskEntry.COLUMN_DESCRIPTION);
-        int priorityIndex = mCursor.getColumnIndex(TaskContract.TaskEntry.COLUMN_PRIORITY);
-        int status_Index = mCursor.getColumnIndex(TaskContract.TaskEntry.COLUMN_STATUS);
 
         mCursor.moveToPosition(position); // get to the right location in the cursor
 
         // Determine the values of the wanted data
         final int id = mCursor.getInt(idIndex);
         String description = mCursor.getString(descriptionIndex);
-        int priority = mCursor.getInt(priorityIndex);
-        int status = mCursor.getInt(status_Index);
 
         //Set values
         holder.itemView.setTag(id);
-        holder.taskDescriptionView.setText("");
-        holder.Chkbox.setText(description);
-
-        if(status == 1){
-            holder.Chkbox.setChecked(true);
-        }else {
-            holder.Chkbox.setChecked(false);
-        }
-
-
-        holder.Chkbox.setOnClickListener(new View.OnClickListener() {
-
-            @Override
-            public void onClick(View v) {
-                // TODO Auto-generated method stub
-                if(holder.Chkbox.isChecked()){
-                    System.out.println("Checked");
-                    setToDoStatus(1, id);
-                }else{
-                    System.out.println("Un-Checked");
-                    setToDoStatus(0, id);
-                }
-            }
-        });
-
-        /*holder.Chkbox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener()
-        {
-            @Override
-            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked)
-            {
-                if ( isChecked )
-                {
-                    setToDoStatus(1, id);
-                }else {
-                    setToDoStatus(0, id);
-                }
-
-            }
-        });*/
-
-
-
-        // Programmatically set the text and color for the priority TextView
-        String priorityString = "" + priority; // converts int to String
-        holder.priorityView.setText(priorityString);
-
-        GradientDrawable priorityCircle = (GradientDrawable) holder.priorityView.getBackground();
-        // Get the appropriate background color based on the priority
-        int priorityColor = getPriorityColor(priority);
-        priorityCircle.setColor(priorityColor);
-
+        holder.taskDescriptionView.setText(description);
     }
-
-
-    public void setToDoStatus(int status, int task_id){
-        try {
-            ContentValues contentValues = new ContentValues();
-            contentValues.put(TaskContract.TaskEntry.COLUMN_STATUS, status);
-            this.mContext.getContentResolver().update(TaskContract.TaskEntry.CONTENT_URI, contentValues, TaskContract.TaskEntry._ID+"=?" , new String[] {String.valueOf(task_id)});
-            //Uri uri = getContentResolver().insert(TaskContract.TaskEntry.CONTENT_URI, contentValues);
-
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
-
-    /*
-    Helper method for selecting the correct priority circle color.
-    P1 = red, P2 = orange, P3 = yellow
-    */
-    private int getPriorityColor(int priority) {
-        int priorityColor = 0;
-
-        switch(priority) {
-            case 1: priorityColor = ContextCompat.getColor(mContext, R.color.materialRed);
-                break;
-            case 2: priorityColor = ContextCompat.getColor(mContext, R.color.materialOrange);
-                break;
-            case 3: priorityColor = ContextCompat.getColor(mContext, R.color.materialYellow);
-                break;
-            default: break;
-        }
-        return priorityColor;
-    }
-
 
     /**
      * Returns the number of items to display.
@@ -219,8 +133,6 @@ public class CustomCursorAdapter extends RecyclerView.Adapter<CustomCursorAdapte
 
         // Class variables for the task description and priority TextViews
         TextView taskDescriptionView;
-        TextView priorityView;
-        CheckBox Chkbox;
 
         /**
          * Constructor for the TaskViewHolders.
@@ -231,8 +143,6 @@ public class CustomCursorAdapter extends RecyclerView.Adapter<CustomCursorAdapte
             super(itemView);
 
             taskDescriptionView = (TextView) itemView.findViewById(taskDescription);
-            priorityView = (TextView) itemView.findViewById(R.id.priorityTextView);
-            Chkbox = (CheckBox) itemView.findViewById(R.id.Chkbox);
         }
     }
 }

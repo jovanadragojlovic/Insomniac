@@ -31,16 +31,6 @@
             </intent-filter>
         </activity>
 
-        <activity
-            android:name=".WorryBook"
-            android:label="@string/Worrybook">
-            <intent-filter>
-                <action android:name="android.intent.action.CALL" />
-
-                <category android:name="android.intent.category.DEFAULT" />
-            </intent-filter>
-        </activity>
-
         <activity android:name=".alarms.AlarmActivity"
             android:label="@string/MainActivityTitle">
             <intent-filter>
@@ -116,7 +106,8 @@
 
 
 
-        <activity android:name=".NewChecklist">
+        <activity android:name=".WorryBook"
+            >
             <intent-filter>
                 <action android:name="android.intent.action.CALL" />
 
@@ -134,15 +125,6 @@
         </activity>
 
 
-        <activity android:name=".PopUp"
-            android:theme="@style/NovaTema">
-            <intent-filter>
-                <action android:name="android.intent.action.CALL" />
-
-                <category android:name="android.intent.category.DEFAULT" />
-            </intent-filter>
-        </activity>
-
         <activity android:name=".EditDataActivity"
             android:theme="@style/NovaTema">
             <intent-filter>
@@ -152,7 +134,8 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".statistics.Istorija">
+        <activity android:name=".AlarmPopUp"
+            android:theme="@style/NovaTema">
             <intent-filter>
                 <action android:name="android.intent.action.CALL" />
 

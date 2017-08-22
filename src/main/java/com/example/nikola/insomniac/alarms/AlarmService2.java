@@ -8,7 +8,7 @@ import android.content.Intent;
 import android.support.v4.app.NotificationCompat;
 import android.util.Log;
 
-import com.example.nikola.insomniac.NewChecklist;
+import com.example.nikola.insomniac.WorryBook;
 import com.example.nikola.insomniac.R;
 
 public class AlarmService2 extends IntentService {
@@ -29,7 +29,7 @@ public class AlarmService2 extends IntentService {
                 .getSystemService(Context.NOTIFICATION_SERVICE);
 
         PendingIntent contentIntent = PendingIntent.getActivity(this, 0,
-                new Intent(this, NewChecklist.class), 0);
+                new Intent(this, WorryBook.class), 0);
 
         NotificationCompat.Builder alamNotificationBuilder = new NotificationCompat.Builder(
                 this).setContentTitle("Reminder").setSmallIcon(R.mipmap.ic_launcher)

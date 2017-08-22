@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Switch;
 import android.widget.TimePicker;
 import android.widget.ToggleButton;
 
@@ -52,12 +53,8 @@ public class AlarmActivity extends Reminders {
 
     }
 
-
-
-
-
     public void onToggleClicked(View view) {
-        if (((ToggleButton) view).isChecked()) {
+        if (((Switch) view).isChecked()) {
             Calendar calendar = Calendar.getInstance();
             calendar.set(Calendar.HOUR_OF_DAY, timePicker1.getCurrentHour());
             calendar.set(Calendar.MINUTE, timePicker1.getCurrentMinute());
@@ -72,7 +69,10 @@ public class AlarmActivity extends Reminders {
 
             preferencesHelper.saveBoolean( PreferencesHelper.PREFERENCE_TOGGLE_BTN_VALUE, true);
 
-            SharedPreferences.Editor editor = getPreferences(MODE_PRIVATE).edit(); editor.putInt("hour", timePicker1.getCurrentHour()); editor.putInt("minute", timePicker1.getCurrentMinute()); editor.commit();
+            SharedPreferences.Editor editor = getPreferences(MODE_PRIVATE).edit();
+            editor.putInt("hour", timePicker1.getCurrentHour());
+            editor.putInt("minute", timePicker1.getCurrentMinute()); 
+            editor.commit();
 
         } else {
             alarmManager.cancel(pendingIntent);

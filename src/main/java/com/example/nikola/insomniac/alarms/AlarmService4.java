@@ -11,8 +11,6 @@ import android.util.Log;
 import com.example.nikola.insomniac.R;
 import com.example.nikola.insomniac.WorryBook;
 
-import static com.example.nikola.insomniac.R.id.worrybook;
-
 public class AlarmService4 extends IntentService {
     private NotificationManager alarmNotificationManager4;
 

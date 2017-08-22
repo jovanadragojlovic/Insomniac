@@ -34,7 +34,7 @@ public class PhysicalActivity extends ImproveSleep {
             public void onClick(View v) {
                 String newEntry = editText.getText().toString();
                 if (editText.length() != 0) {
-                    AddData(newEntry);
+                    AddSport(newEntry);
                     editText.setText("");
                 } else {
                     toastMessage("You must put something in the text field!");
@@ -43,10 +43,30 @@ public class PhysicalActivity extends ImproveSleep {
         });
     }
 
-    public void AddData(String newEntry) {
+    public void AddSteps(String newEntry) {
         String date = new SimpleDateFormat("dd-MM-yyyy").format(new Date());
         try {
-            mDatabaseHelper.addPhysicalActivityData(newEntry, date);
+            mDatabaseHelper.addPhysicalActivitySteps(newEntry, date);
+            toastMessage("Data Successfully Inserted!");
+        } catch(Exception e) {
+            toastMessage("Something went wrong");
+        }
+    }
+
+    public void AddRunning(String newEntry) {
+        String date = new SimpleDateFormat("dd-MM-yyyy").format(new Date());
+        try {
+            mDatabaseHelper.addPhysicalActivityRunning(newEntry, date);
+            toastMessage("Data Successfully Inserted!");
+        } catch(Exception e) {
+            toastMessage("Something went wrong");
+        }
+    }
+
+    public void AddSport(String newEntry) {
+        String date = new SimpleDateFormat("dd-MM-yyyy").format(new Date());
+        try {
+            mDatabaseHelper.addPhysicalActivitySport(newEntry, date);
             toastMessage("Data Successfully Inserted!");
         } catch(Exception e) {
             toastMessage("Something went wrong");

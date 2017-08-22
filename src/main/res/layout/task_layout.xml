@@ -25,43 +25,6 @@
 
 >
 
-
-        <CheckBox
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:button="@null"
-            android:drawableEnd="?android:attr/listChoiceIndicatorMultiple"
-            android:drawableRight="?android:attr/listChoiceIndicatorMultiple"
-            android:drawablePadding="20dp"
-            android:id="@+id/Chkbox"
-            android:text=""
-            android:textColor="#ffffff"
-            android:textSize="25sp"
-            android:layout_alignParentEnd="true"
-            android:layout_alignParentRight="true"
-            android:textColorHint="#ffffff"
-
-
-
-
-
-            />
-
-
-
-        <!-- A priority circle that is colored in programmatically in the adapter code -->
-        <TextView
-            android:id="@+id/priorityTextView"
-            android:layout_width="22dp"
-            android:layout_height="22dp"
-            android:textAlignment="center"
-            style="@style/TextAppearance.AppCompat.Small"
-            android:textColor="#ffffff"
-            android:background="@drawable/priority_circle"
-            android:layout_alignParentStart="true"
-            android:layout_alignParentLeft="true"
-            />
-
         <!-- TextView that displays the description of a task -->
         <TextView
             android:id="@+id/taskDescription"
@@ -69,14 +32,7 @@
             android:layout_height="wrap_content"
             android:textSize="25sp"
             android:textColor="#ffffff"
-            android:layout_alignParentEnd="true"
-            android:layout_alignParentRight="true"
-
-
             />
-
-
-
 
     </RelativeLayout>
 

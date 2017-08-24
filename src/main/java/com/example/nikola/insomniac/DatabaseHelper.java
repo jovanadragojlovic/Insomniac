@@ -102,6 +102,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         Log.d(TAG, "addData: Adding " + item + " to " + SLEEP_QUALITY);
         Log.d(TAG, "addData: Adding " + date + " to " + SLEEP_QUALITY);
         if(getDataValues("SleepQuality", "Date").contains(date)) {
+
             updateSleepQuality(item, date);
         }
         else {
@@ -118,6 +119,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
         Log.d(TAG, "addData: Adding " + item + " to " + PHYSICAL_ACTIVITY);
         Log.d(TAG, "addData: Adding " + date + " to " + PHYSICAL_ACTIVITY);
+
 
         if(getDataValues("PhysicalActivity", "Date").contains(date)) {
             updateSteps(item, date);

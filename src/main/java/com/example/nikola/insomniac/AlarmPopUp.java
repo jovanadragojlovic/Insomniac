@@ -10,7 +10,9 @@ import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.NumberPicker;
+import android.widget.RelativeLayout;
 import android.widget.TimePicker;
 
 import com.example.nikola.insomniac.alarms.AlarmActivity;
@@ -46,6 +48,9 @@ public class AlarmPopUp extends AlarmActivity {
         set_numberpicker_text_colour(hour_numberpicker);
         set_numberpicker_text_colour(minute_numberpicker);
         set_numberpicker_text_colour(ampm_numberpicker);
+
+        RelativeLayout alarmpopup = (RelativeLayout) findViewById(R.id.alarmpopup);
+        alarmpopup.setBackgroundColor(Color.parseColor("#000000"));
     }
 
     private void set_numberpicker_text_colour(NumberPicker number_picker) {

@@ -1,16 +1,20 @@
 package com.example.nikola.insomniac.statistics;
 
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v4.view.ViewPager;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 
 import com.example.nikola.insomniac.DatabaseHelper;
 import com.example.nikola.insomniac.R;
 import com.github.mikephil.charting.charts.LineChart;
+import com.github.mikephil.charting.components.LimitLine;
 import com.github.mikephil.charting.data.Entry;
 import com.github.mikephil.charting.data.LineData;
 import com.github.mikephil.charting.data.LineDataSet;
@@ -33,55 +37,55 @@ public class Tab1Fragment extends Fragment {
         LineChart lineChart = (LineChart) view.findViewById(R.id.chart);
         databaseHelper = new DatabaseHelper(getActivity());
         tp = new TrackProgress();
+        databaseHelper.addSleepQualityData("3","27-08-2017");
+        databaseHelper.addSleepQualityData("2","28-08-2017");
+        databaseHelper.addSleepQualityData("1","31-08-2017");
+        databaseHelper.addBedroomHumidity("5","29-08-2017");
+        databaseHelper.addBedroomHumidity("2","27-08-2017");
+        databaseHelper.addBedroomHumidity("8","30-08-2017");
 
-        ArrayList<Entry> entries = new ArrayList<>();
-        ArrayList<String> values = new ArrayList<>();
+        ArrayList<String> variables = new ArrayList<String>(){{add("SleepQuality"); add("DailyLight"); add("NightlyLight"); add("PhysicalActivity"); add("Water"); add("Coffee"); add("Bedroom");}};
+        ArrayList<String> columns = new ArrayList<String>(){{add("SleepQuality"); add("AverageLux"); add("AverageLux"); add("Sport"); add("WaterAmount"); add("CoffeeAmount"); add("Humidity");}};
+        ArrayList<Integer> colors = new ArrayList<Integer>(){{add(Color.WHITE); add(Color.BLUE); add(Color.RED);add(Color.YELLOW); add(Color.GREEN); add(Color.BLACK); add(Color.GRAY); }};
 
-//        if(tp.arrayList.size() > 0){
-//            Log.d(TAG,"arrayList" + tp.arrayList);
-//       for(int i = 0; i <  tp.arrayList.size(); i++ ) {
-//
-//        values = databaseHelper.getDataValues(tp.arrayList.get(i), );
-//           Log.d(TAG,"values" + values);
-//           for (int j = 0; values.size() > j; j++) {
-//               Log.d(TAG,"valueeeeeeeeee" + values.get(j));
-//               entries.add(new Entry(Float.parseFloat( values.get(j)), j));
-//           }
-//       }
-//        }else {
-//            entries.add(new Entry(0f, 0));
-//        }
-        Log.d(TAG,"entries" + entries);
-        entries.add(new Entry(4f, 2));
-        entries.add(new Entry(8f, 3));
-        entries.add(new Entry(6f, 4));
-        entries.add(new Entry(2f, 5));
-        entries.add(new Entry(5f, 0));
-        entries.add(new Entry(10f, 1));
+        Integer graphSize = 0;
 
-        LineDataSet dataset = new LineDataSet(entries, "# of Calls");
+        ArrayList<LineDataSet> lines = new ArrayList<>();
 
-        ArrayList<String> labels = new ArrayList<String>();
-        labels.add("January");
-        labels.add("February");
-        labels.add("March");
-        labels.add("April");
-        labels.add("May");
-        labels.add("June");
-
-        LineData data = new LineData(labels, dataset);
-        dataset.setColors(ColorTemplate.COLORFUL_COLORS); //
-        dataset.setDrawCubic(true);
-        dataset.setDrawFilled(true);
-
-        lineChart.setData(data);
-        lineChart.animateY(5000);
+        if(tp.arrayList.size() > 0){
+            for(int i = 0; i < tp.arrayList.size(); i++){
+                Integer columnIndex = variables.indexOf(tp.arrayList.get(i));
+                ArrayList<String> values = databaseHelper.getDataValues(tp.arrayList.get(i), columns.get(columnIndex));
+                ArrayList<Entry> entries = new ArrayList<>();
+                if(values.size() > 0) {
+                    for (int j = 0; j < values.size(); j++) {
+                        entries.add(new Entry(Integer.parseInt(values.get(j)), j));
+                    }
+                    if (entries.size() > graphSize) {
+                        graphSize = entries.size();
+                    }
 
 
+                    LineDataSet dataSet = new LineDataSet(entries, tp.arrayList.get(i));
+                    dataSet.setCircleColor(colors.get(i));
+                    dataSet.setColor(colors.get(i));
+                    dataSet.setDrawCubic(true);
+                    dataSet.setDrawFilled(true);
+                    lines.add(dataSet);
+                }
+            }
+            ArrayList<String> xAxis = new ArrayList<>();
+
+            for(int k = 0; k < graphSize; k++){
+                xAxis.add(Integer.toString(k));
+            }
+            lineChart.setData(new LineData(xAxis, lines));
+            lineChart.setGridBackgroundColor(Color.argb(50, 1, 0, 0));
+            lineChart.animateY(5000);
+        }
         return view;
 
 
 
     }
-
 }

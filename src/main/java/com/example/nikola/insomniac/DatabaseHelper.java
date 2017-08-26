@@ -70,6 +70,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 C_COL2 + " TEXT)";
         String createBTable = "CREATE TABLE " + BEDROOM + " (DATE TEXT PRIMARY KEY, " +
                 B_COL2 + " TEXT, " + B_COL3 + " TEXT)";
+
         db.execSQL(createSQTable);
         db.execSQL(createPATable);
         db.execSQL(createDLTable);

@@ -17,14 +17,18 @@
 package com.example.nikola.insomniac.data;
 
 import android.content.Context;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.util.Log;
+
+import java.util.ArrayList;
 
 
 public class TaskDbHelper extends SQLiteOpenHelper {
 
     // The name of the database
-    private static final String DATABASE_NAME = "tasksDb.db";
+    private static final String DATABASE_NAME = "taskDb.db";
 
     // If you change the database schema, you must increment the database version
     private static final int VERSION = 1;
@@ -41,11 +45,12 @@ public class TaskDbHelper extends SQLiteOpenHelper {
      */
     @Override
     public void onCreate(SQLiteDatabase db) {
-
+        Log.d("SleepQuality", "CREATING TABLE");
         // Create tasks table (careful to follow SQL formatting rules)
         final String CREATE_TABLE = "CREATE TABLE "  + TaskContract.TaskEntry.TABLE_NAME + " (" +
-                TaskContract.TaskEntry._ID                + " INTEGER PRIMARY KEY, " +
-                TaskContract.TaskEntry.COLUMN_DESCRIPTION + " TEXT)";
+                TaskContract.TaskEntry._ID + " INTEGER PRIMARY KEY, " +
+                TaskContract.TaskEntry.COLUMN_DESCRIPTION + " TEXT, " +
+                TaskContract.TaskEntry.COLUMN_ALARM + " TEXT)";
 
         db.execSQL(CREATE_TABLE);
     }
@@ -59,5 +64,21 @@ public class TaskDbHelper extends SQLiteOpenHelper {
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
         db.execSQL("DROP TABLE IF EXISTS " + TaskContract.TaskEntry.TABLE_NAME);
         onCreate(db);
+    }
+
+    public ArrayList<String> getDataValues(String tableName, String columnName) {
+        ArrayList<String> values = new ArrayList<String>();
+
+        SQLiteDatabase db = this.getReadableDatabase();
+
+        Cursor cursor = db.query(tableName, new String[] {columnName},null, null, null, null, null); // here emailid is the field name in the table and contantValues.TABLE_NAME is the table name
+        if (cursor.moveToFirst()) {
+            do {
+                values.add(cursor.getString(0));
+
+            } while (cursor.moveToNext());
+        }
+
+        return values;
     }
 }

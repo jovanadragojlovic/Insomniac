@@ -12,9 +12,6 @@ public class PreferencesHelper {
 
 
     public static final String PREFERENCE_TOGGLE_BTN_VALUE = "toggle_button";
-    public static final String PREFERENCE_TOGGLE_BTN_VALUE_2 = "toggle_button2";
-    public static final String PREFERENCE_TOGGLE_BTN_VALUE_3 = "toggle_button3";
-    public static final String PREFERENCE_TOGGLE_BTN_VALUE_4 = "toggle_button4";
 
 
 

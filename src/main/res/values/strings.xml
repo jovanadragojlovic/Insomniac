@@ -10,7 +10,6 @@
     <string name="title_activity_worrybook">WorryBook</string>
     <string name="title_activity_learnmore">LearnMore</string>
     <string name="button">Button</string>
-    <string name="togglebutton">ToggleButton</string>
     <string name="time_current">time_current</string>
     <string name="time_selected">time_selected</string>
     <string name="time_save">time_save</string>

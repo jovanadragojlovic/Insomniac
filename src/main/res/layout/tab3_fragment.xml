@@ -14,9 +14,16 @@
         android:id="@+id/textTab3"/>
 
     <Button
+        android:text="Regression"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/btnTEST3"
-        android:text="TESTBTN 3"/>
+        android:background="@drawable/green"
+        android:textAppearance="@style/TextAppearance.AppCompat.Headline"
+        android:textSize="20sp"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        />
+
 
 </RelativeLayout>

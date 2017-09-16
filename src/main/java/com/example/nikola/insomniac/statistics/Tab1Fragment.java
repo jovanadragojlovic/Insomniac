@@ -22,6 +22,8 @@ import com.github.mikephil.charting.utils.ColorTemplate;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.HashMap;
+import java.util.Map;
 
 public class Tab1Fragment extends Fragment {
     private static final String TAG = "SleepQuality";
@@ -39,16 +41,25 @@ public class Tab1Fragment extends Fragment {
         tp = new TrackProgress();
         databaseHelper.addSleepQualityData("3","27-08-2017");
         databaseHelper.addSleepQualityData("2","28-08-2017");
-        databaseHelper.addSleepQualityData("1","31-08-2017");
-        databaseHelper.addBedroomHumidity("5","29-08-2017");
-        databaseHelper.addBedroomHumidity("2","27-08-2017");
-        databaseHelper.addBedroomHumidity("8","30-08-2017");
+        databaseHelper.addSleepQualityData("1","30-08-2017");
+        databaseHelper.addNightlyLightData("3","27-08-2017");
+        databaseHelper.addNightlyLightData("2","28-08-2017");
+
+        databaseHelper.addNightlyLightData("4","30-08-2017");
 
         ArrayList<String> variables = new ArrayList<String>(){{add("SleepQuality"); add("DailyLight"); add("NightlyLight"); add("PhysicalActivity"); add("Water"); add("Coffee"); add("Bedroom");}};
         ArrayList<String> columns = new ArrayList<String>(){{add("SleepQuality"); add("AverageLux"); add("AverageLux"); add("Sport"); add("WaterAmount"); add("CoffeeAmount"); add("Humidity");}};
         ArrayList<Integer> colors = new ArrayList<Integer>(){{add(Color.WHITE); add(Color.BLUE); add(Color.RED);add(Color.YELLOW); add(Color.GREEN); add(Color.BLACK); add(Color.GRAY); }};
 
         Integer graphSize = 0;
+        Map<String, Integer> map = new HashMap<>();
+        map.put("SleepQuality", Color.WHITE);
+        map.put("DailyLight", Color.RED);
+        map.put("NightlyLight", Color.YELLOW);
+        map.put("PhysicalActivity",Color.GREEN);
+        map.put("Water", Color.BLUE);
+        map.put("Coffee", Color.BLACK);
+        map.put("Bedroom", Color.MAGENTA);
 
         ArrayList<LineDataSet> lines = new ArrayList<>();
 
@@ -67,8 +78,8 @@ public class Tab1Fragment extends Fragment {
 
 
                     LineDataSet dataSet = new LineDataSet(entries, tp.arrayList.get(i));
-                    dataSet.setCircleColor(colors.get(i));
-                    dataSet.setColor(colors.get(i));
+                    dataSet.setCircleColor(map.get(tp.arrayList.get(i)));
+                    dataSet.setColor(map.get(tp.arrayList.get(i)));
                     dataSet.setDrawCubic(true);
                     dataSet.setDrawFilled(true);
                     lines.add(dataSet);

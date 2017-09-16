@@ -39,12 +39,6 @@ public class LearnMoreChecklist extends LearnMore {
                 "\n" +
                 "Coffee consumption. Caffeine is a stimulant of the central nervous system and its effects on sleep are well known (see 12, 13). Studies have shown that caffeine blocks adenosine receptors and thus increase wakefulness. You should limit coffee/tea consumption for the morning hours.   \n" +
                 "\n" +
-                "Checklist \n" +
-                "\n" +
-                "Studies have shown that creating and following a checklist is a good way to improve chronic conditions (see 14). We have created a checklist which you can use to remind yourself on a daily basis what you should do to improve your sleep quality. \n" +
-                "\n" +
-                "We are developing graph that will show the relationship between how you slept and which tasks on checklist have you completed. This could be used to see which steps are the most important for your sleep quality. \n" +
-                "\n" +
                 "Find out more \n" +
                 "\n" +
                 "1. Young, S. N. (2007). How to increase serotonin in the human brain without drugs. Journal of Psychiatry and Neuroscience : JPN, 32(6), 394–399. \n" +
@@ -71,9 +65,7 @@ public class LearnMoreChecklist extends LearnMore {
                 "\n" +
                 "12. Březinová, V. (1974). Effects of caffeine on sleep: EEG study in late middle age people. British Journal of Clinical Pharmacology, 1(3), 203–208.  \n" +
                 "\n" +
-                "13. Levy, M., and Zylber-Katz, E. (1983). Caffeine metabolism and coffee-attributed sleep disturbances. Clinical Pharmacology and Therapeutics, 33(6), 770–775.   \n" +
-                "\n" +
-                "14. Hales, B. M., and Pronovost, P. J. (2006). The checklist--a tool for error management and performance improvement. Journal of Critical Care, 21(3), 231–235.  \n"
+                "13. Levy, M., and Zylber-Katz, E. (1983). Caffeine metabolism and coffee-attributed sleep disturbances. Clinical Pharmacology and Therapeutics, 33(6), 770–775.   \n"
 
 
         );
@@ -197,30 +189,21 @@ public class LearnMoreChecklist extends LearnMore {
             }
 
         };
-        ClickableSpan span14 = new ClickableSpan() {
-            @Override
-            public void onClick(View textView) {
-                Uri uri = Uri.parse("https://www.ncbi.nlm.nih.gov/pubmed/16990087");
-                Intent intent = new Intent(Intent.ACTION_VIEW, uri);
-                startActivity(intent);
-            }
 
-        };
 
-        ss.setSpan(span1, 3151, 3176, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
-        ss.setSpan(span2, 3298, 3384, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
-        ss.setSpan(span3, 3498, 3562, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
-        ss.setSpan(span4, 3666, 3759, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
-        ss.setSpan(span5, 3875, 3920, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
-        ss.setSpan(span6, 4042, 4088, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
-        ss.setSpan(span7, 4262, 4308, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
-        ss.setSpan(span8, 4463, 4536, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
-        ss.setSpan(span9, 4725, 4818, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
-        ss.setSpan(span10, 4970, 5080, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
-        ss.setSpan(span11, 5261, 5304, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
-        ss.setSpan(span12, 5305, 5332, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
-        ss.setSpan(span13, 5457, 5501, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
-        ss.setSpan(span14, 5619, 5670, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+        ss.setSpan(span1, 2680, 2703, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+        ss.setSpan(span2, 2825, 2912, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+        ss.setSpan(span3, 3025, 3089, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+        ss.setSpan(span4, 3195, 3286, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+        ss.setSpan(span5, 3402, 3447, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+        ss.setSpan(span6, 3570, 3616, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+        ss.setSpan(span7, 3792, 3836, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+        ss.setSpan(span8, 3993, 4063, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+        ss.setSpan(span9, 4252, 4345, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+        ss.setSpan(span10, 4497, 4607, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+        ss.setSpan(span11, 4790, 4832, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+        ss.setSpan(span12, 4834, 4859, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+        ss.setSpan(span13, 4987, 5029, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
 
         TextView textView = (TextView) findViewById(R.id.osam);
         textView.setMovementMethod(new ScrollingMovementMethod());

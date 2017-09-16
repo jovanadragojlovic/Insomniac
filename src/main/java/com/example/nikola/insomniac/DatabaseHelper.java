@@ -109,7 +109,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         else {
             db.insert(SLEEP_QUALITY, null, contentValues);
         }
-        Log.d(TAG, "Sleep Quality of today: " + getSleepQualityByDate(new SimpleDateFormat("dd-MM-yyyy").format(new Date())));
+      //  Log.d(TAG, "Sleep Quality of today: " + getSleepQualityByDate(new SimpleDateFormat("dd-MM-yyyy").format(new Date())));
     }
 
     public void addPhysicalActivitySteps(String item, String date) {
@@ -185,7 +185,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
         contentValues.put(COL1, date);
-        contentValues.put(NIGHTLY_LIGHT, item);
+        contentValues.put(NL_COL2, item);
 
         Log.d(TAG, "addData: Adding " + item + " to " + NIGHTLY_LIGHT);
         Log.d(TAG, "addData: Adding " + date + " to " + NIGHTLY_LIGHT);
@@ -286,7 +286,12 @@ public class DatabaseHelper extends SQLiteOpenHelper {
        ArrayList<String> dateValues = getDataValues("SleepQuality", "Date");
         Log.d(TAG, "Date values: " + dateValues);
         Log.d(TAG, "Sleep Quality values: " +  getDataValues("SleepQuality", "SleepQuality"));
-        return getDataValues("SleepQuality", "SleepQuality").get(dateValues.indexOf(date));
+        try {
+            return getDataValues("SleepQuality", "SleepQuality").get(dateValues.indexOf(date));
+        }catch (ArrayIndexOutOfBoundsException error) {
+            return null;
+        }
+
     }
 
     public String getDailyLightByDate(String date) {
@@ -300,7 +305,11 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         ArrayList<String> dateValues = getDataValues("NightlyLight", "Date");
         Log.d(TAG, "Date values: " + dateValues);
         Log.d(TAG, "NightlyLight values: " +  getDataValues("NightlyLight", "AverageLux"));
-        return getDataValues("NightlyLight", "AverageLux").get(dateValues.indexOf(date));
+        try {
+            return getDataValues("NightlyLight", "AverageLux").get(dateValues.indexOf(date));
+        }catch (ArrayIndexOutOfBoundsException error){
+            return null;
+        }
     }
 
     public String getStepsByDate(String date) {
@@ -335,7 +344,12 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         ArrayList<String> dateValues = getDataValues("Coffee", "Date");
         Log.d(TAG, "Date values: " + dateValues);
         Log.d(TAG, "Coffee values: " +  getDataValues("Coffee", "CoffeeAmount"));
-        return getDataValues("Coffee", "CoffeeAmount").get(dateValues.indexOf(date));
+        try {
+            return getDataValues("Coffee", "CoffeeAmount").get(dateValues.indexOf(date));
+        }catch (ArrayIndexOutOfBoundsException error){
+            return null;
+        }
+
     }
 
     public String getTemperatureByDate(String date) {
@@ -349,7 +363,11 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         ArrayList<String> dateValues = getDataValues("Bedroom", "Date");
         Log.d(TAG, "Date values: " + dateValues);
         Log.d(TAG, "Bedroom values: " +  getDataValues("Bedroom", "Humidity"));
-        return getDataValues("Bedroom", "Humidity").get(dateValues.indexOf(date));
+        try {
+            return getDataValues("Bedroom", "Humidity").get(dateValues.indexOf(date));
+        }catch (ArrayIndexOutOfBoundsException error){
+            return null;
+        }
     }
 
     public void updateSleepQuality(String sleepQuality, String date){
@@ -408,7 +426,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public void updateNightlyLight(String nightlyLight, String date){
         SQLiteDatabase db = this.getWritableDatabase();
         int lastNightlyLight = Integer.parseInt(this.getNightlyLightByDate(date));
-        lastNightlyLight += Integer.parseInt(nightlyLight);
+        lastNightlyLight = Integer.parseInt(nightlyLight);
         String query = "UPDATE " + NIGHTLY_LIGHT + " SET " + NL_COL2 +
                 " = '" + String.valueOf(lastNightlyLight) + "' WHERE " + COL1 + " = '" + date + "'";
         Log.d(TAG, "updateName: query: " + query);
@@ -452,7 +470,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public void updateHumidity(String humidity, String date){
         SQLiteDatabase db = this.getWritableDatabase();
         int lastHumidity = Integer.parseInt(this.getHumidityByDate(date));
-        lastHumidity += Integer.parseInt(humidity);
+        lastHumidity = Integer.parseInt(humidity);
         String query = "UPDATE " + BEDROOM + " SET " + B_COL3 +
                 " = '" + String.valueOf(lastHumidity) + "' WHERE " + COL1 + " = '" + date + "'";
         Log.d(TAG, "updateName: query: " + query);

@@ -34,6 +34,19 @@
             android:textColor="#ffffff"
             />
 
+        <CheckBox
+            xmlns:android="http://schemas.android.com/apk/res/android"
+            android:id="@+id/checkBox"
+            android:layout_width="45dp"
+            android:layout_height="45dp"
+            android:button="@android:color/transparent"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true"
+            android:background="@drawable/alarm_clock_white"
+            android:focusable="false"
+            android:focusableInTouchMode="false"
+            />
+
     </RelativeLayout>
 
     <!-- A gray divider line at the bottom of each task -->

@@ -32,11 +32,7 @@
         android:textColor="#ffffff"
         android:textSize="25sp"
         android:layout_gravity="start"
-
-
         />
-
-
 
     <!-- Floating action button that launches AddTaskActivity when clicked -->
     <android.support.design.widget.FloatingActionButton
@@ -48,6 +44,7 @@
         app:backgroundTint="@color/siva"
         android:tint="#ffffff"
         app:srcCompat="@android:drawable/ic_input_add" />
+
 
 </FrameLayout>
 

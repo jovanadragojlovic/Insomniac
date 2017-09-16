@@ -14,7 +14,7 @@
 * limitations under the License.
 */
 
-package com.example.nikola.insomniac;
+package com.example.nikola.insomniac.worrybook;
 
 import android.content.Intent;
 import android.database.Cursor;
@@ -31,9 +31,7 @@ import android.support.v7.widget.helper.ItemTouchHelper;
 import android.util.Log;
 import android.view.View;
 
-import com.example.nikola.insomniac.worrybook.AlarmPopUp;
-import com.example.nikola.insomniac.worrybook.TaskContract;
-import com.example.nikola.insomniac.worrybook.CustomCursorAdapter;
+import com.example.nikola.insomniac.R;
 
 
 public class WorryBook extends AppCompatActivity implements
@@ -101,6 +99,8 @@ public class WorryBook extends AppCompatActivity implements
 
             }
         }).attachToRecyclerView(mRecyclerView);
+
+
 
         /*
          Set the Floating Action Button (FAB) to its corresponding View.

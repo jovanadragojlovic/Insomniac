@@ -31,38 +31,6 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".alarms.AlarmActivity"
-            android:label="@string/MainActivityTitle">
-            <intent-filter>
-                <action android:name="android.intent.action.CALL" />
-                <category android:name="android.intent.category.DEFAULT" />
-            </intent-filter>
-        </activity>
-
-        <activity android:name=".alarms.AlarmActivity2"
-            android:label="@string/MainActivityTitle">
-            <intent-filter>
-                <action android:name="android.intent.action.CALL" />
-                <category android:name="android.intent.category.DEFAULT" />
-            </intent-filter>
-        </activity>
-
-        <activity android:name=".alarms.AlarmActivity3"
-            android:label="@string/MainActivityTitle">
-            <intent-filter>
-                <action android:name="android.intent.action.CALL" />
-                <category android:name="android.intent.category.DEFAULT" />
-            </intent-filter>
-        </activity>
-
-        <activity android:name=".alarms.AlarmActivity4"
-            android:label="@string/MainActivityTitle">
-            <intent-filter>
-                <action android:name="android.intent.action.CALL" />
-                <category android:name="android.intent.category.DEFAULT" />
-            </intent-filter>
-        </activity>
-
 
         <activity android:name=".learnMore.AboutInsomniac" android:label="@string/about_insomniac">
             <intent-filter>
@@ -100,13 +68,13 @@
         <!-- Set name, authorities, and exported attributes -->
         <!-- exported = false limits access to this ContentProvider to only this app -->
         <provider
-            android:name=".data.TaskContentProvider"
+            android:name=".worrybook.TaskContentProvider"
             android:authorities="com.example.nikola.insomniac"
             android:exported="false"/>
 
 
 
-        <activity android:name=".WorryBook"
+        <activity android:name=".worrybook.WorryBook"
             >
             <intent-filter>
                 <action android:name="android.intent.action.CALL" />
@@ -125,16 +93,7 @@
         </activity>
 
 
-        <activity android:name=".EditDataActivity"
-            android:theme="@style/NovaTema">
-            <intent-filter>
-                <action android:name="android.intent.action.CALL" />
-
-                <category android:name="android.intent.category.DEFAULT" />
-            </intent-filter>
-        </activity>
-
-        <activity android:name=".AlarmPopUp"
+        <activity android:name=".worrybook.AlarmPopUp"
             android:theme="@style/NovaTema">
             <intent-filter>
                 <action android:name="android.intent.action.CALL" />
@@ -199,14 +158,6 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".Reminders">
-            <intent-filter>
-                <action android:name="android.intent.action.CALL" />
-
-                <category android:name="android.intent.category.DEFAULT" />
-            </intent-filter>
-        </activity>
-
         <activity android:name=".statistics.TrackProgress">
             <intent-filter>
                 <action android:name="android.intent.action.CALL" />
@@ -220,21 +171,6 @@
             android:name=".alarms.AlarmService"
             android:enabled="true" />
         <receiver android:name=".alarms.AlarmReceiver" />
-
-        <service
-            android:name=".alarms.AlarmService2"
-            android:enabled="true" />
-        <receiver android:name=".alarms.AlarmReceiver2" />
-
-        <service
-            android:name=".alarms.AlarmService3"
-            android:enabled="true" />
-        <receiver android:name=".alarms.AlarmReceiver3" />
-
-        <service
-            android:name=".alarms.AlarmService4"
-            android:enabled="true" />
-        <receiver android:name=".alarms.AlarmReceiver4" />
 
     </application>
 

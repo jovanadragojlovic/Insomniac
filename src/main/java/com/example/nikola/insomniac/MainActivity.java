@@ -62,7 +62,7 @@ public class MainActivity extends AppCompatActivity {
         WorryBook.setOnClickListener(
                 new View.OnClickListener() {
                     public void onClick(View v) {
-                        Intent myIntent = new Intent(MainActivity.this, WorryBook.class);
+                        Intent myIntent = new Intent(MainActivity.this, com.example.nikola.insomniac.worrybook.WorryBook.class);
                         myIntent.putExtra("key", value); //Optional parameters
                         MainActivity.this.startActivity(myIntent);
                     }

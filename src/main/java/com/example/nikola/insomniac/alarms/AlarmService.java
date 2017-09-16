@@ -8,7 +8,7 @@ import android.content.Intent;
 import android.support.v4.app.NotificationCompat;
 import android.util.Log;
 
-import com.example.nikola.insomniac.worryBook.WorryBook;
+import com.example.nikola.insomniac.worrybook.WorryBook;
 import com.example.nikola.insomniac.R;
 
 public class AlarmService extends IntentService {

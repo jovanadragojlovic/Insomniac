@@ -68,13 +68,13 @@
         <!-- Set name, authorities, and exported attributes -->
         <!-- exported = false limits access to this ContentProvider to only this app -->
         <provider
-            android:name=".data.TaskContentProvider"
+            android:name=".worrybook.TaskContentProvider"
             android:authorities="com.example.nikola.insomniac"
             android:exported="false"/>
 
 
 
-        <activity android:name=".worryBook.WorryBook"
+        <activity android:name=".worrybook.WorryBook"
             >
             <intent-filter>
                 <action android:name="android.intent.action.CALL" />
@@ -93,7 +93,7 @@
         </activity>
 
 
-        <activity android:name=".data.AlarmPopUp"
+        <activity android:name=".worrybook.AlarmPopUp"
             android:theme="@style/NovaTema">
             <intent-filter>
                 <action android:name="android.intent.action.CALL" />

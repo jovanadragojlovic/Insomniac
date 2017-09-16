@@ -14,7 +14,7 @@
 * limitations under the License.
 */
 
-package com.example.nikola.insomniac.data;
+package com.example.nikola.insomniac.worrybook;
 
 import android.net.Uri;
 import android.provider.BaseColumns;

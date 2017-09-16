@@ -14,23 +14,33 @@
 * limitations under the License.
 */
 
-package com.example.nikola.insomniac.worryBook;
+package com.example.nikola.insomniac.worrybook;
 
+import android.app.AlarmManager;
+import android.app.PendingIntent;
+import android.app.TimePickerDialog;
+import android.content.ContentValues;
 import android.content.Context;
+import android.content.Intent;
 import android.database.Cursor;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.TextView;
+import android.widget.TimePicker;
 
 
 import com.example.nikola.insomniac.R;
-import com.example.nikola.insomniac.data.TaskContract;
+import com.example.nikola.insomniac.alarms.AlarmReceiver;
 
+import java.util.Calendar;
+import java.util.Date;
+
+import static android.content.Context.ALARM_SERVICE;
 import static com.example.nikola.insomniac.R.id.taskDescription;
 
 
@@ -43,7 +53,8 @@ public class CustomCursorAdapter extends RecyclerView.Adapter<CustomCursorAdapte
     // Class variables for the Cursor that holds task data and the Context
     private Cursor mCursor;
     private Context mContext;
-
+    private AlarmManager alarmManager;
+    private TaskDbHelper mTaskdbHelper;
 
     /**
      * Constructor for the CustomCursorAdapter that initializes the Context.
@@ -66,7 +77,8 @@ public class CustomCursorAdapter extends RecyclerView.Adapter<CustomCursorAdapte
         // Inflate the task_layout to a view
         View view = LayoutInflater.from(mContext)
                 .inflate(R.layout.task_layout, parent, false);
-
+        alarmManager = (AlarmManager) mContext.getSystemService(ALARM_SERVICE);
+        mTaskdbHelper = new TaskDbHelper(mContext);
         return new TaskViewHolder(view);
     }
 
@@ -78,7 +90,7 @@ public class CustomCursorAdapter extends RecyclerView.Adapter<CustomCursorAdapte
      * @param position The position of the data in the Cursor
      */
     @Override
-    public void onBindViewHolder(final TaskViewHolder holder, int position) {
+    public void onBindViewHolder(final TaskViewHolder holder, final int position) {
 
         // Indices for the _id, description, and priority columns
         int idIndex = mCursor.getColumnIndex(TaskContract.TaskEntry._ID);
@@ -94,6 +106,10 @@ public class CustomCursorAdapter extends RecyclerView.Adapter<CustomCursorAdapte
         Boolean alarmOn = false;
         if(alarm != null) {
             alarmOn = true;
+            holder.checkBox.setBackgroundResource(R.drawable.alarm_clock_green);
+        }
+        else {
+            holder.checkBox.setBackgroundResource(R.drawable.alarm_clock_white);
         }
 
 
@@ -101,6 +117,91 @@ public class CustomCursorAdapter extends RecyclerView.Adapter<CustomCursorAdapte
         holder.itemView.setTag(id);
         holder.taskDescriptionView.setText(description);
         holder.checkBox.setChecked(alarmOn);
+
+
+        holder.checkBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                String alarm = mTaskdbHelper.getDataValues("tasks", "alarm").get(position);
+                Date date;
+                if(alarm != null) {
+                  date = new Date(alarm);
+              }
+
+              else {
+                  date = new Date();
+              }
+                Calendar calendar = Calendar.getInstance();
+                calendar.setTime(date);
+
+
+                if(isChecked) {
+                    holder.checkBox.setBackgroundResource(R.drawable.alarm_clock_green);
+                    TimePickerDialog timePickerDialog = new TimePickerDialog(
+                                mContext,
+                                TimePickerDialog.THEME_HOLO_DARK,
+                                onTimeSetListener,
+                                calendar.get(Calendar.HOUR_OF_DAY),
+                                calendar.get(Calendar.MINUTE),
+                                true);
+                        timePickerDialog.setTitle("Set Alarm Time");
+                        timePickerDialog.show();
+                    ContentValues contentValues = new ContentValues();
+                        contentValues.put(TaskContract.TaskEntry.COLUMN_ALARM, calendar.getTime().toString());
+                    int uri = mContext.getContentResolver().update(  //mozda insert ne update
+                            TaskContract.TaskEntry.CONTENT_URI,
+                            contentValues,
+                            null,
+                            null);
+                }
+                else {
+                    holder.checkBox.setBackgroundResource(R.drawable.alarm_clock_white);
+                    String sati = intToString(calendar.getTime().getHours());
+                    String minuti = intToString(calendar.getTime().getMinutes());
+                    String dan = String.valueOf(calendar.getTime().getDate());
+                    int datum =  Integer.parseInt(dan + sati + minuti);
+
+                    Intent intent = new Intent(mContext, AlarmReceiver.class);
+                    PendingIntent pendingIntent = PendingIntent.getBroadcast(mContext, datum, intent,
+                            PendingIntent.FLAG_CANCEL_CURRENT);
+                    Log.d("SleepQuality", "Cancelovan alarm: " + datum);
+                    alarmManager.cancel(pendingIntent);
+                    pendingIntent.cancel();
+
+                }
+            }
+        });
+    }
+
+    TimePickerDialog.OnTimeSetListener onTimeSetListener
+            = new TimePickerDialog.OnTimeSetListener() {
+        @Override
+        public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
+            Calendar calNow = Calendar.getInstance();
+            Calendar calSet = (Calendar) calNow.clone();
+            calSet.set(Calendar.HOUR_OF_DAY, hourOfDay);
+            calSet.set(Calendar.MINUTE, minute);
+            calSet.set(Calendar.SECOND, 0);
+            calSet.set(Calendar.MILLISECOND, 0);
+            if (calSet.compareTo(calNow) <= 0) {
+                calSet.add(Calendar.DATE, 1);
+            }
+        }
+    };
+
+    private String intToString(int integer) {
+        String string;
+        if(String.valueOf(integer).length() == 0) {
+            string = "00";
+        }
+        else if(String.valueOf(integer).length() == 1) {
+            string = "0" + String.valueOf(integer);
+        }
+        else {
+            string = String.valueOf(integer);
+        }
+
+        return string;
     }
 
 

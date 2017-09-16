@@ -16,7 +16,6 @@
 
 package com.example.nikola.insomniac;
 
-import android.content.ContentValues;
 import android.content.Intent;
 import android.database.Cursor;
 import android.net.Uri;
@@ -32,7 +31,9 @@ import android.support.v7.widget.helper.ItemTouchHelper;
 import android.util.Log;
 import android.view.View;
 
-import com.example.nikola.insomniac.data.TaskContract;
+import com.example.nikola.insomniac.worrybook.AlarmPopUp;
+import com.example.nikola.insomniac.worrybook.TaskContract;
+import com.example.nikola.insomniac.worrybook.CustomCursorAdapter;
 
 
 public class WorryBook extends AppCompatActivity implements

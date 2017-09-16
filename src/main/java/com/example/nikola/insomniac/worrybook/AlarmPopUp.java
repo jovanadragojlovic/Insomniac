@@ -1,4 +1,4 @@
-package com.example.nikola.insomniac.data;
+package com.example.nikola.insomniac.worrybook;
 
 import android.app.Activity;
 import android.app.AlarmManager;
@@ -21,11 +21,8 @@ import com.example.nikola.insomniac.PreferencesHelper;
 import com.example.nikola.insomniac.R;
 import com.example.nikola.insomniac.alarms.AlarmReceiver;
 
-import java.io.IOException;
-import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
-import java.util.Locale;
 
 public class AlarmPopUp extends Activity {
 
@@ -90,7 +87,6 @@ public class AlarmPopUp extends Activity {
     public void onToggleClicked(View view) {
         Calendar calendar = Calendar.getInstance();
         if(alarmToggle.isChecked()) {
-       //     alarmToggle.setChecked(true);
             timePickerDialog = new TimePickerDialog(
                     AlarmPopUp.this,
                     TimePickerDialog.THEME_HOLO_DARK,
@@ -102,7 +98,7 @@ public class AlarmPopUp extends Activity {
             timePickerDialog.show();
         }
         else {
-       //     alarmToggle.setChecked(false);
+
 
         }
 
@@ -124,32 +120,42 @@ public class AlarmPopUp extends Activity {
         ContentValues contentValues = new ContentValues();
         contentValues.put(TaskContract.TaskEntry.COLUMN_DESCRIPTION, input);
         if(alarmToggle.isChecked()) {
-            Log.d("SleepQuality", "Cheked!");
             contentValues.put(TaskContract.TaskEntry.COLUMN_ALARM, calSet.getTime().toString());
         }
-
         Uri uri = getContentResolver().insert(TaskContract.TaskEntry.CONTENT_URI, contentValues);
-
-        Log.d("SleepQuality", "Size: " + mTaskdbHelper.getDataValues("tasks", "alarm").size());
-
-        for (int i = 0; i < mTaskdbHelper.getDataValues("tasks", "alarm").size(); i++) {
-            Calendar cal = Calendar.getInstance();
-            try {
-                Date date = new Date(mTaskdbHelper.getDataValues("tasks", "alarm").get(i));
-                cal.setTime(date);
-                Log.d("SleepQuality", "Date: " + date);
-                Calendar calendarNow = Calendar.getInstance();
-                if (calendarNow.getTimeInMillis() < cal.getTimeInMillis()) {
-                    Intent intent = new Intent(getBaseContext(), AlarmReceiver.class);
-                    pendingIntent = PendingIntent.getBroadcast(getBaseContext(), RQS_1, intent, 0);
-                    alarmManager = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
-                    alarmManager.set(AlarmManager.RTC_WAKEUP, cal.getTimeInMillis(), pendingIntent);
-                }
-            }
-            catch (IllegalArgumentException e) {
-                System.out.println(e);
-            }
+        Calendar cal = Calendar.getInstance();
+        Date date = calSet != null ? calSet.getTime() : cal.getTime();
+        cal.setTime(date);
+        Calendar calendarNow = Calendar.getInstance();
+        if (calendarNow.getTimeInMillis() < cal.getTimeInMillis()) {
+            String sati = intToString(cal.getTime().getHours());
+            String minuti = intToString(cal.getTime().getMinutes());
+            String dan = String.valueOf(cal.getTime().getDate());
+            int datum =  Integer.parseInt(dan + sati + minuti);
+            Log.d("SleepQuality", "Setovan alarm: " + datum);
+            Intent intent = new Intent(getBaseContext(), AlarmReceiver.class);
+            pendingIntent = PendingIntent.getBroadcast(getBaseContext(), datum, intent, 0);
+            alarmManager = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
+            alarmManager.set(AlarmManager.RTC_WAKEUP, cal.getTimeInMillis(), pendingIntent);
         }
         finish();
     }
+
+
+
+    private String intToString(int integer) {
+        String string;
+        if(String.valueOf(integer).length() == 0) {
+            string = "00";
+        }
+        else if(String.valueOf(integer).length() == 1) {
+            string = "0" + String.valueOf(integer);
+        }
+        else {
+            string = String.valueOf(integer);
+        }
+
+        return string;
+    }
 }
+

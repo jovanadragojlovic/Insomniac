@@ -14,7 +14,7 @@
 * limitations under the License.
 */
 
-package com.example.nikola.insomniac.worryBook;
+package com.example.nikola.insomniac.worrybook;
 
 import android.content.Intent;
 import android.database.Cursor;
@@ -32,8 +32,6 @@ import android.util.Log;
 import android.view.View;
 
 import com.example.nikola.insomniac.R;
-import com.example.nikola.insomniac.data.AlarmPopUp;
-import com.example.nikola.insomniac.data.TaskContract;
 
 
 public class WorryBook extends AppCompatActivity implements

@@ -16,15 +16,28 @@
 
 package com.example.nikola.insomniac.worrybook;
 
+import android.app.AlarmManager;
+import android.app.PendingIntent;
 import android.content.ContentProvider;
 import android.content.ContentUris;
 import android.content.ContentValues;
 import android.content.Context;
+import android.content.Intent;
 import android.content.UriMatcher;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.net.Uri;
 import android.support.annotation.NonNull;
+import android.util.Log;
+
+import com.example.nikola.insomniac.alarms.AlarmReceiver;
+
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.Locale;
+
+import static android.content.Context.ALARM_SERVICE;
 
 // Verify that TaskContentProvider extends from ContentProvider and implements required methods
 public class TaskContentProvider extends ContentProvider {
@@ -34,6 +47,7 @@ public class TaskContentProvider extends ContentProvider {
     // and related ints (101, 102, ..) for items in that directory.
     public static final int TASKS = 100;
     public static final int TASK_WITH_ID = 101;
+    private AlarmPopUp alarmPopUp = new AlarmPopUp();
 
     // CDeclare a static variable for the Uri matcher that you construct
     private static final UriMatcher sUriMatcher = buildUriMatcher();
@@ -71,7 +85,6 @@ public class TaskContentProvider extends ContentProvider {
     public boolean onCreate() {
         // Complete onCreate() and initialize a TaskDbhelper on startup
         // [Hint] Declare the DbHelper as a global variable
-
         Context context = getContext();
         mTaskDbHelper = new TaskDbHelper(context);
         return true;
@@ -168,24 +181,40 @@ public class TaskContentProvider extends ContentProvider {
             case TASK_WITH_ID:
                 // Get the task ID from the URI path
                 String id = uri.getPathSegments().get(1);
-                // Use selections/selectionArgs to filter for this ID
-                tasksDeleted = db.delete(TaskContract.TaskEntry.TABLE_NAME, "_id=?", new String[]{id});
+                // Use selections/selectionArgs to filter for this
+                String date = mTaskDbHelper.getAlarmById(id);
+
+                SimpleDateFormat sdf = new SimpleDateFormat("EEE MMM dd HH:mm:ss z yyyy");
+                Calendar cal = Calendar.getInstance();
+                cal.setTime(new Date(date));
+                alarmPopUp.cancelAlarm(cal);
+                mTaskDbHelper.deleteTask(id);
                 break;
             default:
                 throw new UnsupportedOperationException("Unknown uri: " + uri);
         }
 
         // Notify the resolver of a change and return the number of items deleted
-        if (tasksDeleted != 0) {
-            // A task was deleted, set notification
-            getContext().getContentResolver().notifyChange(uri, null);
-        }
-
+        tasksDeleted = 1;
         // Return the number of tasks deleted
         return tasksDeleted;
     }
 
 
+    private String intToString(int integer) {
+        String string;
+        if(String.valueOf(integer).length() == 0) {
+            string = "00";
+        }
+        else if(String.valueOf(integer).length() == 1) {
+            string = "0" + String.valueOf(integer);
+        }
+        else {
+            string = String.valueOf(integer);
+        }
+
+        return string;
+    }
     @Override
     public int update(@NonNull Uri uri, ContentValues values, String selection,
                       String[] selectionArgs) {

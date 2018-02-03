@@ -16,6 +16,8 @@
 
 package com.example.nikola.insomniac.worrybook;
 
+import android.app.Dialog;
+import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
 import android.net.Uri;
@@ -30,12 +32,21 @@ import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.helper.ItemTouchHelper;
 import android.util.Log;
 import android.view.View;
+import android.view.Window;
+import android.widget.Button;
+import android.widget.ImageButton;
+import android.widget.TextView;
 
 import com.example.nikola.insomniac.R;
+
+import static com.example.nikola.insomniac.R.id.wb;
 
 
 public class WorryBook extends AppCompatActivity implements
         LoaderManager.LoaderCallbacks<Cursor> {
+
+    private Button wb;
+    final Context context = this;
 
 
     // Constants for logging and referring to a unique loader
@@ -51,6 +62,8 @@ public class WorryBook extends AppCompatActivity implements
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.worrybook);
+        ImageButton wb = (ImageButton) findViewById(R.id.wb);
+
 
         // Set the RecyclerView to its corresponding view
         mRecyclerView = (RecyclerView) findViewById(R.id.recyclerViewTasks);
@@ -123,6 +136,31 @@ public class WorryBook extends AppCompatActivity implements
          created, otherwise the last created loader is re-used.
          */
         getSupportLoaderManager().initLoader(TASK_LOADER_ID, null, this);
+
+        wb.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View arg0) {
+
+                // nl_info dialog
+                final Dialog dialog = new Dialog(context);
+                dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+                dialog.setContentView(R.layout.wb_info);
+
+
+                // set the nl_info dialog components - text, image and button
+                TextView text = (TextView) dialog.findViewById(R.id.text);
+
+                Button dialogButton = (Button) dialog.findViewById(R.id.dialogButtonOK);
+                // if button is clicked, close the nl_info dialog
+                dialogButton.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        dialog.dismiss();
+                    }
+                });
+
+                dialog.show();
+            }});
     }
 
 

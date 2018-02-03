@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:background="#282828">
+
+
+    <TextView
+        android:id="@+id/text"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:textColor="#FFF"
+        android:text="An analysis combining 66 studies has shown that regular exercise has significant positive effect on the sleep quality. Longer exercises were associated with increased sleep quality, while there were no differences between aerobic and anaerobic exercises. You should choose the type of physical activity that you prefer and include it into your daily routine."
+        android:layout_margin="10dp"
+        android:typeface="serif"
+        android:lineSpacingMultiplier="1.2"
+        android:textAppearance="@style/TextAppearance.AppCompat.Large"
+        />
+
+    <Button
+        android:id="@+id/dialogButtonOK"
+        android:layout_width="70dp"
+        android:layout_height="wrap_content"
+        android:text=" Ok "
+        android:layout_margin="10dp"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_below="@+id/text"
+        android:background="@drawable/green"
+
+
+        />
+
+</RelativeLayout>

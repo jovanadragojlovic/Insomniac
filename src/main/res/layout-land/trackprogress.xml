@@ -1,9 +1,4 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="fill_parent"
-    android:layout_height="fill_parent"
-    android:fillViewport="true">
 <android.support.design.widget.CoordinatorLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
@@ -12,173 +7,174 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
-    tools:context="com.example.nikola.insomniac.statistics.Istorija"
+    android:weightSum="100.0"
+    tools:context="com.example.nikola.insomniac.statistics.TrackProgress"
     >
-
-
     <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true">
+        android:layout_height="match_parent">
+
 
         <ImageView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:src="@drawable/tunisija"
+            android:src="@drawable/insomlandscape1920"
             android:scaleType = "centerCrop"
             android:id="@+id/imageView2"
             tools:ignore="ContentDescription"/>
+
+
     </FrameLayout>
 
 
-    <android.support.design.widget.AppBarLayout
-        android:id="@+id/appbar"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:theme="@style/AppTheme.AppBarOverlay"
-        app:tabIndicatorColor="@android:color/white"
-   >
-
-
-        <android.support.design.widget.TabLayout
-            android:id="@+id/tabs"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:tabIndicatorColor="#ffffff"
-            app:tabSelectedTextColor="#ffffff"
-  />
-
-    </android.support.design.widget.AppBarLayout>
-
-    <android.support.v4.view.ViewPager
-        android:id="@+id/container"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:orientation="vertical"
+        >
+
+        <android.support.design.widget.AppBarLayout
+            android:id="@+id/appbar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:theme="@style/AppTheme.AppBarOverlay"
+            app:tabIndicatorColor="@android:color/white"
+
+            >
+
+
+            <android.support.design.widget.TabLayout
+                android:id="@+id/tabs"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+
+                app:tabIndicatorColor="#ffffff"
+                app:tabSelectedTextColor="#ffffff"
+                />
+
+        </android.support.design.widget.AppBarLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="0.3">
+
+        <android.support.v4.view.ViewPager
+        android:id="@+id/container"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         app:layout_behavior="@string/appbar_scrolling_view_behavior"
         android:textColor="#ffffff"
         />
 
+    </LinearLayout>
 
-    <RelativeLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="30dip">
+
+
+        <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="0.7">
+
+
+
+
+        <android.support.v7.widget.GridLayout
+
+            xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:grid="http://schemas.android.com/apk/res-auto"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            grid:columnCount="6"
+            android:layout_centerHorizontal="true"
+            grid:alignmentMode="alignBounds">
 
 
         <Button
-            android:text="Sleep Quality"
-            android:layout_width="190dip"
+            android:text="Sleep quality"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:id="@+id/SleepQuality"
             android:background="#21ffffff"
             android:textAppearance="@style/TextAppearance.AppCompat.Headline"
             android:textSize="20sp"
-            android:layout_marginTop="375dip"
-            android:radius="11dp"
+            grid:layout_columnWeight="1"
+            grid:layout_rowWeight="1"
             />
         <Button
-            android:text="PhisicalActivity"
-            android:layout_width="190dip"
+            android:text="Physical activity"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:id="@+id/PhisicalActivity"
             android:background="#21ffffff"
             android:textAppearance="@style/TextAppearance.AppCompat.Headline"
             android:textSize="20sp"
-            android:layout_marginTop="425dip"
-            android:radius="11dp"
+            grid:layout_columnWeight="1"
+            grid:layout_gravity="fill"
+            grid:layout_rowWeight="1"
 
             />
         <Button
             android:text="Daily light"
-            android:layout_width="190dip"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:id="@+id/Dailylight"
             android:background="#21ffffff"
             android:textAppearance="@style/TextAppearance.AppCompat.Headline"
             android:textSize="20sp"
-            android:layout_marginTop="475dip"
-            android:radius="11dp"
+            grid:layout_columnWeight="1"
+            grid:layout_gravity="fill"
+            grid:layout_rowWeight="1"
 
             />
 
         <Button
             android:text="Nightly light"
-            android:layout_width="190dip"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:id="@+id/Nightlylight"
             android:background="#21ffffff"
             android:textAppearance="@style/TextAppearance.AppCompat.Headline"
             android:textSize="20sp"
-            android:layout_marginTop="525dip"
-            android:radius="11dp"
-
-            />
-        <Button
-            android:text="Water"
-            android:layout_width="190dip"
-            android:layout_height="wrap_content"
-            android:id="@+id/Water"
-            android:background="#21ffffff"
-            android:textAppearance="@style/TextAppearance.AppCompat.Headline"
-            android:textSize="20sp"
-            android:layout_marginTop="375dip"
-            android:layout_marginLeft="190dip"
-            android:radius="11dp"
+            grid:layout_columnWeight="1"
+            grid:layout_gravity="fill"
+            grid:layout_rowWeight="1"
 
             />
 
-        <Button
-            android:text="Food"
-            android:layout_width="190dip"
-            android:layout_height="wrap_content"
-            android:id="@+id/Food"
-            android:background="#21ffffff"
-            android:textAppearance="@style/TextAppearance.AppCompat.Headline"
-            android:textSize="20sp"
-            android:layout_marginTop="425dip"
-            android:layout_marginLeft="190dip"
-            android:radius="11dp"
-
-            />
 
         <Button
             android:text="Coffee"
-            android:layout_width="190dip"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:id="@+id/Coffee"
             android:background="#21ffffff"
             android:textAppearance="@style/TextAppearance.AppCompat.Headline"
             android:textSize="20sp"
-            android:layout_marginTop="475dip"
-            android:layout_marginLeft="190dip"
-            android:radius="11dp"
+            grid:layout_columnWeight="1"
+            grid:layout_gravity="fill"
+            grid:layout_rowWeight="1"
 
             />
         <Button
             android:text="Bedroom"
-            android:layout_width="190dip"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:id="@+id/Bedroom"
             android:background="#21ffffff"
             android:textAppearance="@style/TextAppearance.AppCompat.Headline"
             android:textSize="20sp"
-            android:layout_marginTop="525dip"
-            android:layout_marginLeft="190dip"
-            android:radius="11dp"
+            grid:layout_columnWeight="1"
+            grid:layout_gravity="fill"
+            grid:layout_rowWeight="1"
 
             />
-        <Button
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/buttonDropUp"
-            android:background="@drawable/green"
-            android:layout_marginTop="525dip"
 
-            />
+        </android.support.v7.widget.GridLayout>
+
+
     </RelativeLayout>
 
+    </LinearLayout>
 </android.support.design.widget.CoordinatorLayout>
-</ScrollView>

@@ -25,10 +25,19 @@
             android:id="@+id/imageView2"
             tools:ignore="ContentDescription"/>
 
-
-
-
     </FrameLayout>
+
+    <ImageButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/ic_help_outline_white_24dp"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="6dp"
+        android:layout_marginEnd="6dp"
+        android:layout_marginTop="10dp"
+        android:id="@+id/pa"/>
+
 
 
     <ImageView
@@ -57,10 +66,10 @@
     <TextView
         android:id="@+id/jebise"
         android:layout_width="match_parent"
-        android:layout_height="68dp"
+        android:layout_height="80dp"
         android:layout_marginTop="30dp"
         android:layout_marginBottom="20dp"
-        android:text="Add the amount of time you spent exercising or playing a sport:"
+        android:text="How much time (in minutes) have you spent exercising or playing a sport today?"
         android:textSize="20sp"
         android:gravity="center"
         android:layout_below="@+id/textView"

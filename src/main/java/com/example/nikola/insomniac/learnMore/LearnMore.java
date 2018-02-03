@@ -26,7 +26,7 @@ public class LearnMore extends MainActivity {
         aboutinsomniac.setOnClickListener(
                 new View.OnClickListener() {
                     public void onClick(View v) {
-                        Intent myIntent = new Intent(LearnMore.this, AboutInsomniac.class);
+                        Intent myIntent = new Intent(LearnMore.this, LearnMoreInsomniac.class);
                         myIntent.putExtra("key", value); //Optional parameters
                         LearnMore.this.startActivity(myIntent);
 
@@ -38,7 +38,19 @@ public class LearnMore extends MainActivity {
         introduction.setOnClickListener(
                 new View.OnClickListener() {
                     public void onClick(View v) {
-                        Intent myIntent = new Intent(LearnMore.this, LearnMoreIntroduction.class);
+                        Intent myIntent = new Intent(LearnMore.this, LearnMoreSleep.class);
+                        myIntent.putExtra("key", value); //Optional parameters
+                        LearnMore.this.startActivity(myIntent);
+
+                    }
+                }
+        );
+
+        Button stimuluscontrol = (Button)findViewById(R.id.stimuluscontrol);
+        stimuluscontrol.setOnClickListener(
+                new View.OnClickListener() {
+                    public void onClick(View v) {
+                        Intent myIntent = new Intent(LearnMore.this, LearnMoreStimulusControl.class);
                         myIntent.putExtra("key", value); //Optional parameters
                         LearnMore.this.startActivity(myIntent);
 
@@ -50,7 +62,7 @@ public class LearnMore extends MainActivity {
         learnmorechecklist.setOnClickListener(
                 new View.OnClickListener() {
                     public void onClick(View v) {
-                        Intent myIntent = new Intent(LearnMore.this, LearnMoreChecklist.class);
+                        Intent myIntent = new Intent(LearnMore.this, LearnMoreImproveSleepQuality.class);
                         myIntent.putExtra("key", value); //Optional parameters
                         LearnMore.this.startActivity(myIntent);
 

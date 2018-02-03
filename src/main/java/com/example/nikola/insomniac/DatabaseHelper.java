@@ -447,12 +447,10 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     public void updateCoffee(String coffee, String date){
         SQLiteDatabase db = this.getWritableDatabase();
-        int lastCoffee = Integer.parseInt(this.getCoffeeByDate(date));
-        lastCoffee += Integer.parseInt(coffee);
         String query = "UPDATE " + COFFEE + " SET " + C_COL2 +
-                " = '" + String.valueOf(lastCoffee) + "' WHERE " + COL1 + " = '" + date + "'";
+                " = '" + String.valueOf(coffee) + "' WHERE " + COL1 + " = '" + date + "'";
         Log.d(TAG, "updateName: query: " + query);
-        Log.d(TAG, "updateName: Setting coffee to " + String.valueOf(lastCoffee));
+        Log.d(TAG, "updateName: Setting coffee to " + String.valueOf(coffee));
         db.execSQL(query);
     }
 

@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:background="#282828">
+
+
+    <TextView
+        android:id="@+id/text"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:textColor="#FFF"
+        android:text="Humans used to spend most of the day outside, being exposed to high levels of bright light. Today, even on a cloudy day, the light outside can be greater than the level normally achieved indoors. Research has shown that the rate of production of serotonin (a molecule involved in the synthesis of melatonin, sleep promoting hormone) by the brain was directly related to the prevailing duration of bright sunlight. You should increase the amount of time you spend outside."
+        android:layout_margin="10dp"
+        android:typeface="serif"
+        android:lineSpacingMultiplier="1.2"
+        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+        />
+
+    <Button
+        android:id="@+id/dialogButtonOK"
+        android:layout_width="70dp"
+        android:layout_height="wrap_content"
+        android:text=" Ok "
+        android:layout_margin="10dp"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_below="@+id/text"
+        android:background="@drawable/green"
+
+
+        />
+
+</RelativeLayout>

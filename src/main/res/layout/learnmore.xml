@@ -1,12 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-
 <RelativeLayout xmlns:tools="http://schemas.android.com/tools"
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    >
+    android:orientation="vertical">
 
     <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:tools="http://schemas.android.com/tools"
@@ -23,10 +21,6 @@
             android:scaleType = "centerCrop"
             android:id="@+id/imageView2"
             tools:ignore="ContentDescription"/>
-
-
-
-
     </FrameLayout>
 
     <ImageView
@@ -43,8 +37,7 @@
         android:layout_height="68dp"
         android:text="Learn more"
         android:textSize="20sp"
-        android:gravity="center"
-        />
+        android:gravity="center" />
 
     <TextView
         android:layout_width="match_parent"
@@ -52,9 +45,16 @@
         android:background="@color/gray"
         android:layout_marginTop="68dp" />
 
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:id="@+id/privremeno"
+        android:layout_marginTop="69dp"
+
+        />
 
     <Button
-        android:text="@string/about_insomniac"
+        android:text="Insomniac"
         android:layout_width="300dp"
         android:layout_height="wrap_content"
         android:id="@+id/aboutinsomniac"
@@ -64,16 +64,11 @@
         android:layout_margin="14dp"
         android:layout_centerHorizontal="true"
         android:gravity="center"
-        android:layout_above="@+id/introduction"
-        android:layout_centerVertical="true"
-
-
-
-        />
-
+        android:layout_below="@+id/privremeno"
+        android:layout_centerVertical="true" />
 
     <Button
-        android:text="About insomnia and sleep"
+        android:text="About sleep"
         android:layout_width="300dp"
         android:layout_height="wrap_content"
         android:id="@+id/introduction"
@@ -82,13 +77,13 @@
         android:textSize="20sp"
         android:layout_margin="15dp"
         android:layout_centerHorizontal="true"
-        android:layout_above="@+id/learnmorechecklist"
         android:layout_centerVertical="true"
-        android:gravity="center" />
+        android:gravity="center"
+        android:layout_below="@id/aboutinsomniac"/>
 
 
     <Button
-        android:text="About improving sleep quality"
+        android:text="Improve sleep quality"
         android:layout_width="300dp"
         android:layout_height="wrap_content"
         android:id="@+id/learnmorechecklist"
@@ -99,10 +94,29 @@
         android:layout_centerVertical="true"
         android:layout_marginBottom="17dp"
         android:layout_centerHorizontal="true"
-        android:gravity="center" />
+        android:gravity="center"
+        android:layout_below="@id/introduction"
+    />
 
     <Button
-        android:text="About worry book technique"
+        android:text="Stimulus control technique"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:id="@+id/stimuluscontrol"
+        android:background="@drawable/green"
+        android:textAppearance="@style/TextAppearance.AppCompat.Headline"
+        android:textSize="20sp"
+        android:layout_margin="15dp"
+        android:layout_centerVertical="true"
+        android:layout_marginBottom="17dp"
+        android:layout_centerHorizontal="true"
+        android:gravity="center"
+        android:layout_below="@+id/learnmorechecklist"
+        />
+
+
+    <Button
+        android:text="Worry book technique"
         android:layout_width="300dp"
         android:layout_height="wrap_content"
         android:id="@+id/learnmoreworrybook"
@@ -113,10 +127,6 @@
         android:layout_margin="15dp"
         android:layout_centerHorizontal="true"
         android:gravity="center"
-        android:layout_below="@+id/learnmorechecklist"/>
-
-
-
+        android:layout_below="@+id/stimuluscontrol"/>
 
 </RelativeLayout>
-

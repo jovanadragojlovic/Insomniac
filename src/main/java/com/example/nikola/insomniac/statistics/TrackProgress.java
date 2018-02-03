@@ -1,5 +1,8 @@
 package com.example.nikola.insomniac.statistics;
 
+import android.app.Dialog;
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
@@ -7,13 +10,17 @@ import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
+import android.view.Window;
 import android.view.animation.Animation;
 import android.view.animation.TranslateAnimation;
 import android.widget.Button;
+import android.widget.TextView;
 
 import com.example.nikola.insomniac.R;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 
 public class TrackProgress extends AppCompatActivity {
@@ -23,19 +30,56 @@ public class TrackProgress extends AppCompatActivity {
     SectionsPageAdapter adapter;
     public int whichTab = 0;
     public static String corelation = "";
-
-    public static ArrayList<String> arrayList = new ArrayList<String>();
+    public static String clickedVar;
     int position;
+    Map<String, Button> map;
+    final Context context = this;
+    final String PREFS_NAME = "MyPrefsFile2";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.trackprogress);
+
+
+
+        SharedPreferences settings = getSharedPreferences(PREFS_NAME, 0);
+
+        if (settings.getBoolean("my_first_trackprogress", true)) {
+
+            // nl_info dialog
+            final Dialog dialog = new Dialog(context);
+            dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+            dialog.setContentView(R.layout.my_first_trackprogress);
+
+
+            // set the nl_info dialog components - text, image and button
+            TextView text1 = (TextView) dialog.findViewById(R.id.text1);
+
+
+
+            Button dialogButton = (Button) dialog.findViewById(R.id.dialogButtonOK);
+            // if button is clicked, close the nl_info dialog
+            dialogButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    dialog.dismiss();
+                }
+            });
+
+            dialog.show();
+
+            settings.edit().putBoolean("my_first_trackprogress", false).commit();
+
+        }
+
+
+
+
         Log.d(TAG, "onCreate: Starting.");
-        arrayList = new ArrayList<String>();
 
         mSectionsPageAdapter = new SectionsPageAdapter(getSupportFragmentManager());
-
+        clickedVar = "SleepQuality";
 
         // Set up the ViewPager with the sections adapter.
         mViewPager = (ViewPager) findViewById(R.id.container);
@@ -66,36 +110,28 @@ public class TrackProgress extends AppCompatActivity {
         final Button phisicalA =  (Button) findViewById(R.id.PhisicalActivity);
         final Button Dailylight =  (Button) findViewById(R.id.Dailylight);
         final Button Nightlylight =  (Button) findViewById(R.id.Nightlylight);
-        final Button Water =  (Button) findViewById(R.id.Water);
-        final Button Food =  (Button) findViewById(R.id.Food);
         final Button Coffee =  (Button) findViewById(R.id.Coffee);
         final Button Bedroom =  (Button) findViewById(R.id.Bedroom);
+
+        map = new HashMap<>();
+        map.put("SleepQuality", sleepQ);
+        map.put("DailyLight", Dailylight);
+        map.put("NightlyLight", Nightlylight);
+        map.put("PhysicalActivity",phisicalA);
+        map.put("Coffee", Coffee);
+        map.put("Bedroom", Bedroom);
 
         sleepQ.setOnClickListener(
                 new View.OnClickListener() {
                     public void onClick(View v) {
                         if(whichTab == 0) {
-                            if (!arrayList.contains("SleepQuality")) {
-                                arrayList.add("SleepQuality");
-                                mSectionsPageAdapter = new SectionsPageAdapter(getSupportFragmentManager());
-                                mViewPager = (ViewPager) findViewById(R.id.container);
-                                setupViewPager(mViewPager);
-
-                            } else {
-                                arrayList.remove("SleepQuality");
-                                setupViewPager(mViewPager);
-                                mSectionsPageAdapter = new SectionsPageAdapter(getSupportFragmentManager());
-                                mViewPager = (ViewPager) findViewById(R.id.container);
-                                setupViewPager(mViewPager);
-
-                            }
-                        }else {
-                            corelation = "SleepQuality";
-                            setupViewPager(mViewPager);
+                            map.get(clickedVar).setBackgroundColor(Color.parseColor("#21ffffff"));
+                            sleepQ.setBackgroundColor(Color.parseColor("#3cffffff"));
+                            clickedVar = "SleepQuality";
                             mSectionsPageAdapter = new SectionsPageAdapter(getSupportFragmentManager());
                             mViewPager = (ViewPager) findViewById(R.id.container);
                             setupViewPager(mViewPager);
-                            mViewPager.setCurrentItem(1);
+
                         }
                     }
                 }
@@ -105,27 +141,13 @@ public class TrackProgress extends AppCompatActivity {
                 new View.OnClickListener() {
                     public void onClick(View v) {
                         if(whichTab == 0) {
-                            if (!arrayList.contains("PhysicalActivity")) {
-                                arrayList.add("PhysicalActivity");
-                                mSectionsPageAdapter = new SectionsPageAdapter(getSupportFragmentManager());
-                                mViewPager = (ViewPager) findViewById(R.id.container);
-                                setupViewPager(mViewPager);
-
-                            } else {
-                                arrayList.remove("PhysicalActivity");
-                                mSectionsPageAdapter = new SectionsPageAdapter(getSupportFragmentManager());
-                                mViewPager = (ViewPager) findViewById(R.id.container);
-                                setupViewPager(mViewPager);
-                            }
-                        }else {
-                            corelation = "PhysicalActivity";
-                            Log.d(TAG, "corelation: " + corelation);
-
-                            setupViewPager(mViewPager);
+                            map.get(clickedVar).setBackgroundColor(Color.parseColor("#21ffffff"));
+                            phisicalA.setBackgroundColor(Color.parseColor("#3cffffff"));
+                            clickedVar = "PhysicalActivity";
                             mSectionsPageAdapter = new SectionsPageAdapter(getSupportFragmentManager());
                             mViewPager = (ViewPager) findViewById(R.id.container);
                             setupViewPager(mViewPager);
-                            mViewPager.setCurrentItem(1);
+
                         }
                     }
                 }
@@ -135,168 +157,69 @@ public class TrackProgress extends AppCompatActivity {
                 new View.OnClickListener() {
                     public void onClick(View v) {
                         if(whichTab == 0) {
-                            if (!arrayList.contains("DailyLight")) {
-                                arrayList.add("DailyLight");
-                                mSectionsPageAdapter = new SectionsPageAdapter(getSupportFragmentManager());
-                                mViewPager = (ViewPager) findViewById(R.id.container);
-                                setupViewPager(mViewPager);
-                            } else {
-                                arrayList.remove("DailyLight");
-                                mSectionsPageAdapter = new SectionsPageAdapter(getSupportFragmentManager());
-                                mViewPager = (ViewPager) findViewById(R.id.container);
-                                setupViewPager(mViewPager);
-                            }
-                        }else {
-                            corelation = "DailyLight";
-                            setupViewPager(mViewPager);
+                            map.get(clickedVar).setBackgroundColor(Color.parseColor("#21ffffff"));
+                            Dailylight.setBackgroundColor(Color.parseColor("#3cffffff"));
+                            clickedVar = "DailyLight";
                             mSectionsPageAdapter = new SectionsPageAdapter(getSupportFragmentManager());
                             mViewPager = (ViewPager) findViewById(R.id.container);
                             setupViewPager(mViewPager);
-                            mViewPager.setCurrentItem(1);
                         }
                     }
                 }
+
         );
         Nightlylight.setOnClickListener(
                 new View.OnClickListener() {
                     public void onClick(View v) {
                         if(whichTab == 0) {
-                            if (!arrayList.contains("NightlyLight")) {
-                                arrayList.add("NightlyLight");
-                                mSectionsPageAdapter = new SectionsPageAdapter(getSupportFragmentManager());
-                                mViewPager = (ViewPager) findViewById(R.id.container);
-                                setupViewPager(mViewPager);
-                            } else {
-                                arrayList.remove("NightlyLight");
-                                mSectionsPageAdapter = new SectionsPageAdapter(getSupportFragmentManager());
-                                mViewPager = (ViewPager) findViewById(R.id.container);
-                                setupViewPager(mViewPager);
-                            }
-                        }else {
-                            corelation = "NightlyLight";
-                            setupViewPager(mViewPager);
+                            map.get(clickedVar).setBackgroundColor(Color.parseColor("#21ffffff"));
+                            Nightlylight.setBackgroundColor(Color.parseColor("#3cffffff"));
+                            clickedVar = "NightlyLight";
                             mSectionsPageAdapter = new SectionsPageAdapter(getSupportFragmentManager());
                             mViewPager = (ViewPager) findViewById(R.id.container);
                             setupViewPager(mViewPager);
-                            mViewPager.setCurrentItem(1);
                         }
                     }
                 }
+
         );
-        Water.setOnClickListener(
-                new View.OnClickListener() {
-                    public void onClick(View v) {
-                        if(whichTab == 0) {
-                            if (!arrayList.contains("Water")) {
-                                arrayList.add("Water");
-                                mSectionsPageAdapter = new SectionsPageAdapter(getSupportFragmentManager());
-                                mViewPager = (ViewPager) findViewById(R.id.container);
-                                setupViewPager(mViewPager);
-                            } else {
-                                arrayList.remove("Water");
-                                mSectionsPageAdapter = new SectionsPageAdapter(getSupportFragmentManager());
-                                mViewPager = (ViewPager) findViewById(R.id.container);
-                                setupViewPager(mViewPager);
-                            }
-                        }else{
-                            corelation = "Water";
-                            setupViewPager(mViewPager);
-                            mSectionsPageAdapter = new SectionsPageAdapter(getSupportFragmentManager());
-                            mViewPager = (ViewPager) findViewById(R.id.container);
-                            setupViewPager(mViewPager);
-                            mViewPager.setCurrentItem(1);
-                        }
-                    }
-                }
-        );
-        Food.setOnClickListener(
-                new View.OnClickListener() {
-                    public void onClick(View v) {
-//                            if(whichTab == 0) {
-//
-//                        if (!arrayList.contains("Food")) {
-//                            arrayList.add("Food");
-//                            mSectionsPageAdapter = new SectionsPageAdapter(getSupportFragmentManager());
-//                            mViewPager = (ViewPager) findViewById(R.id.container);
-//                            setupViewPager(mViewPager);
-//                        }else {
-//
-//                            arrayList.remove("Food");
-//                            mSectionsPageAdapter = new SectionsPageAdapter(getSupportFragmentManager());
-//                            mViewPager = (ViewPager) findViewById(R.id.container);
-//                            setupViewPager(mViewPager);
-//                        }
-//                            }else{
-//                                corelation = "Food";
-//                                setupViewPager(mViewPager);
-//                                mSectionsPageAdapter = new SectionsPageAdapter(getSupportFragmentManager());
-//                                mViewPager = (ViewPager) findViewById(R.id.container);
-//                                setupViewPager(mViewPager);
-//                                mViewPager.setCurrentItem(1);
-//                            }
-                    }
-                }
-        );
+
         Coffee.setOnClickListener(
                 new View.OnClickListener() {
                     public void onClick(View v) {
                         if(whichTab == 0) {
-                            if (!arrayList.contains("Coffee")) {
-                                arrayList.add("Coffee");
-                                mSectionsPageAdapter = new SectionsPageAdapter(getSupportFragmentManager());
-                                mViewPager = (ViewPager) findViewById(R.id.container);
-                                setupViewPager(mViewPager);
-                            } else {
-                                arrayList.remove("Coffee");
-                                mSectionsPageAdapter = new SectionsPageAdapter(getSupportFragmentManager());
-                                mViewPager = (ViewPager) findViewById(R.id.container);
-                                setupViewPager(mViewPager);
-                            }
-                        }else{
-                            corelation = "Coffee";
-                            setupViewPager(mViewPager);
+                            map.get(clickedVar).setBackgroundColor(Color.parseColor("#21ffffff"));
+                            Coffee.setBackgroundColor(Color.parseColor("#3cffffff"));
+                            clickedVar = "Coffee";
                             mSectionsPageAdapter = new SectionsPageAdapter(getSupportFragmentManager());
                             mViewPager = (ViewPager) findViewById(R.id.container);
                             setupViewPager(mViewPager);
-                            mViewPager.setCurrentItem(1);
                         }
                     }
                 }
+
         );
         Bedroom.setOnClickListener(
                 new View.OnClickListener() {
                     public void onClick(View v) {
                         if(whichTab == 0) {
-                            if (!arrayList.contains("Bedroom")) {
-                                arrayList.add("Bedroom");
-                                mSectionsPageAdapter = new SectionsPageAdapter(getSupportFragmentManager());
-                                mViewPager = (ViewPager) findViewById(R.id.container);
-                                setupViewPager(mViewPager);
-                            } else {
-                                arrayList.remove("Bedroom");
-                                mSectionsPageAdapter = new SectionsPageAdapter(getSupportFragmentManager());
-                                mViewPager = (ViewPager) findViewById(R.id.container);
-                                setupViewPager(mViewPager);
-                            }
-                        }else{
-                            corelation = "Bedroom";
-                            setupViewPager(mViewPager);
+                            map.get(clickedVar).setBackgroundColor(Color.parseColor("#21ffffff"));
+                            Bedroom.setBackgroundColor(Color.parseColor("#3cffffff"));
+                            clickedVar = "Bedroom";
                             mSectionsPageAdapter = new SectionsPageAdapter(getSupportFragmentManager());
                             mViewPager = (ViewPager) findViewById(R.id.container);
                             setupViewPager(mViewPager);
-                            mViewPager.setCurrentItem(1);
                         }
                     }
                 }
+
         );
 
     }
 
     private void setupViewPager(ViewPager viewPager) {
         adapter = new SectionsPageAdapter(getSupportFragmentManager());
-        adapter.addFragment(new Tab1Fragment(), "HISTORY");
-        adapter.addFragment(new Tab2Fragment(), "CORRELATION");
-        adapter.addFragment(new Tab3Fragment(), "REGRESSION");
+        adapter.addFragment(new Tab1Fragment(), "Track progress");
         viewPager.setAdapter(adapter);
     }
 }

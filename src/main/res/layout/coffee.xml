@@ -30,6 +30,16 @@
 
     </FrameLayout>
 
+    <!--<ImageButton-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:background="@drawable/ic_help_outline_white_24dp"-->
+        <!--android:layout_alignParentEnd="true"-->
+        <!--android:layout_alignParentRight="true"-->
+        <!--android:layout_marginRight="6dp"-->
+        <!--android:layout_marginEnd="6dp"-->
+        <!--android:layout_marginTop="10dp"-->
+        <!--android:id="@+id/cf"/>-->
 
     <ImageView
         android:id="@+id/imageView"
@@ -60,7 +70,7 @@
         android:layout_height="68dp"
         android:layout_marginTop="30dp"
         android:layout_marginBottom="20dp"
-        android:text="Add the amount of coffee you drank"
+        android:text="How many cups of coffee have you had today?"
         android:textSize="20sp"
         android:gravity="center"
         android:layout_below="@+id/textView"
@@ -68,32 +78,53 @@
 
         />
 
-    <EditText
-        android:layout_marginTop="190dp"
-        android:textAlignment="center"
-        android:layout_width="150dp"
-        android:layout_height="50dp"
-        android:id="@+id/editText"
-        android:layout_centerHorizontal="true"
-        android:inputType="number"
-        android:layout_below="@+id/jebise"
-        android:textColor="#ffffff"/>
 
-
-
-
-    <Button
-        android:text="Add"
-        android:layout_width="130dp"
+    <ImageView
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/btnAdd"
-        android:background="@drawable/green"
-        android:textAppearance="@style/TextAppearance.AppCompat.Headline"
-        android:textSize="20sp"
-        android:layout_below="@+id/editText"
+        android:id="@+id/kafa"
+        android:layout_below="@+id/jebise"
         android:layout_centerHorizontal="true"
-        android:layout_margin="10dp"
+        android:src="@drawable/cup"
+        tools:ignore="ContentDescription"/>
 
+
+
+    <TextView
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:id="@+id/pokazatelj"
+        android:layout_below="@+id/kafa"
+        android:text="0"
+        android:textSize="20dp"
+        android:layout_margin="5dp"
+        android:textAlignment="center"
+        android:layout_centerHorizontal="true"
         />
 
-    ></RelativeLayout>
+    <ImageButton
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:id="@+id/dodaj"
+        android:layout_below="@+id/kafa"
+        android:layout_toRightOf="@+id/pokazatelj"
+        android:layout_toEndOf="@+id/pokazatelj"
+        android:src="@drawable/dodaj"
+        tools:ignore="ContentDescription"
+        android:background="@color/transparent_white"/>
+
+    <ImageButton
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:id="@+id/oduzmi"
+        android:src="@drawable/oduzmi"
+        tools:ignore="ContentDescription"
+        android:background="@color/transparent_white"
+        android:layout_below="@+id/kafa"
+        android:layout_toLeftOf="@+id/pokazatelj"
+        android:layout_toStartOf="@+id/pokazatelj" />
+
+
+
+
+</RelativeLayout>

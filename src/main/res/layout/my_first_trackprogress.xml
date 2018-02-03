@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:background="#282828"
+    >
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="10dp"
+        android:id="@+id/nline0"
+        android:text=""
+        />
+    <TextView
+        android:id="@+id/text1"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:textColor="#FFF"
+        android:text="Add data to 'Improve sleep' section and see what you have done when you slept better!"
+        android:layout_margin="10dp"
+        android:typeface="serif"
+        android:lineSpacingMultiplier="1.2"
+        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+        android:layout_below="@+id/nline0"
+        />
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="10dp"
+        android:id="@+id/nline1"
+        android:text=""
+        android:layout_below="@+id/text1"
+        />
+
+    <Button
+        android:id="@+id/dialogButtonOK"
+        android:layout_width="70dp"
+        android:layout_height="wrap_content"
+        android:text=" Ok "
+        android:layout_margin="10dp"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_below="@+id/nline1"
+        android:background="@drawable/green"
+        />
+
+</RelativeLayout>

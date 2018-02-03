@@ -32,7 +32,7 @@
         </activity>
 
 
-        <activity android:name=".learnMore.AboutInsomniac" android:label="@string/about_insomniac">
+        <activity android:name=".learnMore.LearnMoreInsomniac" android:label="@string/about_insomniac">
             <intent-filter>
                 <action android:name="android.intent.action.CALL" />
                 <category android:name="android.intent.category.DEFAULT" />
@@ -40,14 +40,21 @@
         </activity>
 
 
-        <activity android:name=".learnMore.LearnMoreIntroduction">
+        <activity android:name=".learnMore.LearnMoreSleep">
             <intent-filter>
                 <action android:name="android.intent.action.CALL" />
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
 
-        <activity android:name=".learnMore.LearnMoreChecklist">
+        <activity android:name=".learnMore.LearnMoreStimulusControl">
+            <intent-filter>
+                <action android:name="android.intent.action.CALL" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+
+        <activity android:name=".learnMore.LearnMoreImproveSleepQuality">
             <intent-filter>
                 <action android:name="android.intent.action.CALL" />
                 <category android:name="android.intent.category.DEFAULT" />
@@ -93,15 +100,6 @@
         </activity>
 
 
-        <activity android:name=".worrybook.AlarmPopUp"
-            android:theme="@style/NovaTema">
-            <intent-filter>
-                <action android:name="android.intent.action.CALL" />
-
-                <category android:name="android.intent.category.DEFAULT" />
-            </intent-filter>
-        </activity>
-
         <activity android:name=".improveSleep.SleepQuality">
             <intent-filter>
                 <action android:name="android.intent.action.CALL" />
@@ -134,7 +132,7 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".improveSleep.Water">
+        <activity android:name=".improveSleep.Bedroom">
             <intent-filter>
                 <action android:name="android.intent.action.CALL" />
 
@@ -150,14 +148,6 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".improveSleep.Bedroom">
-            <intent-filter>
-                <action android:name="android.intent.action.CALL" />
-
-                <category android:name="android.intent.category.DEFAULT" />
-            </intent-filter>
-        </activity>
-
         <activity android:name=".statistics.TrackProgress">
             <intent-filter>
                 <action android:name="android.intent.action.CALL" />
@@ -166,6 +156,13 @@
             </intent-filter>
         </activity>
 
+        <activity android:name=".worrybook.AlarmPopUp">
+            <intent-filter>
+                <action android:name="android.intent.action.CALL" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
 
         <service
             android:name=".alarms.AlarmService"

@@ -27,7 +27,11 @@
 
     </FrameLayout>
 
-<android.support.v7.widget.GridLayout
+
+
+
+
+    <android.support.v7.widget.GridLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:grid="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
@@ -43,7 +47,7 @@
         android:id="@+id/sleepquality"
         android:layout_width="0dp"
         android:layout_height="20dp"
-        android:text="Sleep Quality"
+        android:text="Sleep quality"
         grid:layout_columnWeight="1"
         grid:layout_rowWeight="1"
         grid:layout_gravity="fill"
@@ -95,33 +99,6 @@
 
         />
 
-    <Button
-        android:id="@+id/water"
-        android:layout_width="0dp"
-        android:layout_height="20dp"
-        android:text="Water"
-        grid:layout_columnWeight="1"
-        grid:layout_rowWeight="1"
-        grid:layout_gravity="fill"
-        android:background="@drawable/green"
-        android:textAppearance="@style/TextAppearance.AppCompat.Large"
-        android:layout_margin="5dp"
-
-        />
-
-    <Button
-        android:id="@+id/food"
-        android:layout_width="0dp"
-        android:layout_height="20dp"
-        android:text="Food"
-        grid:layout_columnWeight="1"
-        grid:layout_rowWeight="1"
-        grid:layout_gravity="fill"
-        android:background="@drawable/green"
-        android:textAppearance="@style/TextAppearance.AppCompat.Large"
-        android:layout_margin="5dp"
-
-        />
 
     <Button
         android:id="@+id/coffee"

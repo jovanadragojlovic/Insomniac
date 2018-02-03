@@ -69,16 +69,5 @@
         android:scrollbars="vertical"
         android:paddingLeft="@dimen/activity_horizontal_margin"
         android:paddingRight="@dimen/activity_horizontal_margin"
-        android:paddingBottom="90dp"
-        android:text="
-   Worry Book
-
-   Psychological research have shown that scheduling a time of the day for worrying about problems is a good way to decrease worry, anxiety and insomnia (see 8, 9). During the evening, write down your biggest problems and postpone thinking about them for the certain part of the following day.
-
-   Find out more
-
-   1. Borkovec, T. D., Wilkinson, L., Folensbee, R., and Lerman, C. (1983). Stimulus control applications to the treatment of worry. Behaviour Research and Therapy, 21(3), 247–251.
-
-   2. McGowan, S. K., and Behar, E. (2013). A preliminary investigation of stimulus control training for worry: effects on anxiety and insomnia. Behavior Modification, 37(1), 90–112.
-"/>
+        android:text=""/>
 </RelativeLayout>

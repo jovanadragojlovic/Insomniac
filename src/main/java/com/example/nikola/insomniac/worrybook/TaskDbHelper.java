@@ -31,7 +31,7 @@ public class TaskDbHelper extends SQLiteOpenHelper {
     private static final String DATABASE_NAME = "taskDb.db";
 
     // If you change the database schema, you must increment the database version
-    private static final int VERSION = 1;
+    private static final int VERSION = 2;
 
 
     // Constructor
@@ -50,7 +50,8 @@ public class TaskDbHelper extends SQLiteOpenHelper {
         final String CREATE_TABLE = "CREATE TABLE "  + TaskContract.TaskEntry.TABLE_NAME + " (" +
                 TaskContract.TaskEntry._ID + " INTEGER PRIMARY KEY, " +
                 TaskContract.TaskEntry.COLUMN_DESCRIPTION + " TEXT, " +
-                TaskContract.TaskEntry.COLUMN_ALARM + " TEXT)";
+                TaskContract.TaskEntry.COLUMN_ALARM + " TEXT, " +
+                TaskContract.TaskEntry.COLUMN_ALARM_ON + " BIT)";
 
         db.execSQL(CREATE_TABLE);
     }
@@ -65,6 +66,84 @@ public class TaskDbHelper extends SQLiteOpenHelper {
         db.execSQL("DROP TABLE IF EXISTS " + TaskContract.TaskEntry.TABLE_NAME);
         onCreate(db);
     }
+
+    public String getIdByIndex(int index) {
+        return getDataValues("Tasks", "Id").get(index);
+    }
+
+    public String getDescriptionByIndex(int index) {
+        return getDataValues("Tasks", "Description").get(index);
+    }
+
+    public String getDescriptionById(String id) {
+        ArrayList<String> idValues = getDataValues("Alarm", "Id");
+        return getDataValues("Tasks", "Description").get(idValues.indexOf(id));
+    }
+
+    public String getAlarmByIndex(int index) {
+        return getDataValues("Tasks", "Alarm").get(index);
+    }
+
+    public String getAlarmById(String id) {
+        ArrayList<String> idValues = getDataValues("Tasks", "Id");
+        return getDataValues("Tasks", "Alarm").get(idValues.indexOf(id));
+    }
+
+    public String getAlarmByDescription(String description) {
+        ArrayList<String> descriptionValues = getDataValues("Alarm", "Description");
+        return getDataValues("Tasks", "Alarm").get(descriptionValues.indexOf(description));
+    }
+
+    public String getAlarmOnByIndex(int index) {
+        return getDataValues("Tasks", "AlarmOn").get(index);
+    }
+
+    public String getAlarmOnById(String id) {
+        ArrayList<String> idValues = getDataValues("AlarmOn", "Id");
+        return getDataValues("Tasks", "AlarmOn").get(idValues.indexOf(id));
+    }
+
+    public String getAlarmOnByDescription(String description) {
+        ArrayList<String> descriptionValues = getDataValues("Tasks", "Description");
+        return getDataValues("Tasks", "AlarmOn").get(descriptionValues.indexOf(description));
+    }
+
+    public void updateDescription(String description, String id) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        int lastDescription = Integer.parseInt(this.getDescriptionById(id));
+        lastDescription += Integer.parseInt(description);
+        String query = "UPDATE " + TaskContract.TaskEntry.TABLE_NAME + " SET " +
+                TaskContract.TaskEntry.COLUMN_DESCRIPTION + " = '" +
+                String.valueOf(lastDescription) + "' WHERE " + TaskContract.TaskEntry._ID
+                + " = '" + id + "'";
+        db.execSQL(query);
+    }
+
+    public void updateAlarm(String alarm, String id) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        String query = "UPDATE " + TaskContract.TaskEntry.TABLE_NAME + " SET " +
+                TaskContract.TaskEntry.COLUMN_ALARM + " = '" +
+                alarm + "' WHERE " + TaskContract.TaskEntry._ID
+                + " = '" + id + "'";
+        db.execSQL(query);
+    }
+
+    public void updateAlarmOn(String alarmOn, String id) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        String query = "UPDATE " + TaskContract.TaskEntry.TABLE_NAME + " SET " +
+                TaskContract.TaskEntry.COLUMN_ALARM_ON + " = '" +
+                alarmOn + "' WHERE " + TaskContract.TaskEntry._ID
+                + " = '" + id + "'";
+        db.execSQL(query);
+    }
+
+    public void deleteTask(String id) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        String query = "DELETE FROM " +  TaskContract.TaskEntry.TABLE_NAME  + " WHERE "
+                + TaskContract.TaskEntry._ID + " = '" + id + "'";
+        db.execSQL(query);
+    }
+
 
     public ArrayList<String> getDataValues(String tableName, String columnName) {
         ArrayList<String> values = new ArrayList<String>();
@@ -81,4 +160,6 @@ public class TaskDbHelper extends SQLiteOpenHelper {
 
         return values;
     }
+
+
 }

@@ -2,7 +2,6 @@ package com.example.nikola.insomniac;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 
@@ -12,9 +11,6 @@ import com.example.nikola.insomniac.improveSleep.DailyLight;
 import com.example.nikola.insomniac.improveSleep.NightlyLight;
 import com.example.nikola.insomniac.improveSleep.PhysicalActivity;
 import com.example.nikola.insomniac.improveSleep.SleepQuality;
-import com.example.nikola.insomniac.improveSleep.Water;
-
-import static android.R.attr.value;
 
 
 public class ImproveSleep extends MainActivity {
@@ -65,15 +61,6 @@ public class ImproveSleep extends MainActivity {
                 }
         );
 
-        Button water = (Button)findViewById(R.id.water);
-        water.setOnClickListener(
-                new View.OnClickListener() {
-                    public void onClick(View v) {
-                        Intent myIntent = new Intent(ImproveSleep.this, Water.class);
-                        ImproveSleep.this.startActivity(myIntent);
-                    }
-                }
-        );
 
         Button coffee = (Button)findViewById(R.id.coffee);
         coffee.setOnClickListener(

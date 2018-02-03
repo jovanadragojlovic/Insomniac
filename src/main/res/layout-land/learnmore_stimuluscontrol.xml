@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="fill_parent"
+    android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:tools="http://schemas.android.com/tools"
-    android:weightSum="1"
+    android:orientation="vertical"
     >
+
 
     <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:tools="http://schemas.android.com/tools"
@@ -18,10 +19,14 @@
         <ImageView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:src="@drawable/tunisija"
+            android:src="@drawable/insomlandscape1920"
             android:scaleType = "centerCrop"
             android:id="@+id/imageView2"
             tools:ignore="ContentDescription"/>
+
+
+
+
     </FrameLayout>
 
     <ImageView
@@ -32,14 +37,17 @@
         android:src="@drawable/novlog"
         tools:ignore="ContentDescription"/>
 
+
     <TextView
         android:id="@+id/textView"
         android:layout_width="match_parent"
         android:layout_height="68dp"
-        android:text="Improve your sleep quality"
+        android:text="Stimulus control"
         android:textSize="20sp"
         android:gravity="center"
         />
+
+
     <TextView
         android:layout_width="match_parent"
         android:layout_height="1dp"
@@ -47,20 +55,20 @@
         android:layout_marginTop="68dp" />
 
 
+
+
+
     <TextView
         android:layout_width="match_parent"
-        android:id="@+id/osam"
+        android:id="@+id/learnmoresctext"
         android:layout_height="wrap_content"
         android:typeface="serif"
         android:lineSpacingMultiplier="1.2"
-
         android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-
         android:layout_below="@+id/textView"
         android:scrollbars="vertical"
         android:paddingLeft="@dimen/activity_horizontal_margin"
         android:paddingRight="@dimen/activity_horizontal_margin"
-        android:paddingBottom="120dp"
-/>
-
+        android:paddingBottom="5dp"
+        android:text=""/>
 </RelativeLayout>

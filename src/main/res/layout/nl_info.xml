@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:background="#282828">
+
+
+    <TextView
+        android:id="@+id/text"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:textColor="#FFF"
+        android:text="Studies have shown that evening light exposure inhibits the naturally timed rise of melatonin (sleep promoting hormone), which in turn delays the onset of sleep. We recommend you to dim all the lights you can and to lower the brightness of your computer and mobile phone screens."
+        android:layout_margin="10dp"
+        android:typeface="serif"
+        android:lineSpacingMultiplier="1.2"
+        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+        />
+
+    <Button
+        android:id="@+id/dialogButtonOK"
+        android:layout_width="70dp"
+        android:layout_height="wrap_content"
+        android:text=" Ok "
+        android:layout_margin="10dp"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_below="@+id/text"
+        android:background="@drawable/green"
+
+
+        />
+
+</RelativeLayout>

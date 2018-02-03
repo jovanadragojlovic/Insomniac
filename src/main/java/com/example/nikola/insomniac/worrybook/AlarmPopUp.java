@@ -6,6 +6,7 @@ import android.app.PendingIntent;
 import android.app.TimePickerDialog;
 import android.content.ContentValues;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
 import android.net.Uri;
@@ -33,13 +34,19 @@ public class AlarmPopUp extends Activity {
     private TimePickerDialog timePickerDialog;
     final static int RQS_1 = 1;
     private PreferencesHelper preferencesHelper;
-    private Switch alarmToggle;
+    public Switch alarmToggle;
     private Calendar calSet;
     private Cursor mCursor;
     private TaskDbHelper mTaskdbHelper;
+    private Context mContext;
     public static AlarmPopUp instance() {
         return inst;
     }
+
+    public AlarmPopUp(){
+        mContext = getBaseContext();
+        inst = this;
+    };
 
     @Override
     public void onStart() {
@@ -52,6 +59,7 @@ public class AlarmPopUp extends Activity {
         super.onCreate(savedInstanceState);
         mTaskdbHelper = new TaskDbHelper(this);
         setContentView(R.layout.alarmpopup);
+        inst = this;
 
         DisplayMetrics dm = new DisplayMetrics();
         getWindowManager().getDefaultDisplay().getMetrics(dm);
@@ -82,9 +90,25 @@ public class AlarmPopUp extends Activity {
         }
     };
 
+    TimePickerDialog.OnDismissListener onDismissListener
+            = new TimePickerDialog.OnDismissListener() {
+        @Override
+        public void onDismiss(DialogInterface dialog) {
+      //      mTaskdbHelper.updateAlarmOn("0", mTaskdbHelper.getIdByIndex(positionIndex));
+        }
+    };
 
+    TimePickerDialog.OnCancelListener onCancelListener
+            = new TimePickerDialog.OnCancelListener() {
+
+        @Override
+        public void onCancel(DialogInterface dialog) {
+   //         mTaskdbHelper.updateAlarmOn("0", mTaskdbHelper.getIdByIndex(positionIndex));
+        }
+    };
 
     public void onToggleClicked(View view) {
+  //      mTaskdbHelper.updateAlarmOn("1", mTaskdbHelper.getIdByIndex(mCursor.getPosition()));
         Calendar calendar = Calendar.getInstance();
         if(alarmToggle.isChecked()) {
             timePickerDialog = new TimePickerDialog(
@@ -95,14 +119,40 @@ public class AlarmPopUp extends Activity {
                     calendar.get(Calendar.MINUTE),
                     true);
             timePickerDialog.setTitle("Set Alarm Time");
+            timePickerDialog.setOnCancelListener(onCancelListener);
+            timePickerDialog.setOnDismissListener(onDismissListener);
             timePickerDialog.show();
         }
         else {
-
-
+     //       mTaskdbHelper.updateAlarmOn("0", mTaskdbHelper.getIdByIndex(mCursor.getPosition()));
+            //ugasi alarm ako je postojao
         }
+    }
 
+    public void setAlarm(Calendar calendar) {
+        String sati = intToString(calendar.getTime().getHours());
+        String minuti = intToString(calendar.getTime().getMinutes());
+        String dan = String.valueOf(calendar.getTime().getDate());
+        int datum =  Integer.parseInt(dan + sati + minuti);
+        Log.d("SleepQuality", "Setovan alarm: " + datum);
+        Intent intent = new Intent(getBaseContext(), AlarmReceiver.class);
+        pendingIntent = PendingIntent.getBroadcast(getBaseContext(), datum, intent, 0);
+        alarmManager = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
+        alarmManager.set(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(), pendingIntent);
+    }
 
+    public void cancelAlarm(Calendar calendar) {
+        String sati = intToString(calendar.getTime().getHours());
+        String minuti = intToString(calendar.getTime().getMinutes());
+        String dan = String.valueOf(calendar.getTime().getDate());
+        int datum =  Integer.parseInt(dan + sati + minuti);
+
+        Intent intent = new Intent(this, AlarmReceiver.class);
+        PendingIntent pendingIntent = PendingIntent.getBroadcast(this, datum, intent,
+                PendingIntent.FLAG_CANCEL_CURRENT);
+        Log.d("SleepQuality", "Cancelovan alarm: " + datum);
+        alarmManager.cancel(pendingIntent);
+        pendingIntent.cancel();
     }
 
 
@@ -117,27 +167,21 @@ public class AlarmPopUp extends Activity {
             return;
         }
 
+        //promeniti da moze da se dodaje i updateuje u zavisnosti od toga da li je kliknuto na add
+        //ili na task, a create i update napraviti metodu u taskDbHelperu
         ContentValues contentValues = new ContentValues();
         contentValues.put(TaskContract.TaskEntry.COLUMN_DESCRIPTION, input);
-        if(alarmToggle.isChecked()) {
+        if(alarmToggle.isChecked() && calSet != null) {
             contentValues.put(TaskContract.TaskEntry.COLUMN_ALARM, calSet.getTime().toString());
+            contentValues.put(TaskContract.TaskEntry.COLUMN_ALARM_ON, true);
+            setAlarm(calSet);
+        }
+        else {
+            contentValues.put(TaskContract.TaskEntry.COLUMN_ALARM_ON, false);
+            alarmToggle.setChecked(false);
         }
         Uri uri = getContentResolver().insert(TaskContract.TaskEntry.CONTENT_URI, contentValues);
-        Calendar cal = Calendar.getInstance();
-        Date date = calSet != null ? calSet.getTime() : cal.getTime();
-        cal.setTime(date);
-        Calendar calendarNow = Calendar.getInstance();
-        if (calendarNow.getTimeInMillis() < cal.getTimeInMillis()) {
-            String sati = intToString(cal.getTime().getHours());
-            String minuti = intToString(cal.getTime().getMinutes());
-            String dan = String.valueOf(cal.getTime().getDate());
-            int datum =  Integer.parseInt(dan + sati + minuti);
-            Log.d("SleepQuality", "Setovan alarm: " + datum);
-            Intent intent = new Intent(getBaseContext(), AlarmReceiver.class);
-            pendingIntent = PendingIntent.getBroadcast(getBaseContext(), datum, intent, 0);
-            alarmManager = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
-            alarmManager.set(AlarmManager.RTC_WAKEUP, cal.getTimeInMillis(), pendingIntent);
-        }
+        Log.d("SleepQuality", "Unet task: " + contentValues);
         finish();
     }
 

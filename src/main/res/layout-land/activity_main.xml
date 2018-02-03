@@ -1,9 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     tools:context=".MainActivity"
     android:layout_width="fill_parent"
-    android:layout_height="wrap_content"
+    android:layout_height="match_parent"
+
     >
 
     <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
@@ -17,7 +19,7 @@
         <ImageView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:src="@drawable/tunisija"
+            android:src="@drawable/insomlandscape1920"
             android:scaleType = "centerCrop"
             android:id="@+id/imageView2"
             tools:ignore="ContentDescription"/>
@@ -26,100 +28,104 @@
 
 
     </FrameLayout>
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="67dp"
+        android:layout_height="60dp"
+        android:layout_marginTop="4dp"
+        app:srcCompat="@drawable/novlog"
+        tools:ignore="ContentDescription"/>
+
     <ImageView
         android:id="@+id/imageView5"
         android:layout_width="110dp"
         android:layout_height="68dp"
         android:src="@drawable/novooo"
         android:layout_centerHorizontal="true"
+        tools:ignore="ContentDescription"
         />
-    <ImageView
-        android:id="@+id/imageView"
-        android:layout_width="67dp"
-        android:layout_height="60dp"
-        android:layout_marginTop="4dp"
-        android:src="@drawable/novlog"
-        tools:ignore="ContentDescription"/>
 
-
-    <TextView
-        android:id="@+id/textView"
-        android:layout_width="match_parent"
-        android:layout_height="68dp"
-        android:text=""
-        android:textSize="20dp"
-        android:gravity="center"
-        />
     <TextView
         android:layout_width="match_parent"
         android:layout_height="1dp"
         android:background="@color/gray"
-        android:layout_marginTop="68dp" />
+        android:layout_marginTop="68dp"
+        android:id="@+id/linija"/>
 
-
-    <Button
-        android:text="Learn more"
-        android:layout_width="200dp"
-        android:layout_height="50dp"
-        android:id="@+id/buttonLearnMore"
-        android:background="@drawable/green"
-        android:gravity="center"
-        android:layout_gravity="center"
+    <android.support.v7.widget.GridLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:grid="http://schemas.android.com/apk/res-auto"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
         android:layout_centerHorizontal="true"
-        android:layout_below="@+id/textView"
-        android:textAppearance="@style/TextAppearance.AppCompat.Headline"
-        android:textSize="18sp"
+        grid:alignmentMode="alignBounds"
+        grid:columnCount="2"
+        android:layout_below="@+id/linija"
+
+        >
+
+        <Button
+            android:id="@+id/buttonLearnMore"
+            android:layout_width="0dp"
+            android:layout_height="20dp"
+            android:text="Learn more"
+            grid:layout_columnWeight="1"
+            grid:layout_rowWeight="1"
+            grid:layout_gravity="fill"
+            android:background="@drawable/green"
+            android:textAppearance="@style/TextAppearance.AppCompat.Large"
+            android:layout_margin="5dp"
+
+            />
+
+        <Button
+            android:id="@+id/ImproveSleep"
+            android:layout_width="0dp"
+            android:layout_height="20dp"
+            android:text="Improve sleep"
+            grid:layout_columnWeight="1"
+            grid:layout_rowWeight="1"
+            grid:layout_gravity="fill"
+            android:background="@drawable/green"
+            android:textAppearance="@style/TextAppearance.AppCompat.Large"
+            android:layout_margin="5dp"
+
+            />
 
 
-        />
+        <Button
+            android:id="@+id/trackprogress"
+            android:layout_width="0dp"
+            android:layout_height="20dp"
+            android:text="Track progress"
+            grid:layout_columnWeight="1"
+            grid:layout_rowWeight="1"
+            grid:layout_gravity="fill"
+            android:background="@drawable/green"
+            android:textAppearance="@style/TextAppearance.AppCompat.Large"
+            android:layout_margin="5dp"
+
+            />
+
+        <Button
+            android:id="@+id/WorryBook"
+            android:layout_width="0dp"
+            android:layout_height="20dp"
+            android:text="Worry book"
+            grid:layout_columnWeight="1"
+            grid:layout_rowWeight="1"
+            grid:layout_gravity="fill"
+            android:background="@drawable/green"
+            android:textAppearance="@style/TextAppearance.AppCompat.Large"
+            android:layout_margin="5dp"
+
+            />
+
+    </android.support.v7.widget.GridLayout>
 
 
-    <Button
-        android:text="Improve sleep"
-        android:layout_width="200dp"
-        android:layout_height="50dp"
-        android:id="@+id/ImproveSleep"
-        android:background="@drawable/green"
-        android:layout_below="@+id/buttonLearnMore"
-        android:gravity="center"
-        android:layout_gravity="center"
-        android:layout_centerHorizontal="true"
-        android:textAppearance="@style/TextAppearance.AppCompat.Headline"
-        android:textSize="18sp"
 
 
-
-        />
-
-    <Button
-        android:text="Worry book"
-        android:layout_width="200dp"
-        android:layout_height="50dp"
-        android:id="@+id/WorryBook"
-        android:background="@drawable/green"
-        android:layout_centerHorizontal="true"
-        android:layout_below="@+id/ImproveSleep"
-        android:gravity="center"
-        android:layout_gravity="center"
-        android:textAppearance="@style/TextAppearance.AppCompat.Headline"
-        android:textSize="18sp"
-
-        />
-
-    <Button
-        android:text="Set reminders"
-        android:layout_width="200dp"
-        android:layout_height="50dp"
-        android:id="@+id/setreminders"
-        android:background="@drawable/green"
-        android:layout_centerHorizontal="true"
-        android:layout_below="@+id/WorryBook"
-        android:gravity="center"
-        android:layout_gravity="center"
-        android:textAppearance="@style/TextAppearance.AppCompat.Headline"
-        android:textSize="18sp"
-
-        />
-
-</RelativeLayout>
+    </RelativeLayout>
 

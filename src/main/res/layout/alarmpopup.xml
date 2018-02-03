@@ -15,7 +15,7 @@
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingStart="@dimen/activity_horizontal_margin"
     android:id="@+id/alarmpopup"
-    android:background="@drawable/leblebije"
+    android:background="#282828"
     android:paddingTop="@dimen/activity_vertical_margin">
 
     <!-- EditText for getting task description input -->
@@ -25,7 +25,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="start"
-        android:hint="@string/edit_task_description"
+        android:hint=""
         android:paddingBottom="@dimen/activity_horizontal_margin"
         android:textColorHint="@color/transparent_white"
         android:inputType="textCapSentences"
@@ -50,7 +50,7 @@
     <!-- Add button -->
     <Button
         android:id="@+id/addButton"
-        android:layout_width="100dp"
+        android:layout_width="70dp"
         android:layout_height="wrap_content"
         android:layout_gravity="bottom"
         android:layout_alignParentBottom="true"

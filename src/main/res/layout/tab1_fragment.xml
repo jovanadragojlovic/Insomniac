@@ -13,10 +13,12 @@
         android:id="@+id/textTab1"/>
 
 
-    <com.github.mikephil.charting.charts.LineChart
+    <com.github.mikephil.charting.charts.BarChart
         android:id="@+id/chart"
         android:layout_width="match_parent"
-        android:layout_height="300dp" />
+        android:layout_height="300dp"
+        android:textColor="#ffffff"
+        />
 
 
 

@@ -1,9 +1,17 @@
 package com.example.nikola.insomniac.improveSleep;
 
+import android.app.Dialog;
+import android.content.Context;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.view.View;
+import android.view.Window;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
+import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.nikola.insomniac.DatabaseHelper;
@@ -19,13 +27,16 @@ public class NightlyLight extends ImproveSleep {
     DatabaseHelper mDatabaseHelper;
     private Button btnAdd;
     private EditText editText;
-
+    private Button nl;
+    final Context context = this;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.nightlylight);
         editText = (EditText) findViewById(R.id.editText);
         btnAdd = (Button) findViewById(R.id.btnAdd);
+        ImageButton nl = (ImageButton) findViewById(R.id.nl);
+
         mDatabaseHelper = new DatabaseHelper(this);
 
         btnAdd.setOnClickListener(new View.OnClickListener() {
@@ -40,6 +51,33 @@ public class NightlyLight extends ImproveSleep {
                 }
             }
         });
+
+        nl.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View arg0) {
+
+                // nl_info dialog
+                final Dialog dialog = new Dialog(context);
+                dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+                dialog.setContentView(R.layout.nl_info);
+
+
+                // set the nl_info dialog components - text, image and button
+                TextView text = (TextView) dialog.findViewById(R.id.text);
+
+                Button dialogButton = (Button) dialog.findViewById(R.id.dialogButtonOK);
+                // if button is clicked, close the nl_info dialog
+                dialogButton.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        dialog.dismiss();
+                    }
+                });
+
+                dialog.show();
+            }});
+
+
     }
 
     public void AddData(String newEntry) {

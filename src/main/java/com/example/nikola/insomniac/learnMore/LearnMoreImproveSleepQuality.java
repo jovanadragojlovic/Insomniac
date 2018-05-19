@@ -15,11 +15,11 @@ import com.example.nikola.insomniac.R;
 
 
 public class LearnMoreImproveSleepQuality extends LearnMore {
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.learnmore_improvesleepquality);
-
 
         SpannableString ss = new SpannableString("\n" +
                 "How to increase sleepiness? \n" +
@@ -59,7 +59,6 @@ public class LearnMoreImproveSleepQuality extends LearnMore {
                 "7. https://sleepfoundation.org/bedroom/ \n" +
                 "\n" +
                 "8. Roehrs, T., and Roth, T. (2008). Caffeine: sleep and daytime sleepiness. Sleep Medicine Reviews, 12(2), 153–162. \n"
-
 
         );
 

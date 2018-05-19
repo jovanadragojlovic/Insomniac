@@ -1,57 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<RelativeLayout xmlns:tools="http://schemas.android.com/tools"
+<RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:tools="http://schemas.android.com/tools"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true">
-
-        <ImageView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:src="@drawable/tunisija"
-            android:scaleType = "centerCrop"
-            android:id="@+id/imageView2"
-            tools:ignore="ContentDescription"/>
-    </FrameLayout>
-
-    <ImageView
-        android:id="@+id/imageView"
-        android:layout_width="67dp"
-        android:layout_height="60dp"
-        android:layout_marginTop="4dp"
-        android:src="@drawable/novlog"
-        tools:ignore="ContentDescription"/>
-
-    <TextView
-        android:id="@+id/textView"
-        android:layout_width="match_parent"
-        android:layout_height="68dp"
-        android:text="Learn more"
-        android:textSize="20sp"
-        android:gravity="center" />
-
     <TextView
         android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:background="@color/gray"
-        android:layout_marginTop="68dp" />
-
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="40dp"
-        android:id="@+id/privremeno"
-        android:layout_marginTop="69dp"
-
-        />
+        android:layout_height="20dp"
+        android:id="@+id/temporary"/>
 
     <Button
         android:text="Insomniac"
@@ -61,11 +19,10 @@
         android:background="@drawable/green"
         android:textAppearance="@style/TextAppearance.AppCompat.Headline"
         android:textSize="20sp"
-        android:layout_margin="14dp"
+        android:layout_margin="15dp"
         android:layout_centerHorizontal="true"
-        android:gravity="center"
-        android:layout_below="@+id/privremeno"
-        android:layout_centerVertical="true" />
+        android:layout_below="@+id/temporary"
+ />
 
     <Button
         android:text="About sleep"
@@ -76,10 +33,9 @@
         android:textAppearance="@style/TextAppearance.AppCompat.Headline"
         android:textSize="20sp"
         android:layout_margin="15dp"
+        android:layout_below="@id/aboutinsomniac"
         android:layout_centerHorizontal="true"
-        android:layout_centerVertical="true"
-        android:gravity="center"
-        android:layout_below="@id/aboutinsomniac"/>
+        />
 
 
     <Button
@@ -91,12 +47,10 @@
         android:textAppearance="@style/TextAppearance.AppCompat.Headline"
         android:textSize="20sp"
         android:layout_margin="15dp"
-        android:layout_centerVertical="true"
-        android:layout_marginBottom="17dp"
-        android:layout_centerHorizontal="true"
-        android:gravity="center"
         android:layout_below="@id/introduction"
-    />
+        android:layout_centerHorizontal="true"
+
+        />
 
     <Button
         android:text="Stimulus control technique"
@@ -107,11 +61,9 @@
         android:textAppearance="@style/TextAppearance.AppCompat.Headline"
         android:textSize="20sp"
         android:layout_margin="15dp"
-        android:layout_centerVertical="true"
-        android:layout_marginBottom="17dp"
-        android:layout_centerHorizontal="true"
-        android:gravity="center"
         android:layout_below="@+id/learnmorechecklist"
+        android:layout_centerHorizontal="true"
+
         />
 
 
@@ -123,10 +75,10 @@
         android:background="@drawable/green"
         android:textAppearance="@style/TextAppearance.AppCompat.Headline"
         android:textSize="20sp"
-        android:layout_centerVertical="true"
-        android:layout_margin="15dp"
+        android:layout_below="@+id/stimuluscontrol"
         android:layout_centerHorizontal="true"
-        android:gravity="center"
-        android:layout_below="@+id/stimuluscontrol"/>
+        android:layout_margin="15dp"
+
+        />
 
 </RelativeLayout>

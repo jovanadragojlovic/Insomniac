@@ -16,28 +16,18 @@
 
 package com.example.nikola.insomniac.worrybook;
 
-import android.app.AlarmManager;
-import android.app.PendingIntent;
 import android.content.ContentProvider;
 import android.content.ContentUris;
 import android.content.ContentValues;
 import android.content.Context;
-import android.content.Intent;
 import android.content.UriMatcher;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.net.Uri;
 import android.support.annotation.NonNull;
-import android.util.Log;
-
-import com.example.nikola.insomniac.alarms.AlarmReceiver;
-
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
-import java.util.Locale;
-
-import static android.content.Context.ALARM_SERVICE;
 
 // Verify that TaskContentProvider extends from ContentProvider and implements required methods
 public class TaskContentProvider extends ContentProvider {

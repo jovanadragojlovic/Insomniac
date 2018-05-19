@@ -30,6 +30,7 @@ public class Bedroom extends ImproveSleep {
     private EditText editText;
     private Button bd;
     final Context context = this;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -38,8 +39,6 @@ public class Bedroom extends ImproveSleep {
         btnAdd = (Button) findViewById(R.id.btnAdd);
         mDatabaseHelper = new DatabaseHelper(this);
         ImageButton bd = (ImageButton) findViewById(R.id.bd);
-
-
 
         btnAdd.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -53,7 +52,6 @@ public class Bedroom extends ImproveSleep {
                 }
             }
         });
-
 
         bd.setOnClickListener(new View.OnClickListener(){
             @Override

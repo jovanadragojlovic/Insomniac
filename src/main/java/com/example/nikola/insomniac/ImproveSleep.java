@@ -15,12 +15,11 @@ import com.example.nikola.insomniac.improveSleep.SleepQuality;
 
 public class ImproveSleep extends MainActivity {
 
-    private static final String TAG = "SleepQuality";
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.improvesleep);
+        setContentView(R.layout.tab_improve_sleep);
+
         Button sleepquality = (Button)findViewById(R.id.sleepquality);
         sleepquality.setOnClickListener(
                 new View.OnClickListener() {
@@ -82,9 +81,6 @@ public class ImproveSleep extends MainActivity {
                 }
         );
 
-
-
     }
-
 
 }

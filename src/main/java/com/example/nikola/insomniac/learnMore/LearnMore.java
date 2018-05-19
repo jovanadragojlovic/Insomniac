@@ -14,9 +14,6 @@ import static android.R.attr.value;
 
 public class LearnMore extends MainActivity {
 
-
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -80,22 +77,7 @@ public class LearnMore extends MainActivity {
                     }
                 }
         );
-
-
-
-
-
-
-
-
-
-
-
-
-
     }
-
-
 
 
 }

@@ -2,6 +2,7 @@ package com.example.nikola.insomniac.improveSleep;
 
 import android.app.Dialog;
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
@@ -11,6 +12,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -20,24 +22,62 @@ import com.example.nikola.insomniac.R;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.concurrent.TimeUnit;
 
 public class NightlyLight extends ImproveSleep {
-    private static final String TAG = "DailyLight";
 
     DatabaseHelper mDatabaseHelper;
     private Button btnAdd;
     private EditText editText;
-    private Button nl;
     final Context context = this;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.nightlylight);
-        editText = (EditText) findViewById(R.id.editText);
-        btnAdd = (Button) findViewById(R.id.btnAdd);
+
         ImageButton nl = (ImageButton) findViewById(R.id.nl);
 
+
         mDatabaseHelper = new DatabaseHelper(this);
+
+
+        editText = (EditText) findViewById(R.id.editText);
+        btnAdd = (Button) findViewById(R.id.btnAdd);
+
+        String date = new SimpleDateFormat("dd-MM-yyyy").format(new Date());
+        TextView resultsnightlylight = (TextView)findViewById(R.id.resultsnightlylight);
+
+        if (mDatabaseHelper.getNightlyLightByDate(date)!= null) {
+
+            double doubleseconds = Double.parseDouble(mDatabaseHelper.getNightlyLightByDate(date));
+
+            long seconds = (long)doubleseconds;
+
+            long hours = TimeUnit.SECONDS.toHours(seconds);
+
+            seconds -= TimeUnit.HOURS.toMillis(hours);
+            long minutes = TimeUnit.SECONDS.toMinutes(seconds);
+
+            String Hours = String.valueOf(hours);
+            String Minutes = String.valueOf(minutes);
+
+            resultsnightlylight.setText("Time spent under light this evening: " + Hours + " hours " + Minutes + " minutes ");
+        }
+        else resultsnightlylight.setText("Nightly light: 0");
+
+
+        Button refresh = (Button)findViewById(R.id.refresh);
+        refresh.setOnClickListener(
+                new View.OnClickListener() {
+                    public void onClick(View v) {
+                        Intent myIntent = new Intent(NightlyLight.this, NightlyLight.class);
+                        NightlyLight.this.startActivity(myIntent);
+                    }
+
+                });
+
+
 
         btnAdd.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -51,6 +91,22 @@ public class NightlyLight extends ImproveSleep {
                 }
             }
         });
+
+        final Switch swich1 = (Switch) findViewById(R.id.switch1);
+        swich1.setOnClickListener(
+                new View.OnClickListener() {
+                    public void onClick(View v) {
+                        if (swich1.isChecked()) {
+                            Intent myIntent = new Intent(NightlyLight.this, NightlyLightService.class);
+                            startService(myIntent);
+                        } else {
+                            Intent myIntent = new Intent(NightlyLight.this, NightlyLightService.class);
+                            stopService(myIntent);
+                        }
+                    }
+
+                });
+
 
         nl.setOnClickListener(new View.OnClickListener(){
             @Override
@@ -80,6 +136,8 @@ public class NightlyLight extends ImproveSleep {
 
     }
 
+
+
     public void AddData(String newEntry) {
         String date = new SimpleDateFormat("dd-MM-yyyy").format(new Date());
         try {
@@ -90,11 +148,9 @@ public class NightlyLight extends ImproveSleep {
         }
     }
 
-    /**
-     * customizable toast
-     * @param message
-     */
+
     private void toastMessage(String message){
         Toast.makeText(this,message, Toast.LENGTH_SHORT).show();
     }
+
 }

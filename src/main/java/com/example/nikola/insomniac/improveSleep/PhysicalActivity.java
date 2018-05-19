@@ -2,6 +2,7 @@ package com.example.nikola.insomniac.improveSleep;
 
 import android.app.Dialog;
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.text.method.ScrollingMovementMethod;
 import android.view.View;
@@ -9,6 +10,7 @@ import android.view.Window;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -18,6 +20,7 @@ import com.example.nikola.insomniac.R;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.concurrent.TimeUnit;
 
 import static com.example.nikola.insomniac.R.id.textView;
 
@@ -30,14 +33,30 @@ public class PhysicalActivity extends ImproveSleep {
     private EditText editText;
     private Button pa;
     final Context context = this;
+    private TextView textView2;
+    private String Steps;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.physicalactivity);
+
         editText = (EditText) findViewById(R.id.editText);
         btnAdd = (Button) findViewById(R.id.btnAdd);
         mDatabaseHelper = new DatabaseHelper(this);
+
+        String date = new SimpleDateFormat("dd-MM-yyyy").format(new Date());
+        textView2 = (TextView) findViewById(R.id.textView2);
+
+
         ImageButton pa = (ImageButton) findViewById(R.id.pa);
+
+        if (mDatabaseHelper.getStepsByDate(date) !=null) {
+            Steps = mDatabaseHelper.getStepsByDate(date);
+            textView2.setText("Steps: " + Steps);
+        }
+        else textView2.setText("Steps: 0");
 
         btnAdd.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -51,6 +70,21 @@ public class PhysicalActivity extends ImproveSleep {
                 }
             }
         });
+
+        final Switch swich1 = (Switch) findViewById(R.id.switch1);
+        swich1.setOnClickListener(
+                new View.OnClickListener() {
+                    public void onClick(View v) {
+                        if (swich1.isChecked()) {
+                            Intent myIntent = new Intent(PhysicalActivity.this, StepsService.class);
+                            startService(myIntent);
+                        } else {
+                            Intent myIntent = new Intent(PhysicalActivity.this, StepsService.class);
+                            stopService(myIntent);
+                        }
+                    }
+
+                });
 
         pa.setOnClickListener(new View.OnClickListener(){
             @Override
@@ -109,10 +143,6 @@ public class PhysicalActivity extends ImproveSleep {
         }
     }
 
-    /**
-     * customizable toast
-     * @param message
-     */
     private void toastMessage(String message){
         Toast.makeText(this,message, Toast.LENGTH_SHORT).show();
     }

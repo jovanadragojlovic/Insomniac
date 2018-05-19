@@ -36,14 +36,9 @@ import android.view.Window;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.TextView;
-
 import com.example.nikola.insomniac.R;
 
-import static com.example.nikola.insomniac.R.id.wb;
-
-
-public class WorryBook extends AppCompatActivity implements
-        LoaderManager.LoaderCallbacks<Cursor> {
+public class WorryBook extends AppCompatActivity implements LoaderManager.LoaderCallbacks<Cursor> {
 
     private Button wb;
     final Context context = this;
@@ -260,8 +255,6 @@ public class WorryBook extends AppCompatActivity implements
     public void onLoaderReset(Loader<Cursor> loader) {
         mAdapter.swapCursor(null);
     }
-
-
 
 }
 

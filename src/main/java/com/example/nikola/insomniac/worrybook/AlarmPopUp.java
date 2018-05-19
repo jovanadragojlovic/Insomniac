@@ -23,7 +23,6 @@ import com.example.nikola.insomniac.R;
 import com.example.nikola.insomniac.alarms.AlarmReceiver;
 
 import java.util.Calendar;
-import java.util.Date;
 
 public class AlarmPopUp extends Activity {
 

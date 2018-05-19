@@ -17,15 +17,12 @@
 package com.example.nikola.insomniac.worrybook;
 
 import android.app.AlarmManager;
-import android.app.PendingIntent;
 import android.app.TimePickerDialog;
 import android.content.ContentValues;
 import android.content.Context;
 import android.content.DialogInterface;
-import android.content.Intent;
 import android.database.Cursor;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -33,20 +30,10 @@ import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.TextView;
 import android.widget.TimePicker;
-
-
 import com.example.nikola.insomniac.R;
-import com.example.nikola.insomniac.alarms.AlarmReceiver;
-
-import java.text.DateFormat;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
-import java.util.Locale;
-
 import static android.content.Context.ALARM_SERVICE;
-import static com.example.nikola.insomniac.R.id.alarmpopup;
 import static com.example.nikola.insomniac.R.id.taskDescription;
 
 

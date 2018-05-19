@@ -17,6 +17,7 @@ import java.util.Calendar;
 import java.util.Date;
 
 public class Coffee extends ImproveSleep {
+
     private static final String TAG = "DailyLight";
 
     DatabaseHelper mDatabaseHelper;
@@ -49,11 +50,7 @@ public class Coffee extends ImproveSleep {
                 SubData();
             }
         });
-
-
     }
-
-
 
     public void AddData() {
         String date = new SimpleDateFormat("dd-MM-yyyy").format(new Date());

@@ -9,13 +9,7 @@ public class PreferencesHelper {
     private static final String PREFERENCE_NAME = "preferences";
     private static final Boolean BOOLEAN_DEFAULT_VALUE = false;
     private static final String STRING_DEFAULT_VALUE = "";
-
-
     public static final String PREFERENCE_TOGGLE_BTN_VALUE = "toggle_button";
-
-
-
-
 
     private Context context;
     private SharedPreferences preferences;

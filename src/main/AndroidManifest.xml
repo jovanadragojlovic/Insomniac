@@ -14,6 +14,7 @@
         >
         <activity android:name=".MainActivity"
             android:label="@string/MainActivityTitle"
+            android:screenOrientation="portrait"
          >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -23,6 +24,7 @@
         </activity>
 
         <activity android:name=".learnMore.LearnMore"
+            android:screenOrientation="portrait"
             android:label="@string/Learnmore">
         <intent-filter>
                 <action android:name="android.intent.action.CALL" />
@@ -32,7 +34,8 @@
         </activity>
 
 
-        <activity android:name=".learnMore.LearnMoreInsomniac" android:label="@string/about_insomniac">
+        <activity android:name=".learnMore.LearnMoreInsomniac" android:label="@string/about_insomniac"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.CALL" />
                 <category android:name="android.intent.category.DEFAULT" />
@@ -40,28 +43,32 @@
         </activity>
 
 
-        <activity android:name=".learnMore.LearnMoreSleep">
+        <activity android:name=".learnMore.LearnMoreSleep"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.CALL" />
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
 
-        <activity android:name=".learnMore.LearnMoreStimulusControl">
+        <activity android:name=".learnMore.LearnMoreStimulusControl"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.CALL" />
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
 
-        <activity android:name=".learnMore.LearnMoreImproveSleepQuality">
+        <activity android:name=".learnMore.LearnMoreImproveSleepQuality"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.CALL" />
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
 
-        <activity android:name=".learnMore.LearnMoreWorryBook">
+        <activity android:name=".learnMore.LearnMoreWorryBook"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.CALL" />
                 <category android:name="android.intent.category.DEFAULT" />
@@ -82,6 +89,7 @@
 
 
         <activity android:name=".worrybook.WorryBook"
+            android:screenOrientation="portrait"
             >
             <intent-filter>
                 <action android:name="android.intent.action.CALL" />
@@ -91,7 +99,8 @@
         </activity>
 
 
-        <activity android:name=".ImproveSleep">
+        <activity android:name=".ImproveSleep"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.CALL" />
 
@@ -100,7 +109,8 @@
         </activity>
 
 
-        <activity android:name=".improveSleep.SleepQuality">
+        <activity android:name=".improveSleep.SleepQuality"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.CALL" />
 
@@ -108,7 +118,8 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".improveSleep.PhysicalActivity">
+        <activity android:name=".improveSleep.PhysicalActivity"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.CALL" />
 
@@ -116,7 +127,8 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".improveSleep.DailyLight">
+        <activity android:name=".improveSleep.DailyLight"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.CALL" />
 
@@ -124,7 +136,8 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".improveSleep.NightlyLight">
+        <activity android:name=".improveSleep.NightlyLight"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.CALL" />
 
@@ -132,7 +145,8 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".improveSleep.Bedroom">
+        <activity android:name=".improveSleep.Bedroom"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.CALL" />
 
@@ -140,7 +154,8 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".improveSleep.Coffee">
+        <activity android:name=".improveSleep.Coffee"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.CALL" />
 
@@ -148,7 +163,8 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".statistics.TrackProgress">
+        <activity android:name=".statistics.TrackProgress"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.CALL" />
 
@@ -156,7 +172,8 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".worrybook.AlarmPopUp">
+        <activity android:name=".worrybook.AlarmPopUp"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.CALL" />
 
@@ -168,6 +185,12 @@
             android:name=".alarms.AlarmService"
             android:enabled="true" />
         <receiver android:name=".alarms.AlarmReceiver" />
+
+
+        <service android:name=".improveSleep.NightlyLightService"/>
+        <service android:name=".improveSleep.DailyLightService"/>
+        <service android:name=".improveSleep.StepsService"/>
+
 
     </application>
 

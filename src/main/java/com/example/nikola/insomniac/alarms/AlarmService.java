@@ -12,6 +12,7 @@ import com.example.nikola.insomniac.worrybook.WorryBook;
 import com.example.nikola.insomniac.R;
 
 public class AlarmService extends IntentService {
+
     private NotificationManager alarmNotificationManager;
 
     public AlarmService() {

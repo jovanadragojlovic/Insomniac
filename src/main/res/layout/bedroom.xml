@@ -44,7 +44,7 @@
     <ImageView
         android:id="@+id/imageView"
         android:layout_width="67dp"
-        android:layout_height="60dp"
+        android:layout_height="50dp"
         android:layout_marginTop="4dp"
         android:src="@drawable/novlog"
         tools:ignore="ContentDescription"/>
@@ -62,7 +62,7 @@
         android:layout_width="match_parent"
         android:layout_height="1dp"
         android:background="@color/gray"
-        android:layout_marginTop="68dp" />
+        android:layout_marginTop="66dp" />
 
     <TextView
         android:id="@+id/jebise"

@@ -22,9 +22,6 @@ public class LearnMoreWorryBook extends LearnMore {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.learnmore_worrybook);
 
-
-
-
         SpannableString ss = new SpannableString("\n" +
                 "Worry Book \n" +
                 "\n" +

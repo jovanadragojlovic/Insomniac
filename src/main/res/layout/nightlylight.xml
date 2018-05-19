@@ -6,8 +6,7 @@
     android:layout_width="fill_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical"
-    android:weightSum="1"
-    >
+    android:weightSum="1">
 
     <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:tools="http://schemas.android.com/tools"
@@ -38,12 +37,10 @@
         android:layout_marginTop="10dp"
         android:id="@+id/nl"/>
 
-
-
     <ImageView
         android:id="@+id/imageView"
         android:layout_width="67dp"
-        android:layout_height="60dp"
+        android:layout_height="50dp"
         android:layout_marginTop="4dp"
         android:src="@drawable/novlog"
         tools:ignore="ContentDescription"/>
@@ -51,30 +48,75 @@
     <TextView
         android:id="@+id/textView"
         android:layout_width="match_parent"
-        android:layout_height="68dp"
+        android:layout_height="66dp"
         android:text="Nightly light"
         android:textSize="20dp"
-        android:gravity="center"
-        />
+        android:gravity="center" />
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="1dp"
         android:background="@color/gray"
         android:layout_marginTop="68dp" />
+
     <TextView
-        android:id="@+id/jebise"
+        android:id="@+id/textView1"
         android:layout_width="match_parent"
-        android:layout_height="80dp"
+        android:layout_height="wrap_content"
         android:layout_marginTop="30dp"
         android:layout_marginBottom="20dp"
-        android:text="How much time (in minutes) have you spent tonight under artificial light (indoor lights, computer etc.)?"
+        android:text="We have created an algorithm that calculates how much time during the evening you spend under artificial light. By clicking the button below you can turn algorithm on."
         android:textSize="20sp"
         android:gravity="center"
         android:layout_below="@+id/textView"
-        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+        android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
+
+    <Switch
+        android:id="@+id/switch1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="#ffffff"
+        android:layout_below="@+id/textView1"
+        android:layout_centerVertical="true"
+        android:layout_centerHorizontal="true"
+        android:textOff="No"
+        android:textOn="Yes"
 
         />
+
+    <Button android:id="@+id/refresh"
+        android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+        android:text="Refresh"
+        android:layout_below="@+id/switch1"
+        android:background="@drawable/green"
+        android:textAppearance="@style/TextAppearance.AppCompat.Headline"
+        android:textSize="20sp"
+        android:layout_margin="15dp"
+        android:gravity="center"
+        android:layout_centerHorizontal="true"
+
+        />
+
+    <TextView android:id="@+id/resultsnightlylight"
+        android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+        android:layout_margin="10dp"
+        android:layout_below="@+id/refresh"
+        android:gravity="center"
+        />
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Alternativly, you can manually add the amount of time you have spent under artificial light tonight."
+        android:textSize="20sp"
+        android:gravity="center"
+        android:layout_below="@+id/resultsnightlylight"
+        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+        />
+
     <EditText
         android:textAlignment="center"
         android:layout_width="150dp"
@@ -82,11 +124,8 @@
         android:id="@+id/editText"
         android:layout_centerHorizontal="true"
         android:inputType="number"
-        android:layout_below="@+id/jebise"
+        android:layout_below="@+id/textView2"
         android:textColor="#ffffff"/>
-
-
-
 
     <Button
         android:text="Add"
@@ -99,7 +138,6 @@
         android:layout_below="@+id/editText"
         android:layout_centerHorizontal="true"
         android:layout_margin="10dp"
-
         />
 
-    ></RelativeLayout>
+    </RelativeLayout>

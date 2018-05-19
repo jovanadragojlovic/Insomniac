@@ -23,8 +23,6 @@ public class LearnMoreSleep extends LearnMore {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.learnmore_sleep);
 
-
-
         SpannableString ss = new SpannableString("\n" +
                 "How do our body and mind know when to sleep? \n" + "\n" +
                 "The part of the brain called Suprachiasmatic nucleus (SCN), contains specialized cells which with the help of a special molecular mechanism have a daily activity oscillations. These oscillations are modulated by the light, setting the 24-h rhythm for all physiological rhythms in the organism, including wakefulness and sleep. Studies have shown that light activates the cells in SCN, promoting wakefulness (see reference 1). On the other hand, molecule called melatonin, which production is highest in the evening, inhibits the activity of the cells in SCN (see 2). Another important molecule involved in sleep regulation is called adenosine, a byproduct of energy metabolism. Research has shown that adenosine inhibits the activity of many wake-promoting brain areas (see 3). \n" +
@@ -73,17 +71,10 @@ public class LearnMoreSleep extends LearnMore {
         ss.setSpan(span3, 1287, 1363, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
 
 
-
-
         TextView textView = (TextView) findViewById(dva);
         textView.setMovementMethod(new ScrollingMovementMethod());
         textView.setText(ss);
         textView.setMovementMethod(LinkMovementMethod.getInstance());
-
-
-
-
-
 
 }
 

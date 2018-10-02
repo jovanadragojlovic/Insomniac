@@ -16,7 +16,9 @@
 
 package com.example.nikola.insomniac.worrybook;
 
+import android.app.AlarmManager;
 import android.app.Dialog;
+import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
@@ -38,11 +40,15 @@ import android.widget.ImageButton;
 import android.widget.TextView;
 import com.example.nikola.insomniac.R;
 
+import java.util.Calendar;
+import java.util.Date;
+
 public class WorryBook extends AppCompatActivity implements LoaderManager.LoaderCallbacks<Cursor> {
 
     private Button wb;
     final Context context = this;
-
+    private TaskDbHelper taskDbHelper;
+    private AlarmManager alarmManager;
 
     // Constants for logging and referring to a unique loader
     private static final String TAG = WorryBook.class.getSimpleName();
@@ -51,6 +57,7 @@ public class WorryBook extends AppCompatActivity implements LoaderManager.Loader
     // Member variables for the adapter and RecyclerView
     private CustomCursorAdapter mAdapter;
     RecyclerView mRecyclerView;
+    private AlarmPopUp alarmPopUp;
 
 
     @Override
@@ -58,7 +65,9 @@ public class WorryBook extends AppCompatActivity implements LoaderManager.Loader
         super.onCreate(savedInstanceState);
         setContentView(R.layout.worrybook);
         ImageButton wb = (ImageButton) findViewById(R.id.wb);
-
+        taskDbHelper = new TaskDbHelper(this);
+        alarmPopUp = new AlarmPopUp();
+        alarmManager = (AlarmManager) getSystemService(ALARM_SERVICE);
 
         // Set the RecyclerView to its corresponding view
         mRecyclerView = (RecyclerView) findViewById(R.id.recyclerViewTasks);
@@ -98,10 +107,14 @@ public class WorryBook extends AppCompatActivity implements LoaderManager.Loader
                 String stringId = Integer.toString(id);
                 Uri uri = TaskContract.TaskEntry.CONTENT_URI;
                 uri = uri.buildUpon().appendPath(stringId).build();
+                if(taskDbHelper.getAlarmById(stringId) != null) {
+                    Date date = new Date(taskDbHelper.getAlarmById(stringId));
+                    Calendar cal = Calendar.getInstance();
+                    cal.setTime(date);
+                    cancelAlarm(cal);
+                }
 
-                // COMPLETED (2) Delete a single row of data using a ContentResolver
-                getContentResolver().delete(uri, null, null);
-
+                taskDbHelper.deleteTask(stringId);
                 // COMPLETED (3) Restart the loader to re-query for all tasks after a deletion
                 getSupportLoaderManager().restartLoader(TASK_LOADER_ID, null, WorryBook.this);
 
@@ -136,17 +149,17 @@ public class WorryBook extends AppCompatActivity implements LoaderManager.Loader
             @Override
             public void onClick(View arg0) {
 
-                // nl_info dialog
+                // info_nl dialog
                 final Dialog dialog = new Dialog(context);
                 dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
-                dialog.setContentView(R.layout.wb_info);
+                dialog.setContentView(R.layout.info_wb);
 
 
-                // set the nl_info dialog components - text, image and button
+                // set the info_nl dialog components - text, image and button
                 TextView text = (TextView) dialog.findViewById(R.id.text);
 
                 Button dialogButton = (Button) dialog.findViewById(R.id.dialogButtonOK);
-                // if button is clicked, close the nl_info dialog
+                // if button is clicked, close the info_nl dialog
                 dialogButton.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
@@ -254,6 +267,48 @@ public class WorryBook extends AppCompatActivity implements LoaderManager.Loader
     @Override
     public void onLoaderReset(Loader<Cursor> loader) {
         mAdapter.swapCursor(null);
+    }
+
+    public void setAlarm(Calendar calendar) {
+        String sati = intToString(calendar.getTime().getHours());
+        String minuti = intToString(calendar.getTime().getMinutes());
+        String dan = String.valueOf(calendar.getTime().getDate());
+        int datum =  Integer.parseInt(dan + sati + minuti);
+        Log.d("SleepQuality", "Setovan alarm: " + datum);
+        Intent intent = new Intent(this, AlarmReceiver.class);
+        PendingIntent pendingIntent =
+                PendingIntent.getBroadcast(getBaseContext(), datum, intent, 0);
+        alarmManager = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
+        alarmManager.set(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(), pendingIntent);
+    }
+
+    public void cancelAlarm(Calendar calendar) {
+        String sati = intToString(calendar.getTime().getHours());
+        String minuti = intToString(calendar.getTime().getMinutes());
+        String dan = String.valueOf(calendar.getTime().getDate());
+        int datum =  Integer.parseInt(dan + sati + minuti);
+
+        Intent intent = new Intent(this, AlarmReceiver.class);
+        PendingIntent pendingIntent = PendingIntent.getBroadcast(this, datum, intent,
+                PendingIntent.FLAG_CANCEL_CURRENT);
+        Log.d("SleepQuality", "Cancelovan alarm: " + datum);
+        alarmManager.cancel(pendingIntent);
+        pendingIntent.cancel();
+    }
+
+    private String intToString(int integer) {
+        String string;
+        if(String.valueOf(integer).length() == 0) {
+            string = "00";
+        }
+        else if(String.valueOf(integer).length() == 1) {
+            string = "0" + String.valueOf(integer);
+        }
+        else {
+            string = String.valueOf(integer);
+        }
+
+        return string;
     }
 
 }

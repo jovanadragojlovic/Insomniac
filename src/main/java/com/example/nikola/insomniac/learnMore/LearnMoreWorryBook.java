@@ -11,11 +11,11 @@ import android.text.style.ClickableSpan;
 import android.view.View;
 import android.widget.TextView;
 
+import com.example.nikola.insomniac.MainActivity;
 import com.example.nikola.insomniac.R;
-import com.example.nikola.insomniac.learnMore.LearnMore;
 
 
-public class LearnMoreWorryBook extends LearnMore {
+public class LearnMoreWorryBook extends MainActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

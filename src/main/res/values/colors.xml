@@ -8,7 +8,13 @@
     <color name="transparent_white">#7fffffff</color>
     <color name="siva">#21ffffff</color>
     <color name="colorSecondary">#ffffff</color>
+    <color name="purple">#ba1794</color>
+    <color name="purpletrans">#539b117a</color>
+    <color name="blacktrans">#50000000</color>
+    <color name="transparent">#00ffffff</color>
 
+
+    <color name="pozadina">#f3f3f3</color>
 
 
     <!-- colors for task priority selection -->

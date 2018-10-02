@@ -20,7 +20,6 @@ import android.widget.TimePicker;
 
 import com.example.nikola.insomniac.PreferencesHelper;
 import com.example.nikola.insomniac.R;
-import com.example.nikola.insomniac.alarms.AlarmReceiver;
 
 import java.util.Calendar;
 
@@ -69,7 +68,6 @@ public class AlarmPopUp extends Activity {
         alarmToggle = (Switch) findViewById(R.id.alarmToggle);
         alarmManager = (AlarmManager) getSystemService(ALARM_SERVICE);
         preferencesHelper = new PreferencesHelper(getApplicationContext());
-        alarmToggle.setChecked(preferencesHelper.loadBoolean(PreferencesHelper.PREFERENCE_TOGGLE_BTN_VALUE));
     }
 
 
@@ -134,7 +132,7 @@ public class AlarmPopUp extends Activity {
         String dan = String.valueOf(calendar.getTime().getDate());
         int datum =  Integer.parseInt(dan + sati + minuti);
         Log.d("SleepQuality", "Setovan alarm: " + datum);
-        Intent intent = new Intent(getBaseContext(), AlarmReceiver.class);
+        Intent intent = new Intent(this, AlarmReceiver.class);
         pendingIntent = PendingIntent.getBroadcast(getBaseContext(), datum, intent, 0);
         alarmManager = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
         alarmManager.set(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(), pendingIntent);

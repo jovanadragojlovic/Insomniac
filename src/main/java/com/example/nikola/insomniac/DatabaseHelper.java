@@ -18,7 +18,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     private static final String PHYSICAL_ACTIVITY = "PhysicalActivity";
     private static final String DAILY_LIGHT = "DailyLight";
     private static final String NIGHTLY_LIGHT = "NightlyLight";
-    private static final String WATER = "Water";
+    private static final String SLEEPING_TIME = "SleepingTime";
     private static final String FOOD = "Food";
     private static final String COFFEE = "Coffee";
     private static final String BEDROOM = "Bedroom";
@@ -35,9 +35,9 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     private static final String NL_COL2 = "AverageLux";
 
-    private static final String W_COL2 = "WaterAmount";
+    private static final String W_COL2 = "SleepingTimeAmount";
 
-    private static final String F_COL2 = "WaterAmount";
+    private static final String F_COL2 = "SleepingTimeAmount";
     private static final String F_COL3 = "Carbs";
     private static final String F_COL4 = "Fats";
     private static final String F_COL5 = "Protein";
@@ -62,7 +62,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 DL_COL2 + " TEXT)";
         String createNLTable = "CREATE TABLE " + NIGHTLY_LIGHT + " (DATE TEXT PRIMARY KEY, " +
                 NL_COL2 + " TEXT)";
-        String createWTable = "CREATE TABLE " + WATER + " (DATE TEXT PRIMARY KEY, " +
+        String createWTable = "CREATE TABLE " + SLEEPING_TIME + " (DATE TEXT PRIMARY KEY, " +
                 W_COL2 + " TEXT)";
         String createFTable = "CREATE TABLE " + FOOD + " (DATE TEXT PRIMARY KEY, " +
                 F_COL2 + " TEXT, " + F_COL3 + " TEXT, " +  F_COL4 + " TEXT, " +  F_COL5 + " TEXT)";
@@ -83,14 +83,14 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int i, int i1) {
-        db.execSQL("DROP IF TABLE EXISTS " + SLEEP_QUALITY);
-        db.execSQL("DROP IF TABLE EXISTS " + PHYSICAL_ACTIVITY);
-        db.execSQL("DROP IF TABLE EXISTS " + DAILY_LIGHT);
-        db.execSQL("DROP IF TABLE EXISTS " + NIGHTLY_LIGHT);
-        db.execSQL("DROP IF TABLE EXISTS " + WATER);
-        db.execSQL("DROP IF TABLE EXISTS " + FOOD);
-        db.execSQL("DROP IF TABLE EXISTS " + COFFEE);
-        db.execSQL("DROP IF TABLE EXISTS " + BEDROOM);
+        db.execSQL("DROP TABLE IF EXISTS " + SLEEP_QUALITY);
+        db.execSQL("DROP TABLE IF EXISTS " + PHYSICAL_ACTIVITY);
+        db.execSQL("DROP TABLE IF EXISTS " + DAILY_LIGHT);
+        db.execSQL("DROP TABLE IF EXISTS " + NIGHTLY_LIGHT);
+        db.execSQL("DROP TABLE IF EXISTS " + SLEEPING_TIME);
+        db.execSQL("DROP TABLE IF EXISTS " + FOOD);
+        db.execSQL("DROP TABLE IF EXISTS " + COFFEE);
+        db.execSQL("DROP TABLE IF EXISTS " + BEDROOM);
         onCreate(db);
     }
 
@@ -111,6 +111,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         }
       //  Log.d(TAG, "Sleep Quality of today: " + getSleepQualityByDate(new SimpleDateFormat("dd-MM-yyyy").format(new Date())));
     }
+
 
     public void addPhysicalActivitySteps(String item, String date) {
         SQLiteDatabase db = this.getWritableDatabase();
@@ -181,6 +182,9 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         }
     }
 
+
+
+
     public void addNightlyLightData(String item, String date) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
@@ -204,14 +208,14 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         contentValues.put(COL1, date);
         contentValues.put(W_COL2, item);
 
-        Log.d(TAG, "addData: Adding " + item + " to " + WATER);
-        Log.d(TAG, "addData: Adding " + date + " to " + WATER);
+        Log.d(TAG, "addData: Adding " + item + " to " + SLEEPING_TIME);
+        Log.d(TAG, "addData: Adding " + date + " to " + SLEEPING_TIME);
 
-        if(getDataValues("Water", "Date").contains(date)) {
+        if(getDataValues("SleepingTime", "Date").contains(date)) {
             updateSleepingTime(item, date);
         }
         else {
-            db.insert(WATER, null, contentValues);
+            db.insert(SLEEPING_TIME, null, contentValues);
         }
     }
 
@@ -270,7 +274,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         ArrayList<String> values = new ArrayList<String>();
 
         SQLiteDatabase db = this.getReadableDatabase();
-
         Cursor cursor = db.query(tableName, new String[] {columnName},null, null, null, null, null); // here emailid is the field name in the table and contantValues.TABLE_NAME is the table name
         if (cursor.moveToFirst()) {
             do {
@@ -300,7 +303,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         Log.d(TAG, "DailyLight values: " +  getDataValues("DailyLight", "AverageLux"));
         if (dateValues.indexOf(date) != -1)
             return getDataValues("DailyLight", "AverageLux").get(dateValues.indexOf(date));
-        else return "0";
+        else return null;
     }
 
     public String getNightlyLightByDate(String date) {
@@ -309,16 +312,18 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         Log.d(TAG, "NightlyLight values: " +  getDataValues("NightlyLight", "AverageLux"));
         if (dateValues.indexOf(date) != -1)
             return getDataValues("NightlyLight", "AverageLux").get(dateValues.indexOf(date));
-        else return "0";
+        else return null;
     }
 
     public String getStepsByDate(String date) {
         ArrayList<String> dateValues = getDataValues("PhysicalActivity", "Date");
         Log.d(TAG, "Date values: " + dateValues);
         Log.d(TAG, "PhysicalActivity values: " +  getDataValues("PhysicalActivity", "Steps"));
-        if (dateValues.indexOf(date) != -1)
+        try {
             return getDataValues("PhysicalActivity", "Steps").get(dateValues.indexOf(date));
-        else return "0";
+        }catch (ArrayIndexOutOfBoundsException error){
+            return null;
+        }
     }
 
     public String getRunningByDate(String date) {
@@ -332,14 +337,22 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         ArrayList<String> dateValues = getDataValues("PhysicalActivity", "Date");
         Log.d(TAG, "Date values: " + dateValues);
         Log.d(TAG, "PhysicalActivity values: " +  getDataValues("PhysicalActivity", "Sport"));
-        return getDataValues("PhysicalActivity", "Sport").get(dateValues.indexOf(date));
+        try {
+            return getDataValues("PhysicalActivity", "Sport").get(dateValues.indexOf(date));
+        }catch (ArrayIndexOutOfBoundsException error){
+            return null;
+        }
     }
 
     public String getSleepingTimeByDate(String date) {
-        ArrayList<String> dateValues = getDataValues("Water", "Date");
+        ArrayList<String> dateValues = getDataValues("SleepingTime", "Date");
         Log.d(TAG, "Date values: " + dateValues);
-        Log.d(TAG, "Water values: " +  getDataValues("Water", "WaterAmount"));
-        return getDataValues("Water", "WaterAmount").get(dateValues.indexOf(date));
+        Log.d(TAG, "SleepingTime values: " +  getDataValues("SleepingTime", "SleepingTimeAmount"));
+        try {
+            return getDataValues("SleepingTime", "SleepingTimeAmount").get(dateValues.indexOf(date));
+        }catch (ArrayIndexOutOfBoundsException error){
+            return null;
+        }
     }
 
     public String getCoffeeByDate(String date) {
@@ -383,12 +396,12 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     public void updateSteps(String steps, String date){
         SQLiteDatabase db = this.getWritableDatabase();
-        int lastSteps = Integer.parseInt(this.getStepsByDate(date));
-        lastSteps += Integer.parseInt(steps);
+       // int lastSteps = Integer.parseInt(this.getStepsByDate(date));
+        //lastSteps += Integer.parseInt(steps);
         String query = "UPDATE " + PHYSICAL_ACTIVITY + " SET " + PA_COL2 +
-                " = '" + String.valueOf(lastSteps) + "' WHERE " + COL1 + " = '" + date + "'";
+                " = '" + steps + "' WHERE " + COL1 + " = '" + date + "'";
         Log.d(TAG, "updateName: query: " + query);
-        Log.d(TAG, "updateName: Setting steps to " + String.valueOf(lastSteps));
+        Log.d(TAG, "updateName: Setting steps to " + steps);
         db.execSQL(query);
     }
 
@@ -405,8 +418,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     public void updateSport(String sport, String date){
         SQLiteDatabase db = this.getWritableDatabase();
-        int lastSport = Integer.parseInt(this.getSportByDate(date));
-        lastSport += Integer.parseInt(sport);
+        double lastSport = Double.parseDouble(this.getSportByDate(date));
+        lastSport += Double.parseDouble(sport);
         String query = "UPDATE " + PHYSICAL_ACTIVITY + " SET " + PA_COL4 +
                 " = '" + String.valueOf(lastSport) + "' WHERE " + COL1 + " = '" + date + "'";
         Log.d(TAG, "updateName: query: " + query);
@@ -437,14 +450,11 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         db.execSQL(query);
     }
 
-    public void updateSleepingTime(String water, String date){
+    public void updateSleepingTime(String sleepingTime, String date){
         SQLiteDatabase db = this.getWritableDatabase();
-        int lastWater = Integer.parseInt(this.getSleepingTimeByDate(date));
-        lastWater += Integer.parseInt(water);
-        String query = "UPDATE " + WATER + " SET " + W_COL2 +
-                " = '" + String.valueOf(lastWater) + "' WHERE " + COL1 + " = '" + date + "'";
+        String query = "UPDATE " + SLEEPING_TIME + " SET " + W_COL2 +
+                " = '" + sleepingTime + "' WHERE " + COL1 + " = '" + date + "'";
         Log.d(TAG, "updateName: query: " + query);
-        Log.d(TAG, "updateName: Setting water to " + String.valueOf(lastWater));
         db.execSQL(query);
     }
 
@@ -453,7 +463,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         String query = "UPDATE " + COFFEE + " SET " + C_COL2 +
                 " = '" + String.valueOf(coffee) + "' WHERE " + COL1 + " = '" + date + "'";
         Log.d(TAG, "updateName: query: " + query);
-        Log.d(TAG, "updateName: Setting coffee to " + String.valueOf(coffee));
+        Log.d(TAG, "updateName: Setting improvesleep_coffee to " + String.valueOf(coffee));
         db.execSQL(query);
     }
 
@@ -515,9 +525,9 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         db.execSQL(query);
     }
 
-    public void deleteWaterByDate(String date) {
+    public void deleteSleepingTimeByDate(String date) {
         SQLiteDatabase db = this.getWritableDatabase();
-        String query = "DELETE FROM " + WATER + " WHERE "
+        String query = "DELETE FROM " + SLEEPING_TIME + " WHERE "
                 + COL1 + " = '" + date + "'";
         Log.d(TAG, "deleteName: query: " + query);
         Log.d(TAG, "deleteName: Deleting " + date + " from database.");

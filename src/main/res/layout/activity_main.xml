@@ -1,142 +1,51 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    tools:context=".MainActivity"
-    android:layout_width="fill_parent"
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
     android:layout_height="match_parent"
-
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:background="@color/pozadina"
     >
+<android.support.design.widget.CoordinatorLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/coordinator"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_above="@+id/tabs">
 
-    <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:tools="http://schemas.android.com/tools"
+    <android.support.design.widget.AppBarLayout
+        android:id="@+id/appbar"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true">
+        android:layout_height="wrap_content"
+        app:elevation="0dp">
 
-        <ImageView
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/my_toolbar"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:src="@drawable/tunisija"
-            android:scaleType = "centerCrop"
-            android:id="@+id/imageView2"
-            tools:ignore="ContentDescription"/>
+            android:layout_height="?attr/actionBarSize"
+            android:background="?attr/colorPrimary"
+            app:layout_scrollFlags="scroll|enterAlways" />
 
 
-
-
-    </FrameLayout>
-
-    <ImageView
-        android:id="@+id/imageView"
-        android:layout_width="67dp"
-        android:layout_height="50dp"
-        android:layout_marginTop="4dp"
-        app:srcCompat="@drawable/novlog"
-        tools:ignore="ContentDescription"/>
-
-    <ImageView
-        android:id="@+id/imageView5"
-        android:layout_width="110dp"
-        android:layout_height="68dp"
-        android:src="@drawable/novooo"
-        android:layout_centerHorizontal="true"
-        />
-
-
-
+    </android.support.design.widget.AppBarLayout>
 
     <android.support.v4.view.ViewPager
         android:id="@+id/container"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
         app:layout_behavior="@string/appbar_scrolling_view_behavior"
-        android:textColor="#ffffff"
-        android:layout_below="@+id/tabs"
-        android:paddingTop="3dp"
-       />
+        android:layout_height="wrap_content" />
+
+
+
+</android.support.design.widget.CoordinatorLayout>
 
     <android.support.design.widget.TabLayout
         android:id="@+id/tabs"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/imageView"
-        app:tabIndicatorColor="#ffffff"
-        app:tabSelectedTextColor="#ffffff"
+        android:layout_alignParentBottom="true"
+        android:background="@color/white"
         />
-
-    <!--<TextView-->
-        <!--android:layout_width="match_parent"-->
-        <!--android:layout_height="40dp"-->
-        <!--android:id="@+id/privremeno"-->
-        <!--android:layout_marginTop="69dp"-->
-
-        <!--/>-->
-
-    <!--<Button-->
-        <!--android:layout_below="@id/privremeno"-->
-        <!--android:text="Learn more"-->
-        <!--android:layout_width="200dp"-->
-        <!--android:layout_height="wrap_content"-->
-        <!--android:id="@+id/buttonLearnMore"-->
-        <!--android:background="@drawable/green"-->
-        <!--android:textAppearance="@style/TextAppearance.AppCompat.Headline"-->
-        <!--android:textSize="20sp"-->
-        <!--android:layout_margin="14dp"-->
-        <!--android:layout_centerHorizontal="true"-->
-        <!--android:gravity="center"-->
-        <!--android:layout_centerVertical="true"-->
-        <!--/>-->
-
-
-
-    <!--<Button-->
-            <!--android:text="Improve sleep"-->
-            <!--android:layout_width="200dp"-->
-            <!--android:layout_height="wrap_content"-->
-            <!--android:id="@+id/ImproveSleep"-->
-            <!--android:background="@drawable/green"-->
-            <!--android:textAppearance="@style/TextAppearance.AppCompat.Headline"-->
-            <!--android:textSize="20sp"-->
-            <!--android:layout_centerVertical="true"-->
-            <!--android:layout_margin="14dp"-->
-            <!--android:gravity="center"-->
-            <!--android:layout_centerHorizontal="true"-->
-            <!--android:layout_below="@+id/buttonLearnMore"-->
-        <!--/>-->
-
-    <!--<Button-->
-        <!--android:text="Track progress"-->
-        <!--android:layout_width="200dp"-->
-        <!--android:layout_height="wrap_content"-->
-        <!--android:id="@+id/trackprogress"-->
-        <!--android:background="@drawable/green"-->
-        <!--android:textAppearance="@style/TextAppearance.AppCompat.Headline"-->
-        <!--android:textSize="20sp"-->
-        <!--android:layout_margin="14dp"-->
-        <!--android:layout_centerHorizontal="true"-->
-        <!--android:gravity="center"-->
-        <!--android:layout_centerVertical="true"-->
-        <!--android:layout_below="@id/ImproveSleep"-->
-        <!--/>-->
-
-
-        <!--<Button-->
-            <!--android:text="Worry book"-->
-            <!--android:layout_width="200dp"-->
-            <!--android:layout_height="wrap_content"-->
-            <!--android:id="@+id/WorryBook"-->
-            <!--android:background="@drawable/green"-->
-            <!--android:textAppearance="@style/TextAppearance.AppCompat.Headline"-->
-            <!--android:textSize="20sp"-->
-            <!--android:layout_margin="14dp"-->
-            <!--android:layout_centerHorizontal="true"-->
-            <!--android:gravity="center"-->
-            <!--android:layout_centerVertical="true"-->
-            <!--android:layout_below="@+id/trackprogress"-->
-            <!--/>-->
-
-    </RelativeLayout>
-
+</RelativeLayout>

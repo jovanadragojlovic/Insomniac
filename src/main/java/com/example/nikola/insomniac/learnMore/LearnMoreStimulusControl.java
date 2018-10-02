@@ -12,9 +12,10 @@ import android.text.style.ClickableSpan;
 import android.view.View;
 import android.widget.TextView;
 
+import com.example.nikola.insomniac.MainActivity;
 import com.example.nikola.insomniac.R;
 
-public class LearnMoreStimulusControl extends LearnMore {
+public class LearnMoreStimulusControl extends MainActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,7 +25,7 @@ public class LearnMoreStimulusControl extends LearnMore {
         SpannableString ss = new SpannableString("\n" +
                 "Stimulus control \n" +
                 "\n" +
-                "In order to cope with insomnia, insomniacs have a tendency to engage in various activities in their bed when unable to sleep. This leads to associating bed or bedroom with a wakeful state. Stimulus control therapy aims at reassociating the bed/bedroom with sleep. The following instructions aim to achieve this (see 1):\n" +
+                "In order to cope with insomnia, people have a tendency to engage in various activities in their bed when unable to sleep. This leads to associating bed or bedroom with a wakeful state. Stimulus control therapy aims at reassociating the bed/bedroom with sleep. The following instructions aim to achieve this (see 1):\n" +
                 "\n" +
                 "1. Go to sleep only when sleepy. \n" +
                 "\n" +
@@ -54,7 +55,7 @@ public class LearnMoreStimulusControl extends LearnMore {
 
         };
 
-        ss.setSpan(span1, 590, 697, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+        ss.setSpan(span1, 587, 694, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
 
         TextView textView = (TextView) findViewById(R.id.learnmoresctext);
         textView.setMovementMethod(new ScrollingMovementMethod());

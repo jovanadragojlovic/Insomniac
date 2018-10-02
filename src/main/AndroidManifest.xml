@@ -12,23 +12,23 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         >
+        <activity android:name=".SplashActivity"
+            android:theme="@style/SplashTheme"
+            android:screenOrientation="portrait">
+
+        <intent-filter>
+            <action android:name="android.intent.action.MAIN" />
+
+            <category android:name="android.intent.category.LAUNCHER" />
+        </intent-filter>
+        </activity>
+
         <activity android:name=".MainActivity"
             android:label="@string/MainActivityTitle"
             android:screenOrientation="portrait"
          >
             <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
-
-        <activity android:name=".learnMore.LearnMore"
-            android:screenOrientation="portrait"
-            android:label="@string/Learnmore">
-        <intent-filter>
                 <action android:name="android.intent.action.CALL" />
-
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
@@ -52,6 +52,14 @@
         </activity>
 
         <activity android:name=".learnMore.LearnMoreStimulusControl"
+            android:screenOrientation="portrait">
+            <intent-filter>
+                <action android:name="android.intent.action.CALL" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+
+        <activity android:name=".onFirstStart.OnBoardingActivity"
             android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.CALL" />
@@ -98,82 +106,9 @@
             </intent-filter>
         </activity>
 
-
-        <activity android:name=".ImproveSleep"
-            android:screenOrientation="portrait">
-            <intent-filter>
-                <action android:name="android.intent.action.CALL" />
-
-                <category android:name="android.intent.category.DEFAULT" />
-            </intent-filter>
-        </activity>
-
-
-        <activity android:name=".improveSleep.SleepQuality"
-            android:screenOrientation="portrait">
-            <intent-filter>
-                <action android:name="android.intent.action.CALL" />
-
-                <category android:name="android.intent.category.DEFAULT" />
-            </intent-filter>
-        </activity>
-
-        <activity android:name=".improveSleep.PhysicalActivity"
-            android:screenOrientation="portrait">
-            <intent-filter>
-                <action android:name="android.intent.action.CALL" />
-
-                <category android:name="android.intent.category.DEFAULT" />
-            </intent-filter>
-        </activity>
-
-        <activity android:name=".improveSleep.DailyLight"
-            android:screenOrientation="portrait">
-            <intent-filter>
-                <action android:name="android.intent.action.CALL" />
-
-                <category android:name="android.intent.category.DEFAULT" />
-            </intent-filter>
-        </activity>
-
-        <activity android:name=".improveSleep.NightlyLight"
-            android:screenOrientation="portrait">
-            <intent-filter>
-                <action android:name="android.intent.action.CALL" />
-
-                <category android:name="android.intent.category.DEFAULT" />
-            </intent-filter>
-        </activity>
-
-        <activity android:name=".improveSleep.Bedroom"
-            android:screenOrientation="portrait">
-            <intent-filter>
-                <action android:name="android.intent.action.CALL" />
-
-                <category android:name="android.intent.category.DEFAULT" />
-            </intent-filter>
-        </activity>
-
-        <activity android:name=".improveSleep.Coffee"
-            android:screenOrientation="portrait">
-            <intent-filter>
-                <action android:name="android.intent.action.CALL" />
-
-                <category android:name="android.intent.category.DEFAULT" />
-            </intent-filter>
-        </activity>
-
-        <activity android:name=".statistics.TrackProgress"
-            android:screenOrientation="portrait">
-            <intent-filter>
-                <action android:name="android.intent.action.CALL" />
-
-                <category android:name="android.intent.category.DEFAULT" />
-            </intent-filter>
-        </activity>
-
         <activity android:name=".worrybook.AlarmPopUp"
-            android:screenOrientation="portrait">
+            android:screenOrientation="portrait"
+            android:theme="@style/dialogTheme">
             <intent-filter>
                 <action android:name="android.intent.action.CALL" />
 
@@ -182,14 +117,14 @@
         </activity>
 
         <service
-            android:name=".alarms.AlarmService"
+            android:name=".worrybook.AlarmService"
             android:enabled="true" />
-        <receiver android:name=".alarms.AlarmReceiver" />
 
+        <service
+            android:name=".noData.NoDataService" />
 
-        <service android:name=".improveSleep.NightlyLightService"/>
-        <service android:name=".improveSleep.DailyLightService"/>
-        <service android:name=".improveSleep.StepsService"/>
+        <receiver android:name=".worrybook.AlarmReceiver" />
+        <receiver android:name=".noData.NoDataReceiver" />
 
 
     </application>

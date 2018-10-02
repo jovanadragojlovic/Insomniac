@@ -209,11 +209,12 @@ public class TaskContentProvider extends ContentProvider {
     public int update(@NonNull Uri uri, ContentValues values, String selection,
                       String[] selectionArgs) {
 
-        final SQLiteDatabase db = mTaskDbHelper.getWritableDatabase();
-
-        return db.update(TaskContract.TaskEntry.TABLE_NAME, values, selection , selectionArgs);
+//        final SQLiteDatabase db = mTaskDbHelper.getWritableDatabase();
+//
+//        return db.update(TaskContract.TaskEntry.TABLE_NAME, values, selection , selectionArgs);
 
         // throw new UnsupportedOperationException("Not yet implemented");
+        return 1;
     }
 
 

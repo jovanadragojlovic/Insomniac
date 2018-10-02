@@ -18,7 +18,6 @@ package com.example.nikola.insomniac.worrybook;
 
 import android.app.AlarmManager;
 import android.app.TimePickerDialog;
-import android.content.ContentValues;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.database.Cursor;
@@ -27,12 +26,12 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.CheckBox;
-import android.widget.CompoundButton;
 import android.widget.TextView;
 import android.widget.TimePicker;
 import com.example.nikola.insomniac.R;
+
 import java.util.Calendar;
-import java.util.Date;
+
 import static android.content.Context.ALARM_SERVICE;
 import static com.example.nikola.insomniac.R.id.taskDescription;
 
@@ -53,7 +52,7 @@ public class CustomCursorAdapter extends RecyclerView.Adapter<CustomCursorAdapte
     private int alarmOn;
     private int positionIndex;
     private AlarmPopUp alarmPopUp = new AlarmPopUp();
-
+    private WorryBook worryBook = new WorryBook();
     /**
      * Constructor for the CustomCursorAdapter that initializes the Context.
      *
@@ -117,59 +116,59 @@ public class CustomCursorAdapter extends RecyclerView.Adapter<CustomCursorAdapte
         holder.checkBox.setChecked(alarmOn != 0);
 
 
-        holder.checkBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                String alarm = mTaskdbHelper.getAlarmByIndex(position);
-                Date date;
-
-                if(alarm != null) {
-                    date = new Date(alarm);
-                }
-
-                else {
-                    date = new Date();
-                }
-                Calendar calendar = Calendar.getInstance();
-                calendar.setTime(date);
-
-                if(alarmPopUp != null){
-
-                    if(isChecked) {
-                        holder.checkBox.setBackgroundResource(R.drawable.alarm_clock_green);
-                        ContentValues contentValues = new ContentValues();
-                        if(alarm != null) {
-                            mTaskdbHelper.updateAlarmOn("1", mTaskdbHelper.getIdByIndex(position));
-                            alarmPopUp.setAlarm(calendar);
-                        }
-                        else {
-                            timePickerDialog = new TimePickerDialog(
-                                    AlarmPopUp.instance(),
-                                    TimePickerDialog.THEME_HOLO_DARK,
-                                    onTimeSetListener,
-                                    calendar.get(Calendar.HOUR_OF_DAY),
-                                    calendar.get(Calendar.MINUTE),
-                                    true);
-                            timePickerDialog.setTitle("Set Alarm Time");
-                            timePickerDialog.setOnCancelListener(onCancelListener);
-                            timePickerDialog.setOnDismissListener(onDismissListener);
-                            timePickerDialog.show();
-                        }
-
-                        int uri = mContext.getContentResolver().update(  //mozda insert ne update
-                                TaskContract.TaskEntry.CONTENT_URI,
-                                contentValues,
-                                null,
-                                null);
-                    }
-                    else {
-                        holder.checkBox.setBackgroundResource(R.drawable.alarm_clock_white);
-                        mTaskdbHelper.updateAlarmOn("0", mTaskdbHelper.getIdByIndex(position));
-                        alarmPopUp.cancelAlarm(calendar);
-                    }
-                }
-            }
-        });
+//        holder.checkBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+//            @Override
+//            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+//                String alarm = mTaskdbHelper.getAlarmByIndex(position);
+//                Date date;
+//
+//                if(alarm != null) {
+//                    date = new Date(alarm);
+//                }
+//
+//                else {
+//                    date = new Date();
+//                }
+//                Calendar calendar = Calendar.getInstance();
+//                calendar.setTime(date);
+//
+//                if(alarmPopUp != null){
+//
+//                    if(isChecked) {
+//                        holder.checkBox.setBackgroundResource(R.drawable.alarm_clock_green);
+//                        ContentValues contentValues = new ContentValues();
+//                        if(alarm != null) {
+//                            mTaskdbHelper.updateAlarmOn("1", mTaskdbHelper.getIdByIndex(position));
+//                            worryBook.setAlarm(calendar);
+//                        }
+//                        else {
+//                            timePickerDialog = new TimePickerDialog(
+//                                    AlarmPopUp.instance(),
+//                                    TimePickerDialog.THEME_HOLO_DARK,
+//                                    onTimeSetListener,
+//                                    calendar.get(Calendar.HOUR_OF_DAY),
+//                                    calendar.get(Calendar.MINUTE),
+//                                    true);
+//                            timePickerDialog.setTitle("Set Alarm Time");
+//                            timePickerDialog.setOnCancelListener(onCancelListener);
+//                            timePickerDialog.setOnDismissListener(onDismissListener);
+//                            timePickerDialog.show();
+//                        }
+//
+//                        int uri = mContext.getContentResolver().update(  //mozda insert ne update
+//                                TaskContract.TaskEntry.CONTENT_URI,
+//                                contentValues,
+//                                null,
+//                                null);
+//                    }
+//                    else {
+//                        holder.checkBox.setBackgroundResource(R.drawable.alarm_clock_white);
+//                        mTaskdbHelper.updateAlarmOn("0", mTaskdbHelper.getIdByIndex(position));
+//                        worryBook.cancelAlarm(calendar);
+//                    }
+//                }
+//            }
+//        });
     }
 
     TimePickerDialog.OnTimeSetListener onTimeSetListener

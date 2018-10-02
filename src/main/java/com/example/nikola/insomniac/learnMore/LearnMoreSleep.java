@@ -11,12 +11,13 @@ import android.text.style.ClickableSpan;
 import android.view.View;
 import android.widget.TextView;
 
+import com.example.nikola.insomniac.MainActivity;
 import com.example.nikola.insomniac.R;
 
 import static com.example.nikola.insomniac.R.id.dva;
 
 
-public class LearnMoreSleep extends LearnMore {
+public class LearnMoreSleep extends MainActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -58,7 +59,7 @@ public class LearnMoreSleep extends LearnMore {
         ClickableSpan span3 = new ClickableSpan() {
             @Override
             public void onClick(View textView) {
-                Uri uri = Uri.parse("http://www.sciencedirect.com/science/article/pii/S030100820400125X");
+                Uri uri = Uri.parse("https://www.ncbi.nlm.nih.gov/pubmed/15313333 ");
                 Intent intent = new Intent(Intent.ACTION_VIEW, uri);
                 startActivity(intent);
             }
